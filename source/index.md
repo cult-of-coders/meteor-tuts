@@ -1,6 +1,6 @@
 ---
-title: Introducing to Grapher
-description: Grapher is a collection relationship manager. 
+title: Introduction
+description: Grapher is a collection relationship manager and a secure Graphed Data fetcher.
 ---
 
 ## What is Grapher?
@@ -11,8 +11,7 @@ Grapher is a Meteor package that:
 - Allows you to securely expose collections client-side
 - Allows you to fetch the data graph by JS objects.
 - Offers the same API for Reactive and Non-Reactive queries.
-- Integrates with your existing Meteor projects, MongoDB relations and SimpleSchema
-
+- !! Integrates with your existing Meteor projects, MongoDB relations and SimpleSchema
 
 ## Modules
 
