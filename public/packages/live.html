@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
 
     <!-- Basic -->
     <title>Grapher Live | Grapher Docs</title>
     <meta name="description" content="A meteor package that allows you to test your queries live.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="../images/favicon.png" sizes="16x16 32x32 64x64">
+    <link rel="shortcut icon" type="image/png" href="../images/favicon.png"
+          sizes="16x16 32x32 64x64">
 
     <!-- Social -->
     <meta property="og:type" content="article">
@@ -22,12 +23,13 @@
     <meta name="twitter:image" content="">
 
     <!-- Misc -->
-    <meta name="google-site-verification" content="" />
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic' rel='stylesheet' type='text/css'>
+    <meta name="google-site-verification" content=""/>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic'
+          rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/style/style.css">
-  </head>
-  <body class="">
-    
+</head>
+<body class="">
+
 
 <div class="nav dark">
   <div class="nav-group">
@@ -49,27 +51,44 @@
 
   <div class="nav-group right">
     
+      <div class="nav-item show-mobile">
+        <span class="js-search-toggle">
+          <span class="icon-search"></span>
+        </span>
+      </div>
+    
     
       <div class="nav-item show-desktop ">
         <a class="link" href="https://github.com/cult-of-coders/grapher" target=_new >
-          <span>Grapher</span>
+          <span>GitHub</span>
         </a>
       </div>
     
       <div class="nav-item show-desktop ">
-        <a class="link" href="https://github.com/cult-of-coders/grapher-boilerplate" target=_new >
-          <span>Boilerplate</span>
-        </a>
-      </div>
-    
-      <div class="nav-item show-desktop ">
-        <a class="link" href="https://github.com/cult-of-coders/grapher-live" target=_new >
-          <span>Live</span>
+        <a class="link" href="http://grapher-live.cultofcoders.com/grapher" target=_new >
+          <span>Test Live</span>
         </a>
       </div>
     
   </div>
 
+  
+    <div class="nav-search">
+      <div class="input-symbol">
+        <input type="text" placeholder="Search " id="mobile-search-input"/>
+        <span class="icon-search"></span>
+      </div>
+
+      <div class="nav-group right">
+        <div class="nav-item">
+          <span class="js-search-toggle">
+            <span class="icon-close"></span>
+          </span>
+        </div>
+      </div>
+
+      <div class="wrapper-mobile-search-results"></div>
+    </div>
   
 
 </div>
@@ -84,19 +103,13 @@
     
       <div class="panel-item "">
         <a class="" href="https://github.com/cult-of-coders/grapher" target=_new >
-          <span>Grapher</span>
+          <span>GitHub</span>
         </a>
       </div>
     
       <div class="panel-item "">
-        <a class="" href="https://github.com/cult-of-coders/grapher-boilerplate" target=_new >
-          <span>Boilerplate</span>
-        </a>
-      </div>
-    
-      <div class="panel-item "">
-        <a class="" href="https://github.com/cult-of-coders/grapher-live" target=_new >
-          <span>Live</span>
+        <a class="" href="http://grapher-live.cultofcoders.com/grapher" target=_new >
+          <span>Test Live</span>
         </a>
       </div>
     
@@ -106,6 +119,15 @@
     <div class="topcap">
       <span class="title-sidebar">Grapher Docs</span>
       
+    </div>
+
+    
+    <div class="wrapper-search">
+      <div class="input-symbol small round">
+        <input type="text" placeholder="Search " id="desktop-search-input" />
+        <span class="icon-search"></span>
+      </div>
+      <div class="wrapper-desktop-search-results"></div>
     </div>
 
     
@@ -150,6 +172,13 @@
               <li class="item-toc ">
                 <a href="../guide/exposure.html" class="sidebar-link ">
                   <span>Exposure</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="../guide/namedQuery.html" class="sidebar-link ">
+                  <span>Named Query</span>
                 </a>
               </li>
             
@@ -226,10 +255,10 @@
       
       
         <a class="link primary prev"
-          href="../guide/exposure.html">
+          href="../guide/namedQuery.html">
           <span class="icon-arrow-left-alt"></span>
           <span class="subtitle-pagination">Previous</span>
-          Exposure
+          Named Query
         </a>
       
       
@@ -251,26 +280,64 @@
   
 </div>
 
-    <script src="/script/smooth-scroll.min.js"></script>
-    <script src="/script/main.js"></script>
+<script src="/script/smooth-scroll.min.js"></script>
+<script src="/script/main.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
 
-    <script>
-      // nectar ninja
-      (function(){
-        var handle = '@meteorjs';
-        var a = document.createElement('script');
-        var m = document.getElementsByTagName('script')[0];
+<script>
+    
+    // Google analytics
+    ;
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
         a.async = 1;
-        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
-        m.parentNode.insertBefore(a, m);
-      })();
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-     
+    ga('create', 'UA-40568040-9', 'auto');
+    ga('send', 'pageview');
+    
 
-      
+    
 
-      // search box
-      
-    </script>
-  </body>
+    // search box
+    
+    ['desktop', 'mobile'].forEach(function (type) {
+        var search = docsearch({
+            apiKey: 'c6162b5842b0dc5f7af8c186fff8f5bb',
+            indexName: 'grapher',
+            inputSelector: '#' + type + '-search-input',
+            autocompleteOptions: {
+                dropdownMenuContainer: '.wrapper-' + type + '-search-results',
+                debug: true
+            },
+            algoliaOptions: {
+                hitsPerPage: 20
+            }
+        }).autocomplete;
+        var sidebar = document.querySelector('.sidebar-content');
+        search.on('autocomplete:opened', function () {
+            sidebar.classList.add('searching');
+        });
+        search.on('autocomplete:closed', function () {
+            sidebar.classList.remove('searching');
+        });
+        search.on('autocomplete:updated', function () {
+            if (search.val() === '') {
+                search.autocomplete.close();
+            }
+        });
+    });
+    
+
+    
+</script>
+</body>
 </html>

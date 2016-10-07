@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
 
     <!-- Basic -->
     <title>Query | Grapher Docs</title>
-    <meta name="description" content="Documentation of how to use Meteor's accounts functionality.">
+    <meta name="description" content="How to create and fetch queries">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="../images/favicon.png" sizes="16x16 32x32 64x64">
+    <link rel="shortcut icon" type="image/png" href="../images/favicon.png"
+          sizes="16x16 32x32 64x64">
 
     <!-- Social -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="http://grapher.cultofcoders.com">
     <meta property="og:title" content="Query | Grapher Docs">
-    <meta property="og:description" content="Documentation of how to use Meteor's accounts functionality.">
+    <meta property="og:description" content="How to create and fetch queries">
     <meta property="og:image" content="">
     <meta name="twitter:card" content="summary_image_large">
     <meta name="twitter:site" content="@culotfcoders">
     <meta name="twitter:title" content="Query | Grapher Docs">
-    <meta name="twitter:description" content="Documentation of how to use Meteor's accounts functionality.">
+    <meta name="twitter:description" content="How to create and fetch queries">
     <meta name="twitter:image" content="">
 
     <!-- Misc -->
-    <meta name="google-site-verification" content="" />
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic' rel='stylesheet' type='text/css'>
+    <meta name="google-site-verification" content=""/>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic'
+          rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/style/style.css">
-  </head>
-  <body class="">
-    
+</head>
+<body class="">
+
 
 <div class="nav dark">
   <div class="nav-group">
@@ -49,27 +51,44 @@
 
   <div class="nav-group right">
     
+      <div class="nav-item show-mobile">
+        <span class="js-search-toggle">
+          <span class="icon-search"></span>
+        </span>
+      </div>
+    
     
       <div class="nav-item show-desktop ">
         <a class="link" href="https://github.com/cult-of-coders/grapher" target=_new >
-          <span>Grapher</span>
+          <span>GitHub</span>
         </a>
       </div>
     
       <div class="nav-item show-desktop ">
-        <a class="link" href="https://github.com/cult-of-coders/grapher-boilerplate" target=_new >
-          <span>Boilerplate</span>
-        </a>
-      </div>
-    
-      <div class="nav-item show-desktop ">
-        <a class="link" href="https://github.com/cult-of-coders/grapher-live" target=_new >
-          <span>Live</span>
+        <a class="link" href="http://grapher-live.cultofcoders.com/grapher" target=_new >
+          <span>Test Live</span>
         </a>
       </div>
     
   </div>
 
+  
+    <div class="nav-search">
+      <div class="input-symbol">
+        <input type="text" placeholder="Search " id="mobile-search-input"/>
+        <span class="icon-search"></span>
+      </div>
+
+      <div class="nav-group right">
+        <div class="nav-item">
+          <span class="js-search-toggle">
+            <span class="icon-close"></span>
+          </span>
+        </div>
+      </div>
+
+      <div class="wrapper-mobile-search-results"></div>
+    </div>
   
 
 </div>
@@ -84,19 +103,13 @@
     
       <div class="panel-item "">
         <a class="" href="https://github.com/cult-of-coders/grapher" target=_new >
-          <span>Grapher</span>
+          <span>GitHub</span>
         </a>
       </div>
     
       <div class="panel-item "">
-        <a class="" href="https://github.com/cult-of-coders/grapher-boilerplate" target=_new >
-          <span>Boilerplate</span>
-        </a>
-      </div>
-    
-      <div class="panel-item "">
-        <a class="" href="https://github.com/cult-of-coders/grapher-live" target=_new >
-          <span>Live</span>
+        <a class="" href="http://grapher-live.cultofcoders.com/grapher" target=_new >
+          <span>Test Live</span>
         </a>
       </div>
     
@@ -106,6 +119,15 @@
     <div class="topcap">
       <span class="title-sidebar">Grapher Docs</span>
       
+    </div>
+
+    
+    <div class="wrapper-search">
+      <div class="input-symbol small round">
+        <input type="text" placeholder="Search " id="desktop-search-input" />
+        <span class="icon-search"></span>
+      </div>
+      <div class="wrapper-desktop-search-results"></div>
     </div>
 
     
@@ -153,6 +175,13 @@
                 </a>
               </li>
             
+              
+              <li class="item-toc ">
+                <a href="namedQuery.html" class="sidebar-link ">
+                  <span>Named Query</span>
+                </a>
+              </li>
+            
           </ul>
         </li>
       
@@ -188,7 +217,7 @@
     <div class="header-content">
       <h1 class="title-page">Query</h1>
       
-        <div class="subtitle-page">Documentation of how to use Meteor's accounts functionality.</div>
+        <div class="subtitle-page">How to create and fetch queries</div>
       
 
       <div class="page-actions">
@@ -200,8 +229,7 @@
     </div>
 
     <div class="document-formatting">
-      <h1 id="Query"><a href="#Query" class="headerlink" title="Query"></a>Query</h1><p>Creating a query for a collection client-side, must be exposed server side. Otherwise it will not work.</p>
-<p>Queries are a way to specify which data you want from the server using links as the backbone for creating the data graph.
+      <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Queries are a way to specify which data you want from the server using links as the backbone for creating the data graph.
 Queries can be reactive (using Meteor’s pub/sub system) or static (using method call) or direct if the call is done server side.</p>
 <p>Let’s configure some links, and then see how we can query them into the database.</p>
 <p>Assuming we have these collections: Authors, Comments, Posts, Groups, Category:</p>
@@ -212,13 +240,7 @@ Queries can be reactive (using Meteor’s pub/sub system) or static (using metho
 <li>Posts has one category.</li>
 <li>Comments has a single author.</li>
 </ul>
-<p>Notes to keep in mind:</p>
-<ul>
-<li>By default type is one, but you should specify it for clarity.</li>
-<li>Field is not necessary because it will auto-generate a unique field based on collection name, linked collection name, and link name. 
-We recommend specifying it for having more verbose code.</li>
-</ul>
-<h5 id="Don’t-panic"><a href="#Don’t-panic" class="headerlink" title="Don’t panic!"></a>Don’t panic!</h5><p>We’ll start defining our links, if something stops making sense. Review the <a href="links.md">Collection Links</a> documentation again.</p>
+<h3 id="Don’t-panic"><a href="#Don’t-panic" class="headerlink" title="Don’t panic!"></a>Don’t panic!</h3><p>We’ll start defining our links, if something stops making sense. Review the <a href="/guide/links.html">Collection Links</a> documentation again.</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">Authors</span><span class="selector-class">.addLinks</span>(&#123;</div><div class="line">    <span class="attribute">groups</span>: &#123;</div><div class="line">        <span class="attribute">collection</span>: Groups,</div><div class="line">        <span class="attribute">field</span>: <span class="string">'groupIds'</span>,</div><div class="line">        <span class="attribute">type</span>: <span class="string">'many'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attribute">posts</span>: &#123;</div><div class="line">        <span class="attribute">collection</span>: Posts,</div><div class="line">        <span class="attribute">inversedBy</span>: <span class="string">'author'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="comment">// Resolver links only work on server-side or with non-reactive queries</span></div><div class="line">    <span class="attribute">likesOnFacebook</span>: &#123;</div><div class="line">        <span class="comment">// in this case resolver will receive: object, filters, options, userId</span></div><div class="line">        <span class="comment">// since resolver is run server side, the author will be the full object with all the fields.</span></div><div class="line">        resolver(author) &#123;</div><div class="line">            <span class="comment">// do a sync call to retrieve the likes on facebook using author object.</span></div><div class="line">            return count;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="selector-tag">Posts</span><span class="selector-class">.addLinks</span>(&#123;</div><div class="line">    <span class="attribute">author</span>: &#123;</div><div class="line">        <span class="attribute">collection</span>: Authors,</div><div class="line">        <span class="attribute">type</span>: <span class="string">'one'</span>,</div><div class="line">        <span class="attribute">field</span>: <span class="string">'authorId'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="comment">// it can have a lot of comments, so it's safer if we store the link in Comments collection</span></div><div class="line">    <span class="attribute">comments</span>: &#123; </div><div class="line">        <span class="attribute">collection</span>: Comments,</div><div class="line">        <span class="attribute">inversedBy</span>: <span class="string">'post'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attribute">category</span>: &#123;</div><div class="line">        <span class="attribute">collection</span>: Categories,</div><div class="line">        <span class="attribute">type</span>: <span class="string">'many'</span>,</div><div class="line">        <span class="attribute">field</span>: <span class="string">'categoryIds'</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="selector-tag">Comments</span><span class="selector-class">.addLinks</span>(&#123;</div><div class="line">    <span class="attribute">author</span>: &#123;</div><div class="line">        <span class="attribute">collection</span>: Authors,</div><div class="line">        <span class="attribute">field</span>: <span class="string">'authorId'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attribute">post</span>: &#123;</div><div class="line">        <span class="attribute">collection</span>: Posts,</div><div class="line">        <span class="attribute">field</span>: <span class="string">'postId'</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="selector-tag">Category</span><span class="selector-class">.addLinks</span>(&#123;</div><div class="line">    <span class="attribute">author</span>: &#123;</div><div class="line">        <span class="attribute">collection</span>: Authors,</div><div class="line">        <span class="attribute">inversedBy</span>: <span class="string">'category'</span>,</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="selector-tag">Groups</span><span class="selector-class">.addLinks</span>(&#123;</div><div class="line">    <span class="attribute">authors</span>: &#123;</div><div class="line">        <span class="attribute">collection</span>: Authors,</div><div class="line">        <span class="attribute">inversedBy</span>: <span class="string">'groups'</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>Perfect. Now that we defined our relationships we can query our database.
 Assuming we exposed “Posts” server-side, we can fetch the query client-side.</p>
@@ -231,26 +253,38 @@ Assuming we exposed “Posts” server-side, we can fetch the query client-side.
 </blockquote>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">const query = Posts.createQuery(&#123;</div><div class="line"><span class="symbol">    title:</span> <span class="number">1</span>,</div><div class="line">    <span class="comment">// if there are no custom fields specified, it will retrieve all fields.</span></div><div class="line"><span class="symbol">    author:</span> &#123;</div><div class="line">        <span class="comment">// if you have a nested object, (no link named profile) it will not try to fetch the link, but rather give you only the fields you need.</span></div><div class="line"><span class="symbol">        profile:</span> &#123;</div><div class="line"><span class="symbol">            firstname:</span> <span class="number">1</span></div><div class="line"><span class="symbol">            lastname:</span> <span class="number">1</span></div><div class="line">        &#125;,</div><div class="line"><span class="symbol">        likesOnFacebook:</span> <span class="number">1</span></div><div class="line">    &#125; </div><div class="line"><span class="symbol">    comments:</span> &#123;</div><div class="line"><span class="symbol">        text:</span> <span class="number">1</span>,</div><div class="line">        <span class="comment">// if you don't specify any local fields for the author, only "_id" field will be fetched</span></div><div class="line">        <span class="comment">// this will enforce the use of query and retrieve only the data you need.</span></div><div class="line"><span class="symbol">        author:</span> &#123;</div><div class="line"><span class="symbol">            groups:</span> &#123;</div><div class="line"><span class="symbol">                name:</span> <span class="number">1</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>Now that we have created our query, we have two options of fetching the data.</p>
-<h2 id="1-Reactively-via-subscribe"><a href="#1-Reactively-via-subscribe" class="headerlink" title="1. Reactively (via subscribe)"></a>1. Reactively (via subscribe)</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> subsHandle = <span class="keyword">query</span>.subscribe();</div><div class="line"><span class="keyword">const</span> data = <span class="keyword">query</span>.fetch();</div><div class="line"></div><div class="line"><span class="keyword">query</span>.unsubscribe();</div><div class="line"><span class="keyword">query</span>.fetch(); <span class="comment">// now it will fail because you did not provide a callback, because when you unsubscribe, we delete the subscriptionHandle</span></div></pre></td></tr></table></figure>
+<h2 id="Static-Queries"><a href="#Static-Queries" class="headerlink" title="Static Queries"></a>Static Queries</h2><p>Static methods receive their data using a method call to the exposure.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">query.fetch((error, response) =&gt; &#123;</div><div class="line">    // if <span class="literal">no</span> error occured, the response will look something like this</div><div class="line">    [</div><div class="line">        &#123;</div><div class="line"><span class="attr">            _id:</span> <span class="string">'XXXXXXXXXXXXXXX'</span>,</div><div class="line"><span class="attr">            title:</span> <span class="string">'Hello World!'</span>,</div><div class="line"><span class="attr">            author:</span> &#123;</div><div class="line"><span class="attr">                profile:</span> &#123;</div><div class="line"><span class="attr">                    firstname:</span> <span class="string">'John'</span>,</div><div class="line"><span class="attr">                    lastname:</span> <span class="string">'Smith'</span></div><div class="line">                &#125;</div><div class="line"><span class="attr">                likesOnFacebook:</span> <span class="number">200</span></div><div class="line">            &#125;,</div><div class="line"><span class="attr">            comments:</span> [</div><div class="line">                &#123;</div><div class="line"><span class="attr">                    text:</span> <span class="string">'Nice Post'</span>,</div><div class="line"><span class="attr">                    author:</span> &#123;</div><div class="line"><span class="attr">                        _id:</span> <span class="string">'XXXXXXXXXXXXX'</span></div><div class="line">                    &#125;,</div><div class="line"><span class="attr">                    groups:</span> [</div><div class="line">                        &#123;</div><div class="line"><span class="attr">                            _id:</span> <span class="string">'XXXXXXXXXXX'</span>,</div><div class="line"><span class="attr">                            name:</span> <span class="string">'Group 1'</span></div><div class="line">                        &#125;</div><div class="line">                    ]</div><div class="line">                &#125;</div><div class="line">            ]</div><div class="line">        &#125;,</div><div class="line">        ...</div><div class="line">    ]</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="Reactive-Queries"><a href="#Reactive-Queries" class="headerlink" title="Reactive Queries"></a>Reactive Queries</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> subsHandle = <span class="keyword">query</span>.subscribe();</div><div class="line"><span class="keyword">const</span> data = <span class="keyword">query</span>.fetch();</div><div class="line"></div><div class="line"><span class="keyword">query</span>.unsubscribe();</div><div class="line"><span class="keyword">query</span>.fetch(); <span class="comment">// now it will fail because you did not provide a callback, because when you unsubscribe, we delete the subscriptionHandle</span></div></pre></td></tr></table></figure>
 <p>Important! If you previously subscribed, fetching will be done client side using client-side collections,
 if you did not previously subscribe, you need to provide a callback because data will be fetched via a method call.</p>
 <p>If you don’t want to use .fetch() you can also use the collections as you previously used to:</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">Posts</span><span class="selector-class">.find</span>()<span class="selector-class">.fetch</span>()</div><div class="line"><span class="selector-tag">Comments</span><span class="selector-class">.find</span>(&#123;<span class="attribute">postId</span>: <span class="string">'XXXXXX'</span>&#125;)<span class="selector-class">.fetch</span>()</div></pre></td></tr></table></figure>
-<h2 id="2-Statically-via-method-call"><a href="#2-Statically-via-method-call" class="headerlink" title="2. Statically (via method call)"></a>2. Statically (via method call)</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">query.fetch((error, response) =&gt; &#123;</div><div class="line">    // if <span class="literal">no</span> error occured, the response will look something like this</div><div class="line">    [</div><div class="line">        &#123;</div><div class="line"><span class="attr">            _id:</span> <span class="string">'XXXXXXXXXXXXXXX'</span>,</div><div class="line"><span class="attr">            title:</span> <span class="string">'Hello World!'</span>,</div><div class="line"><span class="attr">            author:</span> &#123;</div><div class="line"><span class="attr">                profile:</span> &#123;</div><div class="line"><span class="attr">                    firstname:</span> <span class="string">'John'</span>,</div><div class="line"><span class="attr">                    lastname:</span> <span class="string">'Smith'</span></div><div class="line">                &#125;</div><div class="line"><span class="attr">                likesOnFacebook:</span> <span class="number">200</span></div><div class="line">            &#125;,</div><div class="line"><span class="attr">            comments:</span> [</div><div class="line">                &#123;</div><div class="line"><span class="attr">                    text:</span> <span class="string">'Nice Post'</span>,</div><div class="line"><span class="attr">                    author:</span> &#123;</div><div class="line"><span class="attr">                        _id:</span> <span class="string">'XXXXXXXXXXXXX'</span></div><div class="line">                    &#125;,</div><div class="line"><span class="attr">                    groups:</span> [</div><div class="line">                        &#123;</div><div class="line"><span class="attr">                            _id:</span> <span class="string">'XXXXXXXXXXX'</span>,</div><div class="line"><span class="attr">                            name:</span> <span class="string">'Group 1'</span></div><div class="line">                        &#125;</div><div class="line">                    ]</div><div class="line">                &#125;</div><div class="line">            ]</div><div class="line">        &#125;,</div><div class="line">        ...</div><div class="line">    ]</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h1 id="Filtering-queries"><a href="#Filtering-queries" class="headerlink" title="Filtering queries"></a>Filtering queries</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> query = Posts.createQuery(&#123;</div><div class="line">    $filters: &#123;isApproved: <span class="keyword">true</span>&#125; <span class="comment">// this will find only posts that have isApproved: true</span></div><div class="line">    $options: &#123;</div><div class="line">        limit: <span class="number">100</span></div><div class="line">    &#125;</div><div class="line">    title: <span class="number">1</span></div><div class="line">    comments: &#123;</div><div class="line">        $filters: &#123; <span class="comment">// this will only search the comments that have isNotSpam: true</span></div><div class="line">            isNotSpam: <span class="keyword">true</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h1 id="Dynamic-Filtering"><a href="#Dynamic-Filtering" class="headerlink" title="Dynamic Filtering"></a>Dynamic Filtering</h1><p>You can pass params to your query, they will be available in every $filter() function.
+<h2 id="Creating-a-query-without-the-collection-object"><a href="#Creating-a-query-without-the-collection-object" class="headerlink" title="Creating a query without the collection object"></a>Creating a query without the collection object</h2><figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; createQuery &#125; from <span class="string">'meteor/cultofcoders:grapher'</span>;</div><div class="line"></div><div class="line">createQuery(&#123;</div><div class="line">    posts: &#123;</div><div class="line">        comments: &#123;</div><div class="line">            text: <span class="number">1</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><em>posts</em> is the name of the collection, specified as the first parameter in the <em>Mongo.Collection</em> constructor.</p>
+<h2 id="Filtering-queries"><a href="#Filtering-queries" class="headerlink" title="Filtering queries"></a>Filtering queries</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> query = Posts.createQuery(&#123;</div><div class="line">    $filters: &#123;isApproved: <span class="keyword">true</span>&#125; <span class="comment">// this will find only posts that have isApproved: true</span></div><div class="line">    $options: &#123;</div><div class="line">        limit: <span class="number">100</span></div><div class="line">    &#125;</div><div class="line">    title: <span class="number">1</span></div><div class="line">    comments: &#123;</div><div class="line">        $filters: &#123; <span class="comment">// this will only search the comments that have isNotSpam: true</span></div><div class="line">            isNotSpam: <span class="keyword">true</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="Dynamic-Filtering"><a href="#Dynamic-Filtering" class="headerlink" title="Dynamic Filtering"></a>Dynamic Filtering</h2><p>You can pass params to your query, they will be available in every $filter() function.
 Using $filter() gives you enough control to filters and options. So $filters and $options may be omitted.</p>
 <figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">const query = Posts.createQuery(&#123;</div><div class="line">    $filter(&#123;filters, options, <span class="keyword">params</span>&#125;) &#123;</div><div class="line">        filters.isApproved = <span class="keyword">params</span>.isApproved</div><div class="line">    &#125;</div><div class="line">    title: <span class="number">1</span></div><div class="line">    comments: &#123;</div><div class="line">        $filter(&#123;filters, options, <span class="keyword">params</span>&#125;) &#123;</div><div class="line">            <span class="keyword">if</span> (<span class="keyword">params</span>.allowSpamComments) &#123;</div><div class="line">                filters.isNotSpam = undefined; <span class="comment">// $filter() overrides $filters and $options</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        $filters: &#123; <span class="comment">// this will only search the comments that have isNotSpam: true</span></div><div class="line">            isNotSpam: <span class="literal">true</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;, &#123;</div><div class="line">    isApproved: <span class="literal">true</span>,</div><div class="line">    allowSpamComments: <span class="literal">true</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>Control parameters however you wish:
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">query</span><span class="selector-class">.setParams</span>(&#123;</div><div class="line">    <span class="attribute">allowSpamComments</span>: false</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>If you are using this query reactively, the query will re-subscribe.</p>
 <p>Using it with React And react-meteor-data package:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> query <span class="keyword">from</span> <span class="string">'./listPostsQuery.js'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> createContainer(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">const</span> handle = query.subscribe();</div><div class="line">    <span class="keyword">const</span> posts = query.fetch();</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">isReady</span>: handle.isReady(),</div><div class="line">        <span class="attr">posts</span>: posts</div><div class="line">    &#125;</div><div class="line">&#125;, PostList);</div></pre></td></tr></table></figure>
-<h1 id="Security-and-Performance"><a href="#Security-and-Performance" class="headerlink" title="Security and Performance"></a>Security and Performance</h1><p>By default the options “disableOplog”, “pollingIntervalMs”, “pollingThrottleMs” are not available on the client.
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> query <span class="keyword">from</span> <span class="string">'./listPostsQuery.js'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> localQuery = query.clone();</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> createContainer(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">const</span> handle = localQuery.subscribe();</div><div class="line">    <span class="keyword">const</span> posts = localQuery.fetch();</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">isReady</span>: handle.isReady(),</div><div class="line">        <span class="attr">posts</span>: posts</div><div class="line">    &#125;</div><div class="line">&#125;, PostList);</div></pre></td></tr></table></figure>
+<blockquote class="pullquote warning"><p>We use .clone() method to avoid making changes on the actual query (like setParams). 
+You could do is export a factory that creates your query on the fly, however, for simplicity,
+we created a .clone() method, that clones the query and it is completely isolated.</p>
+</blockquote>
+<h2 id="Security-and-Performance"><a href="#Security-and-Performance" class="headerlink" title="Security and Performance"></a>Security and Performance</h2><p>By default the options “disableOplog”, “pollingIntervalMs”, “pollingThrottleMs” are not available on the client.
 You can control them in the firewall of your exposure.</p>
-<h1 id="Creating-a-query-without-the-collection-object"><a href="#Creating-a-query-without-the-collection-object" class="headerlink" title="Creating a query without the collection object"></a>Creating a query without the collection object</h1><figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; createQuery &#125; from <span class="string">'meteor/cultofcoders:grapher'</span>;</div><div class="line"></div><div class="line">createQuery(&#123;</div><div class="line">    posts: &#123;</div><div class="line">        comments: &#123;</div><div class="line">            text: <span class="number">1</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p><em>posts</em> is the name of the collection. (when you create new Mongo.Collection(“xxx”), “xxx” is the name of your collection)</p>
-<h4 id="React-Integration"><a href="#React-Integration" class="headerlink" title="React Integration"></a>React Integration</h4><p>For integration with React try out <a href="https://github.com/cult-of-coders/grapher-react" target="_blank" rel="external">cultofcoders:grapher-react</a> package</p>
+<p>Grapher is very performant. To understand what we’re talking about let’s take this example:
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    users: &#123;</div><div class="line">        posts: &#123;</div><div class="line">            comments: &#123;</div><div class="line">                author: &#123;&#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>For a query like this, if we would’ve first received the users, then the posts for each user, then the comments for each post, then the author for each comments.
+We would’ve blasted MongoDB with a lot of queries, and the number of queries increases exponentially. It can easily be around ~2000 for a simple query.</p>
+<p>However, using the <em>Hypernova</em> module, an innovative approach, the query above is executed with only 4 queries. 
+Because we have 4 collection nodes: “users”, “posts”, “comments” and “author”</p>
+<p>It does this by aggregating filters and reassembles data locally.</p>
+<p>From 2000 queries to 4 queries we experienced around 40x percent performance boost. </p>
+<h2 id="React-Integration"><a href="#React-Integration" class="headerlink" title="React Integration"></a>React Integration</h2><p>For integration with React try out <a href="https://github.com/cult-of-coders/grapher-react" target="_blank" rel="external">cultofcoders:grapher-react</a> package</p>
 
     </div>
   </div>
@@ -285,26 +319,64 @@ You can control them in the firewall of your exposure.</p>
   
 </div>
 
-    <script src="/script/smooth-scroll.min.js"></script>
-    <script src="/script/main.js"></script>
+<script src="/script/smooth-scroll.min.js"></script>
+<script src="/script/main.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
 
-    <script>
-      // nectar ninja
-      (function(){
-        var handle = '@meteorjs';
-        var a = document.createElement('script');
-        var m = document.getElementsByTagName('script')[0];
+<script>
+    
+    // Google analytics
+    ;
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
         a.async = 1;
-        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
-        m.parentNode.insertBefore(a, m);
-      })();
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-     
+    ga('create', 'UA-40568040-9', 'auto');
+    ga('send', 'pageview');
+    
 
-      
+    
 
-      // search box
-      
-    </script>
-  </body>
+    // search box
+    
+    ['desktop', 'mobile'].forEach(function (type) {
+        var search = docsearch({
+            apiKey: 'c6162b5842b0dc5f7af8c186fff8f5bb',
+            indexName: 'grapher',
+            inputSelector: '#' + type + '-search-input',
+            autocompleteOptions: {
+                dropdownMenuContainer: '.wrapper-' + type + '-search-results',
+                debug: true
+            },
+            algoliaOptions: {
+                hitsPerPage: 20
+            }
+        }).autocomplete;
+        var sidebar = document.querySelector('.sidebar-content');
+        search.on('autocomplete:opened', function () {
+            sidebar.classList.add('searching');
+        });
+        search.on('autocomplete:closed', function () {
+            sidebar.classList.remove('searching');
+        });
+        search.on('autocomplete:updated', function () {
+            if (search.val() === '') {
+                search.autocomplete.close();
+            }
+        });
+    });
+    
+
+    
+</script>
+</body>
 </html>

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
 
     <!-- Basic -->
     <title>Introducing to Grapher | Grapher Docs</title>
     <meta name="description" content="Grapher is a collection relationship manager.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="../images/favicon.png" sizes="16x16 32x32 64x64">
+    <link rel="shortcut icon" type="image/png" href="../images/favicon.png"
+          sizes="16x16 32x32 64x64">
 
     <!-- Social -->
     <meta property="og:type" content="article">
@@ -22,12 +23,13 @@
     <meta name="twitter:image" content="">
 
     <!-- Misc -->
-    <meta name="google-site-verification" content="" />
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic' rel='stylesheet' type='text/css'>
+    <meta name="google-site-verification" content=""/>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic'
+          rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/style/style.css">
-  </head>
-  <body class="">
-    
+</head>
+<body class="">
+
 
 <div class="nav dark">
   <div class="nav-group">
@@ -49,27 +51,44 @@
 
   <div class="nav-group right">
     
+      <div class="nav-item show-mobile">
+        <span class="js-search-toggle">
+          <span class="icon-search"></span>
+        </span>
+      </div>
+    
     
       <div class="nav-item show-desktop ">
         <a class="link" href="https://github.com/cult-of-coders/grapher" target=_new >
-          <span>Grapher</span>
+          <span>GitHub</span>
         </a>
       </div>
     
       <div class="nav-item show-desktop ">
-        <a class="link" href="https://github.com/cult-of-coders/grapher-boilerplate" target=_new >
-          <span>Boilerplate</span>
-        </a>
-      </div>
-    
-      <div class="nav-item show-desktop ">
-        <a class="link" href="https://github.com/cult-of-coders/grapher-live" target=_new >
-          <span>Live</span>
+        <a class="link" href="http://grapher-live.cultofcoders.com/grapher" target=_new >
+          <span>Test Live</span>
         </a>
       </div>
     
   </div>
 
+  
+    <div class="nav-search">
+      <div class="input-symbol">
+        <input type="text" placeholder="Search " id="mobile-search-input"/>
+        <span class="icon-search"></span>
+      </div>
+
+      <div class="nav-group right">
+        <div class="nav-item">
+          <span class="js-search-toggle">
+            <span class="icon-close"></span>
+          </span>
+        </div>
+      </div>
+
+      <div class="wrapper-mobile-search-results"></div>
+    </div>
   
 
 </div>
@@ -84,19 +103,13 @@
     
       <div class="panel-item "">
         <a class="" href="https://github.com/cult-of-coders/grapher" target=_new >
-          <span>Grapher</span>
+          <span>GitHub</span>
         </a>
       </div>
     
       <div class="panel-item "">
-        <a class="" href="https://github.com/cult-of-coders/grapher-boilerplate" target=_new >
-          <span>Boilerplate</span>
-        </a>
-      </div>
-    
-      <div class="panel-item "">
-        <a class="" href="https://github.com/cult-of-coders/grapher-live" target=_new >
-          <span>Live</span>
+        <a class="" href="http://grapher-live.cultofcoders.com/grapher" target=_new >
+          <span>Test Live</span>
         </a>
       </div>
     
@@ -106,6 +119,15 @@
     <div class="topcap">
       <span class="title-sidebar">Grapher Docs</span>
       
+    </div>
+
+    
+    <div class="wrapper-search">
+      <div class="input-symbol small round">
+        <input type="text" placeholder="Search " id="desktop-search-input" />
+        <span class="icon-search"></span>
+      </div>
+      <div class="wrapper-desktop-search-results"></div>
     </div>
 
     
@@ -150,6 +172,13 @@
               <li class="item-toc ">
                 <a href="guide/exposure.html" class="sidebar-link ">
                   <span>Exposure</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="guide/namedQuery.html" class="sidebar-link ">
+                  <span>Named Query</span>
                 </a>
               </li>
             
@@ -216,9 +245,9 @@
 </ul>
 <p>These 3 modules work together to create the absolute tool to fetch linked data. It is our answer to the NoSQL walls of related data.</p>
 <p>Below we have an introduction to each module. If you want to read more, read the guide.</p>
-<h3 id="Collection-Links"><a href="#Collection-Links" class="headerlink" title="Collection Links"></a>Collection Links</h3><p>This module is a collection relationship manager, lets you specify linking information between collections, gives you ability to easily manipulate these links, and provides an easy way to fetch them.</p>
-<p>This will help you create and manipulate relationships between collections.
-In addition to that, you also have the ability create <em>resolver</em> links that can make REST-API calls or link with any type of database.</p>
+<h3 id="Collection-Links"><a href="#Collection-Links" class="headerlink" title="Collection Links"></a>Collection Links</h3><p>This module is a collection relationship manager, lets you specify linking information between collections, 
+gives you ability to easily manipulate these links (like add, remove), and provides an easy way to fetch them.</p>
+<p>In addition to that, you also have the ability create <em>resolver</em> links that can make REST-API calls or link with any type of database.</p>
 <p>When linking MongoDB collections, we support 4 different ways:</p>
 <h4 id="One"><a href="#One" class="headerlink" title="One"></a>One</h4><p>We use this when we want to reference a single Document. For example, a comment has one author. Or a post has one author.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Comment Document</span></div><div class="line">&#123;</div><div class="line">    ...</div><div class="line">    userId: <span class="string">'XXX'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -235,11 +264,13 @@ There is no right or wrong. Just choose what’s best fit.</p>
 <p>To emulate that you can also have done it in Group Document:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Group Document</span></div><div class="line">&#123;</div><div class="line">    ...</div><div class="line">    userIds: [</div><div class="line">        &#123;<span class="attr">_id</span>: <span class="string">'XXX'</span>, <span class="attr">isAdmin</span>: <span class="literal">true</span>&#125;,</div><div class="line">        &#123;<span class="attr">_id</span>: <span class="string">'YYY'</span>, <span class="attr">isAdmin</span>: <span class="literal">false</span>&#125;,</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><a href="`guide/links.md`">Read more about how to link and fetch related collections in the guide.</a></p>
-<h3 id="Query-Fetcher"><a href="#Query-Fetcher" class="headerlink" title="Query Fetcher"></a>Query Fetcher</h3><p>This module is used for fetching the data graph server-side or client-side. There are many interesting about this but the general idea is
+<h3 id="Query"><a href="#Query" class="headerlink" title="Query"></a>Query</h3><p>This module is used for creating and fetching the data graph server-side or client-side. There are many interesting facets about this but the general idea is
 that you can request only the data you need, for example:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> query = Users.createQuery(&#123;</div><div class="line">    <span class="attr">profile</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">emails</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">groups</span>: &#123;</div><div class="line">        <span class="attr">name</span>: <span class="number">1</span></div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">const</span> data = query.fetch()</div></pre></td></tr></table></figure>
 <p>Sample response:</p>
 <figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[ </div><div class="line">    &#123;</div><div class="line">        _id: '',</div><div class="line">        profile: &#123;&#125;,</div><div class="line">        emails: [],</div><div class="line">        groups: [</div><div class="line">            name: ''</div><div class="line">        ]</div><div class="line">    &#125;,</div><div class="line">    ...</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>You can even subscribe:</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">query.subscribe<span class="comment">()</span>;</div><div class="line">query.fetch<span class="comment">()</span> <span class="comment">// this time query will fetch from local collections not call a method</span></div></pre></td></tr></table></figure>
 <h4 id="Query-Features"><a href="#Query-Features" class="headerlink" title="Query Features"></a>Query Features</h4><ul>
 <li>Dynamic queries configured via a set of parameters</li>
 <li>Filters (Mongo Filters) and Options (Sorting, Limits) at any level you want</li>
@@ -247,7 +278,7 @@ that you can request only the data you need, for example:</p>
 </ul>
 <h3 id="Collection-Exposure"><a href="#Collection-Exposure" class="headerlink" title="Collection Exposure"></a>Collection Exposure</h3><p>This module provides a way of securing access to the data by user and exposes the collection client-side.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server-side only</span></div><div class="line"><span class="keyword">import</span> Users <span class="keyword">from</span> <span class="string">'/imports/api/users/collection.js'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Exposure &#125; <span class="keyword">from</span> <span class="string">'meteor/cultofcoders:grapher'</span>;</div><div class="line"></div><div class="line">Users.expose(&#123;</div><div class="line">    firewall(filters, options, userId) &#123;</div><div class="line">        <span class="keyword">if</span> (!isAdmin(userId)) &#123;</div><div class="line">            filters.userId = userId;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    maxLimit: <span class="number">100</span>, <span class="comment">// enforces a maximum limit</span></div><div class="line">    maxDepth: <span class="number">5</span>, <span class="comment">// this restricts the depth of a graphed request</span></div><div class="line">    restrictedFields: [<span class="string">'services'</span>] <span class="comment">// removes unwanted fields from filters and options fields.</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>What it does it extends the <em>find</em> method of a Mongo.Collection to accept an <em>userId</em>:</p>
+<p>It extends the <em>find</em> method of a Mongo.Collection to accept an <em>userId</em>.</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Users <span class="keyword">from</span> <span class="string">'/imports/api/users/collection.js'</span>;</div><div class="line"></div><div class="line">const data = Users.<span class="keyword">find</span>(filters, <span class="keyword">options</span>, userId).fetch();</div></pre></td></tr></table></figure>
 <blockquote class="pullquote warning"><p>If <em>userId</em> is undefined. Firewall will not be applied, because we don’t want the firewall to interfere with secure server-side requests.
 However, if it is <em>null</em> or anything else firewall will be applied.</p>
@@ -281,26 +312,64 @@ applied automatically if that collection is <em>exposed</em>.</p>
   
 </div>
 
-    <script src="/script/smooth-scroll.min.js"></script>
-    <script src="/script/main.js"></script>
+<script src="/script/smooth-scroll.min.js"></script>
+<script src="/script/main.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
 
-    <script>
-      // nectar ninja
-      (function(){
-        var handle = '@meteorjs';
-        var a = document.createElement('script');
-        var m = document.getElementsByTagName('script')[0];
+<script>
+    
+    // Google analytics
+    ;
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
         a.async = 1;
-        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
-        m.parentNode.insertBefore(a, m);
-      })();
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-     
+    ga('create', 'UA-40568040-9', 'auto');
+    ga('send', 'pageview');
+    
 
-      
+    
 
-      // search box
-      
-    </script>
-  </body>
+    // search box
+    
+    ['desktop', 'mobile'].forEach(function (type) {
+        var search = docsearch({
+            apiKey: 'c6162b5842b0dc5f7af8c186fff8f5bb',
+            indexName: 'grapher',
+            inputSelector: '#' + type + '-search-input',
+            autocompleteOptions: {
+                dropdownMenuContainer: '.wrapper-' + type + '-search-results',
+                debug: true
+            },
+            algoliaOptions: {
+                hitsPerPage: 20
+            }
+        }).autocomplete;
+        var sidebar = document.querySelector('.sidebar-content');
+        search.on('autocomplete:opened', function () {
+            sidebar.classList.add('searching');
+        });
+        search.on('autocomplete:closed', function () {
+            sidebar.classList.remove('searching');
+        });
+        search.on('autocomplete:updated', function () {
+            if (search.val() === '') {
+                search.autocomplete.close();
+            }
+        });
+    });
+    
+
+    
+</script>
+</body>
 </html>
