@@ -1,11 +1,9 @@
 ---
 title: Query
-description: Documentation of how to use Meteor's accounts functionality.
+description: How to create and fetch queries
 ---
-Query
-=====
 
-Creating a query for a collection client-side, must be exposed server side. Otherwise it will not work.
+## Introduction
 
 Queries are a way to specify which data you want from the server using links as the backbone for creating the data graph.
 Queries can be reactive (using Meteor's pub/sub system) or static (using method call) or direct if the call is done server side.
@@ -20,14 +18,8 @@ Assuming we have these collections: Authors, Comments, Posts, Groups, Category:
 - Posts has one category.
 - Comments has a single author.
 
-Notes to keep in mind:
-- By default type is one, but you should specify it for clarity.
-- Field is not necessary because it will auto-generate a unique field based on collection name, linked collection name, and link name. 
-We recommend specifying it for having more verbose code.
-
-
-##### Don't panic! 
-We'll start defining our links, if something stops making sense. Review the [Collection Links](links.md) documentation again.
+### Don't panic! 
+We'll start defining our links, if something stops making sense. Review the [Collection Links](/guide/links.html) documentation again.
 
 ```
 Authors.addLinks({
@@ -134,30 +126,9 @@ const query = Posts.createQuery({
 
 Now that we have created our query, we have two options of fetching the data.
 
-1. Reactively (via subscribe)
------------------------------
+## Static Queries
 
-```
-const subsHandle = query.subscribe();
-const data = query.fetch();
-
-query.unsubscribe();
-query.fetch(); // now it will fail because you did not provide a callback, because when you unsubscribe, we delete the subscriptionHandle
-```
-
-Important! If you previously subscribed, fetching will be done client side using client-side collections,
-if you did not previously subscribe, you need to provide a callback because data will be fetched via a method call.
-
-If you don't want to use .fetch() you can also use the collections as you previously used to:
-
-```
-Posts.find().fetch()
-Comments.find({postId: 'XXXXXX'}).fetch()
-```
-
-
-2. Statically (via method call)
--------------------------------
+Static methods receive their data using a method call to the exposure.
 
 ```
 query.fetch((error, response) => {
@@ -193,8 +164,45 @@ query.fetch((error, response) => {
 });
 ```
 
-Filtering queries
-=================
+## Reactive Queries
+
+```
+const subsHandle = query.subscribe();
+const data = query.fetch();
+
+query.unsubscribe();
+query.fetch(); // now it will fail because you did not provide a callback, because when you unsubscribe, we delete the subscriptionHandle
+```
+
+Important! If you previously subscribed, fetching will be done client side using client-side collections,
+if you did not previously subscribe, you need to provide a callback because data will be fetched via a method call.
+
+If you don't want to use .fetch() you can also use the collections as you previously used to:
+
+```
+Posts.find().fetch()
+Comments.find({postId: 'XXXXXX'}).fetch()
+```
+
+
+## Creating a query without the collection object
+
+```
+import { createQuery } from 'meteor/cultofcoders:grapher';
+
+createQuery({
+    posts: {
+        comments: {
+            text: 1
+        }
+    }
+});
+```
+
+*posts* is the name of the collection, specified as the first parameter in the *Mongo.Collection* constructor.
+
+
+## Filtering queries
 
 ```
 const query = Posts.createQuery({
@@ -211,8 +219,8 @@ const query = Posts.createQuery({
 });
 ```
 
-Dynamic Filtering
-=================
+## Dynamic Filtering
+
 You can pass params to your query, they will be available in every $filter() function.
 Using $filter() gives you enough control to filters and options. So $filters and $options may be omitted.
 
@@ -246,16 +254,16 @@ query.setParams({
 });
 ```
 
-If you are using this query reactively, the query will re-subscribe.
-
 Using it with React And react-meteor-data package:
 
 ```
 import query from './listPostsQuery.js';
 
+const localQuery = query.clone();
+
 export default createContainer(() => {
-    const handle = query.subscribe();
-    const posts = query.fetch();
+    const handle = localQuery.subscribe();
+    const posts = localQuery.fetch();
     
     return {
         isReady: handle.isReady(),
@@ -264,30 +272,40 @@ export default createContainer(() => {
 }, PostList);
 ```
 
-Security and Performance
-========================
+{% pullquote 'warning' %}
+We use .clone() method to avoid making changes on the actual query (like setParams). 
+You could do is export a factory that creates your query on the fly, however, for simplicity,
+we created a .clone() method, that clones the query and it is completely isolated.
+{% endpullquote %}
+
+## Security and Performance
 
 By default the options "disableOplog", "pollingIntervalMs", "pollingThrottleMs" are not available on the client.
 You can control them in the firewall of your exposure.
 
-
-Creating a query without the collection object
-==============================================
-
+Grapher is very performant. To understand what we're talking about let's take this example:
 ```
-import { createQuery } from 'meteor/cultofcoders:grapher';
-
-createQuery({
-    posts: {
-        comments: {
-            text: 1
+{
+    users: {
+        posts: {
+            comments: {
+                author: {}
+            }
         }
     }
-});
+}
 ```
 
-*posts* is the name of the collection. (when you create new Mongo.Collection("xxx"), "xxx" is the name of your collection)
+For a query like this, if we would've first received the users, then the posts for each user, then the comments for each post, then the author for each comments.
+We would've blasted MongoDB with a lot of queries, and the number of queries increases exponentially. It can easily be around ~2000 for a simple query.
 
-#### React Integration
+However, using the *Hypernova* module, an innovative approach, the query above is executed with only 4 queries. 
+Because we have 4 collection nodes: "users", "posts", "comments" and "author"
+
+It does this by aggregating filters and reassembles data locally.
+
+From 2000 queries to 4 queries we experienced around 40x percent performance boost. 
+
+## React Integration
 For integration with React try out [cultofcoders:grapher-react](https://github.com/cult-of-coders/grapher-react) package
 

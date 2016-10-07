@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
 
     <!-- Basic -->
     <title><%- page.title %> | <%- config.title %></title>
     <meta name="description" content="<%- page.description %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="<%- theme.favicon || 'https://www.meteor.com/favicon.png' %>" sizes="16x16 32x32 64x64">
+    <link rel="shortcut icon" type="image/png" href="<%- theme.favicon || 'https://www.meteor.com/favicon.png' %>"
+          sizes="16x16 32x32 64x64">
 
     <!-- Social -->
     <meta property="og:type" content="article">
@@ -22,69 +23,125 @@
     <meta name="twitter:image" content="<%- config.logo && config.logo.desktop || theme.logo.desktop %>">
 
     <!-- Misc -->
-    <meta name="google-site-verification" content="" />
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic' rel='stylesheet' type='text/css'>
+    <meta name="google-site-verification" content=""/>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic'
+          rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="<%= config.root || '/' %>style/style.css">
-  </head>
-  <body class="">
-    <%- body %>
-    <script src="<%= config.root || '/' %>script/smooth-scroll.min.js"></script>
-    <script src="<%= config.root || '/' %>script/main.js"></script>
+</head>
+<body class="">
+<%- body %>
+<script src="<%= config.root || '/' %>script/smooth-scroll.min.js"></script>
+<script src="<%= config.root || '/' %>script/main.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
 
-    <script>
-      // nectar ninja
-      (function(){
-        var handle = '@meteorjs';
-        var a = document.createElement('script');
-        var m = document.getElementsByTagName('script')[0];
+<script>
+    <% if (config.apis && config.apis.ga) { %>
+    // Google analytics
+    ;
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
         a.async = 1;
-        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
-        m.parentNode.insertBefore(a, m);
-      })();
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-     <% if (config.apis && config.apis.ga) { %>
-        // Google analytics
-        ;(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', '<%- config.apis.ga %>', 'auto');
+    ga('send', 'pageview');
+    <% } %>
 
-        ga('create', '<%- config.apis.ga %>', 'auto');
-        ga('send', 'pageview');
-      <% } %>
+    <% if (config.apis && config.apis.segment) { %>
+    // Segment Tracking
+    !function () {
+        var analytics = window.analytics = window.analytics || [];
+        if (!analytics.initialize)if (analytics.invoked)window.console && console.error && console.error("Segment snippet included twice."); else {
+            analytics.invoked = !0;
+            analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "page", "once", "off", "on"];
+            analytics.factory = function (t) {
+                return function () {
+                    var e = Array.prototype.slice.call(arguments);
+                    e.unshift(t);
+                    analytics.push(e);
+                    return analytics
+                }
+            };
+            for (var t = 0; t < analytics.methods.length; t++) {
+                var e = analytics.methods[t];
+                analytics[e] = analytics.factory(e)
+            }
+            analytics.load = function (t) {
+                var e = document.createElement("script");
+                e.type = "text/javascript";
+                e.async = !0;
+                e.src = ("https:" === document.location.protocol ? "https://" : "http://") + "cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js";
+                var n = document.getElementsByTagName("script")[0];
+                n.parentNode.insertBefore(e, n)
+            };
+            analytics.SNIPPET_VERSION = "3.1.0";
+            analytics.load("<%- config.apis.segment %>");
+            analytics.page()
+        }
+    }();
+    <% } %>
 
-      <% if (config.apis && config.apis.segment) { %>
-        // Segment Tracking
-        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
-        analytics.load("<%- config.apis.segment %>");
-        analytics.page()
-        }}();
-      <% } %>
+    // search box
+    <% if (config.apis && config.apis.docsearch) { %>
+    ['desktop', 'mobile'].forEach(function (type) {
+        var search = docsearch({
+            apiKey: '<%- config.apis.docsearch.apiKey %>',
+            indexName: '<%- config.apis.docsearch.indexName %>',
+            inputSelector: '#' + type + '-search-input',
+            autocompleteOptions: {
+                dropdownMenuContainer: '.wrapper-' + type + '-search-results',
+                debug: true
+            },
+            algoliaOptions: {
+                hitsPerPage: 20
+            }
+        }).autocomplete;
+        var sidebar = document.querySelector('.sidebar-content');
+        search.on('autocomplete:opened', function () {
+            sidebar.classList.add('searching');
+        });
+        search.on('autocomplete:closed', function () {
+            sidebar.classList.remove('searching');
+        });
+        search.on('autocomplete:updated', function () {
+            if (search.val() === '') {
+                search.autocomplete.close();
+            }
+        });
+    });
+    <% } %>
 
-      // search box
-      <% if (config.redirects) { %>
-        var REDIRECTS = <%- JSON.stringify(config.redirects, 0, 2) %>;
+    <% if (config.redirects) { %>
+    var REDIRECTS = <%- JSON.stringify(config.redirects, 0, 2) %>;
 
-        function redirect() {
-          // Support redirects of the form /path#hash
-          var locationKey = location.pathname + location.hash;
-          if (REDIRECTS[locationKey]) {
+    function redirect() {
+        // Support redirects of the form /path#hash
+        var locationKey = location.pathname + location.hash;
+        if (REDIRECTS[locationKey]) {
             location.replace(location.origin + '/' + REDIRECTS[locationKey]);
-          }
-
-          // Support redirects of the form #hash (works for any path)
-          var hashKey = location.hash;
-          if (REDIRECTS[hashKey]) {
-            location.replace(location.origin + '/' + REDIRECTS[hashKey]);
-          }
         }
 
-        // Redirect now
-        redirect();
+        // Support redirects of the form #hash (works for any path)
+        var hashKey = location.hash;
+        if (REDIRECTS[hashKey]) {
+            location.replace(location.origin + '/' + REDIRECTS[hashKey]);
+        }
+    }
 
-        // Redirect on hash change
-        window.onhashchange = redirect;
-      <% } %>
-    </script>
-  </body>
+    // Redirect now
+    redirect();
+
+    // Redirect on hash change
+    window.onhashchange = redirect;
+    <% } %>
+</script>
+</body>
 </html>

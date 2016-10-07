@@ -1,6 +1,6 @@
 ---
 title: Exposure
-description: Documentation of how to use Meteor's accounts functionality.
+description: Learn how to securely expose your queries for client fetching
 ---
 
 Collection Exposure
@@ -93,15 +93,16 @@ without having to specify this for each.
 
 Important: if global exposure has a firewall and the collection exposure has a firewall defined as welll, the collection exposure firewall will be applied. 
 
-Taming The Firewall
--------------------
+## Taming The Firewall
 
 ```
 // control what to show
 
-Collection.expose((filters, options, userId) => {
-    if (!isAdmin(userId)) {
-        filters.isVisible = true;
+Collection.expose({
+    firewall(filters, options, userId) => {
+        if (!isAdmin(userId)) {
+            filters.isVisible = true;
+        }
     }
 });
 ```
@@ -109,11 +110,31 @@ Collection.expose((filters, options, userId) => {
 ```
 // make certain fields invisible for certain users
 import { Exposure } from 'meteor/cultofcoders:grapher'
-Collection.expose((filters, options, userId) => {
-    if (!isAdmin(userId)) {
-        Exposure.restrictFields(filters, options, ['privateData'])
-        // it will remove all specified fields from filters, options.sort, options.fields
-        // this way you will not expose unwanted data.
+Collection.expose({
+    firewall(filters, options, userId) => {
+        if (!isAdmin(userId)) {
+            Exposure.restrictFields(filters, options, ['privateData'])
+            // it will remove all specified fields from filters, options.sort, options.fields
+            // this way you will not expose unwanted data.
+        }
+    }
+});
+```
+
+## Restricting Links
+
+Restrict using a simple array:
+```
+Collection.expose({
+    restrictLinks: ['privateLink', 'anotherPrivateLink']
+});
+```
+
+Compute restricted links when fetching the query:
+```
+Collection.expose({
+    restrictLinks(userId) {
+        return ['privateLink', 'anotherPrivateLink']
     }
 });
 ```

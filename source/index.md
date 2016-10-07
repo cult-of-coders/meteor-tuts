@@ -28,9 +28,9 @@ Below we have an introduction to each module. If you want to read more, read the
 
 ### Collection Links
 
-This module is a collection relationship manager, lets you specify linking information between collections, gives you ability to easily manipulate these links, and provides an easy way to fetch them.
+This module is a collection relationship manager, lets you specify linking information between collections, 
+gives you ability to easily manipulate these links (like add, remove), and provides an easy way to fetch them.
 
-This will help you create and manipulate relationships between collections.
 In addition to that, you also have the ability create *resolver* links that can make REST-API calls or link with any type of database.
 
 When linking MongoDB collections, we support 4 different ways:
@@ -106,9 +106,9 @@ To emulate that you can also have done it in Group Document:
 
 [Read more about how to link and fetch related collections in the guide.](`guide/links.md`)
 
-### Query Fetcher
+### Query
 
-This module is used for fetching the data graph server-side or client-side. There are many interesting about this but the general idea is
+This module is used for creating and fetching the data graph server-side or client-side. There are many interesting facets about this but the general idea is
 that you can request only the data you need, for example:
 
 ```js
@@ -139,12 +139,18 @@ Sample response:
 ]
 ```
 
+You can even subscribe:
+
+```
+query.subscribe();
+query.fetch() // this time query will fetch from local collections not call a method
+```
+
 #### Query Features
 
 - Dynamic queries configured via a set of parameters
 - Filters (Mongo Filters) and Options (Sorting, Limits) at any level you want
 - Very high performance with large datasets.
-
 
 ### Collection Exposure
 
@@ -167,7 +173,7 @@ Users.expose({
 })
 ```
 
-What it does it extends the *find* method of a Mongo.Collection to accept an *userId*:
+It extends the *find* method of a Mongo.Collection to accept an *userId*.
 
 ```
 import Users from '/imports/api/users/collection.js';

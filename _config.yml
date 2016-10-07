@@ -5,14 +5,16 @@
 # Site
 title: Grapher Docs
 subtitle:
-description:
-author:
-language:
+description: Documentation for grapher
+author: Theodor Diaconu
+language: en
 timezone:
-#apis:
-#  docsearch:
-#    apiKey: ab95e165c9f401cf19950da950b7026a
-#    indexName: grapher_docs
+
+apis:
+  ga: UA-40568040-9
+  docsearch:
+    apiKey: c6162b5842b0dc5f7af8c186fff8f5bb
+    indexName: grapher
 
 versions:
   - '1.1.0'
@@ -24,6 +26,7 @@ sidebar_categories:
     - guide/links
     - guide/query
     - guide/exposure
+    - guide/namedQuery
   Packages:
     - packages/live
     - packages/boilerplate
@@ -41,14 +44,11 @@ logo:
   subtitle: ''
 
 nav_links:
-  'Grapher':
+  'GitHub':
     url: https://github.com/cult-of-coders/grapher
     target: _new
-  'Boilerplate':
-    url: https://github.com/cult-of-coders/grapher-boilerplate
-    target: _new
-  'Live':
-    url: https://github.com/cult-of-coders/grapher-live
+  'Test Live':
+    url: http://grapher-live.cultofcoders.com/grapher
     target: _new
 
 social_links:
