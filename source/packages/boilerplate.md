@@ -12,6 +12,9 @@ meteor npm install
 meteor
 ```
 
+Or check it live:
+http://grapher-live.cultofcoders.com
+
 ### Fixtures
 
 Currently we have demo data and it is linked like this:
@@ -21,7 +24,6 @@ Posts has many comments
 Posts belong in a Group
 Users belong in multiple Groups
 Comment has one User
-
 
 ### Sample Queries
 
@@ -41,7 +43,7 @@ To fetch all posts with their comments and their authors in Grapher Live:
 }
 ```
 
-Fetch only "Good" comments:
+### Fetch only "Good" comments:
 
 ```
 {
@@ -53,12 +55,14 @@ Fetch only "Good" comments:
 }
 ```
 
-Use sorting options:
+### Use sorting options
 
 ```
 {
     posts: {
-        $options: {title: -1},
+        $options: {
+            $sort: {title: -1}
+        },
         title: 1,
         owner: {
             profile: 1

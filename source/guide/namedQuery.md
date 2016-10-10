@@ -1,6 +1,6 @@
 ---
 title: Named Query
-description: Documentation of how to use Meteor's accounts functionality.
+description: How to secure your queries via Named Queries
 ---
 
 
