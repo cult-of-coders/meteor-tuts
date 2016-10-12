@@ -7,7 +7,7 @@ description: A meteor package that allows you to test your queries live.
 
 ```
 meteor add cultofcoders:grapher-live
-meteor npm install --save-dev react react-ace react-json-pretty
+meteor npm install --save-dev react react-ace
 ```
 
 ### Server Side Setup

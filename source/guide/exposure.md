@@ -1,5 +1,5 @@
 ---
-title: Exposure
+title: Exposing Collections
 description: Learn how to securely expose your queries for client fetching
 ---
 

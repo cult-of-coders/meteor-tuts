@@ -1,5 +1,5 @@
 ---
-title: Query
+title: Using Query
 description: How to create and fetch queries
 ---
 
@@ -174,8 +174,11 @@ query.unsubscribe();
 query.fetch(); // now it will fail because you did not provide a callback, because when you unsubscribe, we delete the subscriptionHandle
 ```
 
+
+{% pullquote 'warning' %}
 Important! If you previously subscribed, fetching will be done client side using client-side collections,
 if you did not previously subscribe, you need to provide a callback because data will be fetched via a method call.
+{% endpullquote %}
 
 If you don't want to use .fetch() you can also use the collections as you previously used to:
 
@@ -201,8 +204,14 @@ createQuery({
 
 *posts* is the name of the collection, specified as the first parameter in the *Mongo.Collection* constructor.
 
+## $filters and $options
 
-## Filtering queries
+At any given collection node in your query you can specify different filtering techniques.
+
+Available $filters: http://docs.meteor.com/api/collections.html#selectors
+
+Available $options: *sort*, *skip* and *limit* 
+Read more: http://docs.meteor.com/api/collections.html#Mongo-Collection-find
 
 ```
 const query = Posts.createQuery({
@@ -219,7 +228,7 @@ const query = Posts.createQuery({
 });
 ```
 
-## Dynamic Filtering
+## Parameters
 
 You can pass params to your query, they will be available in every $filter() function.
 Using $filter() gives you enough control to filters and options. So $filters and $options may be omitted.
@@ -254,9 +263,10 @@ query.setParams({
 });
 ```
 
-Using it with React And react-meteor-data package:
+Using it with *React* and *react-meteor-data* package:
 
 ```
+import { createContainer } from 'meteor/react-meteor-data';
 import query from './listPostsQuery.js';
 
 const localQuery = query.clone();

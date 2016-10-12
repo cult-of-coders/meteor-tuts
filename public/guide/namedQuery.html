@@ -4,8 +4,8 @@
     <meta charset="utf-8">
 
     <!-- Basic -->
-    <title>Named Query | Grapher Docs</title>
-    <meta name="description" content="Documentation of how to use Meteor's accounts functionality.">
+    <title>Using Named Query | Grapher Docs</title>
+    <meta name="description" content="How to secure your queries via Named Queries">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="../images/favicon.png"
           sizes="16x16 32x32 64x64">
@@ -13,13 +13,13 @@
     <!-- Social -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="http://grapher.cultofcoders.com">
-    <meta property="og:title" content="Named Query | Grapher Docs">
-    <meta property="og:description" content="Documentation of how to use Meteor's accounts functionality.">
+    <meta property="og:title" content="Using Named Query | Grapher Docs">
+    <meta property="og:description" content="How to secure your queries via Named Queries">
     <meta property="og:image" content="">
     <meta name="twitter:card" content="summary_image_large">
     <meta name="twitter:site" content="@culotfcoders">
-    <meta name="twitter:title" content="Named Query | Grapher Docs">
-    <meta name="twitter:description" content="Documentation of how to use Meteor's accounts functionality.">
+    <meta name="twitter:title" content="Using Named Query | Grapher Docs">
+    <meta name="twitter:description" content="How to secure your queries via Named Queries">
     <meta name="twitter:image" content="">
 
     <!-- Misc -->
@@ -150,6 +150,43 @@
       
         <li>
           
+            <div class="heading-toc">API</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="../api/links.html" class="sidebar-link ">
+                  <span>Linking</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="../api/query.html" class="sidebar-link ">
+                  <span>Query</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="../api/exposure.html" class="sidebar-link ">
+                  <span>Exposure API</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="../api/namedQuery.html" class="sidebar-link ">
+                  <span>Named Query</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
             <div class="heading-toc">Guide</div>
           
           <ul class="list-toc">
@@ -157,28 +194,28 @@
               
               <li class="item-toc ">
                 <a href="links.html" class="sidebar-link ">
-                  <span>Collection Links</span>
+                  <span>Managing Links</span>
                 </a>
               </li>
             
               
               <li class="item-toc ">
                 <a href="query.html" class="sidebar-link ">
-                  <span>Query</span>
+                  <span>Using Query</span>
                 </a>
               </li>
             
               
               <li class="item-toc ">
                 <a href="exposure.html" class="sidebar-link ">
-                  <span>Exposure</span>
+                  <span>Exposing Collections</span>
                 </a>
               </li>
             
               
               <li class="item-toc  current">
                 <a href="" class="sidebar-link  current">
-                  <span>Named Query</span>
+                  <span>Using Named Query</span>
                 </a>
               </li>
             
@@ -215,9 +252,9 @@
 <div class="content">
   <div class="content-wrapper">
     <div class="header-content">
-      <h1 class="title-page">Named Query</h1>
+      <h1 class="title-page">Using Named Query</h1>
       
-        <div class="subtitle-page">Documentation of how to use Meteor's accounts functionality.</div>
+        <div class="subtitle-page">How to secure your queries via Named Queries</div>
       
 
       <div class="page-actions">
@@ -245,7 +282,9 @@ is security. Imagine this scenario:</p>
 are linked to an Order he has. But if you do that, then you may also need to restrict the fields he has access to and so on.</li>
 <li>Good Way: Use named queries</li>
 </ul>
-<h2 id="Our-First-Named-Query"><a href="#Our-First-Named-Query" class="headerlink" title="Our First Named Query"></a>Our First Named Query</h2><figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">// /imports/api/queries/orderView.js</div><div class="line"><span class="keyword">import</span> &#123; createNamedQuery &#125; from <span class="string">'meteor/cultofcoders:grapher'</span>;</div><div class="line"></div><div class="line">const query = createdNamedQuery(<span class="string">'ordersLirist'</span>, &#123;</div><div class="line">    orders: &#123;</div><div class="line">        $filter(&#123; filters, params &#125;) &#123;</div><div class="line">            filters.enduserId = params._id</div><div class="line">        &#125;</div><div class="line">        details: <span class="number">1</span>,</div><div class="line">        items: <span class="number">1</span>,</div><div class="line">        teamMember: &#123;</div><div class="line">            profile: <span class="number">1</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">export <span class="keyword">default</span> query;</div></pre></td></tr></table></figure>
+<blockquote class="pullquote warning"><p>NamedQuery is not affected by exposure at all. It has it’s own firewall.</p>
+</blockquote>
+<h2 id="Our-First-NamedQuery"><a href="#Our-First-NamedQuery" class="headerlink" title="Our First NamedQuery"></a>Our First NamedQuery</h2><figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">// /imports/api/queries/orderView.js</div><div class="line"><span class="keyword">import</span> &#123; createNamedQuery &#125; from <span class="string">'meteor/cultofcoders:grapher'</span>;</div><div class="line"></div><div class="line">const query = createdNamedQuery(<span class="string">'ordersList'</span>, &#123;</div><div class="line">    orders: &#123;</div><div class="line">        $filter(&#123; filters, params &#125;) &#123;</div><div class="line">            filters.enduserId = params._id</div><div class="line">        &#125;</div><div class="line">        details: <span class="number">1</span>,</div><div class="line">        items: <span class="number">1</span>,</div><div class="line">        teamMember: &#123;</div><div class="line">            profile: <span class="number">1</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">export <span class="keyword">default</span> query;</div></pre></td></tr></table></figure>
 <h2 id="Fetching-on-Server"><a href="#Fetching-on-Server" class="headerlink" title="Fetching on Server"></a>Fetching on Server</h2><p>We have two ways of handling this on the server-side.</p>
 <h3 id="Importing-the-query"><a href="#Importing-the-query" class="headerlink" title="Importing the query"></a>Importing the query</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> query <span class="keyword">from</span> <span class="string">'/imports/api/queries/ordersList'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> data = query.clone(&#123;<span class="attr">_id</span>: <span class="string">'XXX'</span>&#125;).fetch();</div></pre></td></tr></table></figure>
 <blockquote class="pullquote warning"><p>We use .clone() method to avoid making changes on the actual query (like setParams). 
@@ -276,7 +315,7 @@ through which a client can request what he wants only, without having a lot of n
           href="exposure.html">
           <span class="icon-arrow-left-alt"></span>
           <span class="subtitle-pagination">Previous</span>
-          Exposure
+          Exposing Collections
         </a>
       
       

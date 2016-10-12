@@ -150,6 +150,43 @@
       
         <li>
           
+            <div class="heading-toc">API</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="../api/links.html" class="sidebar-link ">
+                  <span>Linking</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="../api/query.html" class="sidebar-link ">
+                  <span>Query</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="../api/exposure.html" class="sidebar-link ">
+                  <span>Exposure API</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="../api/namedQuery.html" class="sidebar-link ">
+                  <span>Named Query</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
             <div class="heading-toc">Guide</div>
           
           <ul class="list-toc">
@@ -157,28 +194,28 @@
               
               <li class="item-toc ">
                 <a href="../guide/links.html" class="sidebar-link ">
-                  <span>Collection Links</span>
+                  <span>Managing Links</span>
                 </a>
               </li>
             
               
               <li class="item-toc ">
                 <a href="../guide/query.html" class="sidebar-link ">
-                  <span>Query</span>
+                  <span>Using Query</span>
                 </a>
               </li>
             
               
               <li class="item-toc ">
                 <a href="../guide/exposure.html" class="sidebar-link ">
-                  <span>Exposure</span>
+                  <span>Exposing Collections</span>
                 </a>
               </li>
             
               
               <li class="item-toc ">
                 <a href="../guide/namedQuery.html" class="sidebar-link ">
-                  <span>Named Query</span>
+                  <span>Using Named Query</span>
                 </a>
               </li>
             
@@ -230,6 +267,8 @@
 
     <div class="document-formatting">
       <h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git <span class="keyword">clone</span> <span class="title">https</span>://github.com/cult-of-coders/grapher-boilerplate</div><div class="line">cd grapher-boilerplate</div><div class="line">meteor npm install</div><div class="line">meteor</div></pre></td></tr></table></figure>
+<p>Or check it live:
+<a href="http://grapher-live.cultofcoders.com" target="_blank" rel="external">http://grapher-live.cultofcoders.com</a></p>
 <h3 id="Fixtures"><a href="#Fixtures" class="headerlink" title="Fixtures"></a>Fixtures</h3><p>Currently we have demo data and it is linked like this:</p>
 <p>Users has many posts
 Posts has many comments
@@ -238,10 +277,8 @@ Users belong in multiple Groups
 Comment has one User</p>
 <h3 id="Sample-Queries"><a href="#Sample-Queries" class="headerlink" title="Sample Queries"></a>Sample Queries</h3><p>To fetch all posts with their comments and their authors in Grapher Live:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">posts</span>: &#123;</div><div class="line">        <span class="attr">title</span>: <span class="number">1</span>,</div><div class="line">        <span class="attr">comments</span>: &#123;</div><div class="line">            <span class="attr">text</span>: <span class="number">1</span>,</div><div class="line">            <span class="attr">user</span>: &#123;</div><div class="line">                <span class="attr">profile</span>: <span class="number">1</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Fetch only “Good” comments:</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    post<span class="variable">s:</span> &#123;</div><div class="line">        comment<span class="variable">s:</span> &#123;</div><div class="line">            $<span class="built_in">filter</span><span class="variable">s:</span> &#123;tex<span class="variable">t:</span> <span class="string">"Good"</span>&#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Use sorting options:</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attribute">posts</span>: &#123;</div><div class="line">        $options: &#123;title: -<span class="number">1</span>&#125;,</div><div class="line">        <span class="selector-tag">title</span>: 1,</div><div class="line">        <span class="selector-tag">owner</span>: &#123;</div><div class="line">            <span class="attribute">profile</span>: <span class="number">1</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Fetch-only-“Good”-comments"><a href="#Fetch-only-“Good”-comments" class="headerlink" title="Fetch only “Good” comments:"></a>Fetch only “Good” comments:</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    post<span class="variable">s:</span> &#123;</div><div class="line">        comment<span class="variable">s:</span> &#123;</div><div class="line">            $<span class="built_in">filter</span><span class="variable">s:</span> &#123;tex<span class="variable">t:</span> <span class="string">"Good"</span>&#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Use-sorting-options"><a href="#Use-sorting-options" class="headerlink" title="Use sorting options"></a>Use sorting options</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attribute">posts</span>: &#123;</div><div class="line">        $options: &#123;</div><div class="line">            $sort: &#123;title: -<span class="number">1</span>&#125;</div><div class="line">        &#125;,</div><div class="line">        <span class="selector-tag">title</span>: 1,</div><div class="line">        <span class="selector-tag">owner</span>: &#123;</div><div class="line">            <span class="attribute">profile</span>: <span class="number">1</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
     </div>
   </div>
 

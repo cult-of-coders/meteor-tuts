@@ -1,8 +1,85 @@
 ---
-title: Collection Links
+title: Managing Links
 description: Managing Links (Relationships) between Mongo Collections easily
 ---
 
+## Introduction
+
+This module is a collection relationship manager, lets you specify linking information between collections, 
+gives you ability to easily manipulate these links (like add, remove), and provides an easy way to fetch them.
+
+In addition to that, you also have the ability create *resolver* links that can make REST-API calls or link with any type of database.
+
+When linking MongoDB collections, we support 4 different ways:
+
+#### One
+
+We use this when we want to reference a single Document. For example, a comment has one author. Or a post has one author.
+
+```js
+// Comment Document
+{
+    ...
+    userId: 'XXX'
+}
+```
+
+#### Many
+
+We use this when we want to store multiple references to a collection. This can be viewed as a *Many-To-Many* SQL relationship, but not necessarily.
+For example, a user may belong in multiple groups:
+
+```js
+// User Document
+{
+    ...
+    groupIds: ['XXX', 'YYY']
+}
+```
+
+#### One Meta
+Meta comes from *metadata*. This is used when we want to store additional information about the link. 
+For example, if a user belongs to a single group, we want to store the fact that he is an Admin or not.
+
+This relationship can be emulated in different ways. We could also store via a *Many* relationship "adminIds" at Group Level.
+There is no right or wrong. Just choose what's best fit.
+
+```js
+// User Document
+{
+    ...
+    groupId: {
+        _id: 'XXX', isAdmin: true
+    }
+}
+```
+
+#### Many Meta
+Same as the scenario in One Meta, but in this case, a user can belong to multiple groups and he can be admin only to some.
+
+```js
+// User Document
+{
+    ...
+    groupIds: [
+        {_id: 'XXX', isAdmin: true},
+        {_id: 'YYY', isAdmin: false}
+    ]
+}
+```
+
+To emulate that you can also have done it in Group Document:
+
+```js
+// Group Document
+{
+    ...
+    userIds: [
+        {_id: 'XXX', isAdmin: true},
+        {_id: 'YYY', isAdmin: false},
+    ]
+}
+```
 
 Our First Link
 --------------
@@ -58,7 +135,6 @@ Removing/unsetting the link, will not affect the related document. If you want t
 
 Inversed Links
 --------------
-Read more advanced information: [inversed_links.md](inversed_links.md)
 
 All good but I may want at the user level to fetch all my comments I posted. This is where we introduce the concept of *inversed links*.
 An *inversed link* basically means that the information about the link is stored on the other side. In our case, in the Comment document.
@@ -161,10 +237,11 @@ groupLink.metadata({isAdmin: false}) // runs the update in the database.
 ```
 
 
-Link Looping to the same Collection
---------------------------
+Link Loopback
+-------------
 
-For tree-like database structures this is great.
+Reference the same collection in the link. For tree-like database structures this is great.
+
 ```
 Users.addLinks({
     children: {
@@ -222,7 +299,7 @@ Users.addLinks({
 ```
 
 
-Integration with SimpleSchema
+SimpleSchema
 -----------------------------
 
 It is very likely that you would use SimpleSchema to ensure a data-structure for your documents, and prevent bad data to be inserted.
@@ -351,7 +428,6 @@ Members.addLinks({
 When *Member* is removed from the database, it will look for all the threads of that member.
 And it will remove it from the fieldStorage. This way your data will be *consistent* without having to deal with it.
 
-
 Autoremoval
 -----------
 ```
@@ -367,8 +443,8 @@ Members.addLinks({
 Be careful with this one! 
 When Member document is deleted, all posts will be deleted.
 
-Performance
------------
+Indexing
+--------
 
 ```
 Members.addLinks({
@@ -385,3 +461,5 @@ Members.addLinks({
 By using *index: true* option, it will call _ensureIndex automatically on your collection.
 This will give you a performance boost when you are searching from the "related" link, in our case, from "Posts".
 {% endpullquote %}
+
+

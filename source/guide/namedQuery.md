@@ -1,5 +1,5 @@
 ---
-title: Named Query
+title: Using Named Query
 description: How to secure your queries via Named Queries
 ---
 
@@ -20,13 +20,17 @@ We have two options:
 are linked to an Order he has. But if you do that, then you may also need to restrict the fields he has access to and so on.
 - Good Way: Use named queries
 
-## Our First Named Query
+{% pullquote 'warning' %}
+NamedQuery is not affected by exposure at all. It has it's own firewall.
+{% endpullquote %}
+
+## Our First NamedQuery
 
 ```
 // /imports/api/queries/orderView.js
 import { createNamedQuery } from 'meteor/cultofcoders:grapher';
 
-const query = createdNamedQuery('ordersLirist', {
+const query = createdNamedQuery('ordersList', {
     orders: {
         $filter({ filters, params }) {
             filters.enduserId = params._id

@@ -19,11 +19,11 @@ http://grapher-live.cultofcoders.com
 
 Currently we have demo data and it is linked like this:
 
-Users has many posts
-Posts has many comments
-Posts belong in a Group
-Users belong in multiple Groups
-Comment has one User
+- Users has many posts
+- Posts has many comments
+- Posts belong in a Group
+- Users belong in multiple Groups
+- Comment has one User
 
 ### Sample Queries
 

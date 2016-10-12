@@ -22,6 +22,11 @@ versions:
 sidebar_categories:
   null:
     - index
+  API:
+    - api/links
+    - api/query
+    - api/exposure
+    - api/namedQuery
   Guide:
     - guide/links
     - guide/query

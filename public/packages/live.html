@@ -150,6 +150,43 @@
       
         <li>
           
+            <div class="heading-toc">API</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="../api/links.html" class="sidebar-link ">
+                  <span>Linking</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="../api/query.html" class="sidebar-link ">
+                  <span>Query</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="../api/exposure.html" class="sidebar-link ">
+                  <span>Exposure API</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="../api/namedQuery.html" class="sidebar-link ">
+                  <span>Named Query</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
             <div class="heading-toc">Guide</div>
           
           <ul class="list-toc">
@@ -157,28 +194,28 @@
               
               <li class="item-toc ">
                 <a href="../guide/links.html" class="sidebar-link ">
-                  <span>Collection Links</span>
+                  <span>Managing Links</span>
                 </a>
               </li>
             
               
               <li class="item-toc ">
                 <a href="../guide/query.html" class="sidebar-link ">
-                  <span>Query</span>
+                  <span>Using Query</span>
                 </a>
               </li>
             
               
               <li class="item-toc ">
                 <a href="../guide/exposure.html" class="sidebar-link ">
-                  <span>Exposure</span>
+                  <span>Exposing Collections</span>
                 </a>
               </li>
             
               
               <li class="item-toc ">
                 <a href="../guide/namedQuery.html" class="sidebar-link ">
-                  <span>Named Query</span>
+                  <span>Using Named Query</span>
                 </a>
               </li>
             
@@ -229,8 +266,8 @@
     </div>
 
     <div class="document-formatting">
-      <h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">meteor <span class="keyword">add</span><span class="bash"> cultofcoders:grapher-live</span></div><div class="line">meteor npm install --save-dev react react-ace react-json-pretty</div></pre></td></tr></table></figure>
-<h3 id="Server-Side-Setup"><a href="#Server-Side-Setup" class="headerlink" title="Server Side Setup"></a>Server Side Setup</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// in your /imports/startup/server</span></div><div class="line"><span class="comment">// don't initialize it in your production environment, or it will lead to unwanted data exposure.</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; initialize &#125; <span class="keyword">from</span> <span class="string">'meteor/cultofcoders:grapher-live'</span>;</div><div class="line"></div><div class="line">initialize(); <span class="comment">// exposes a method "grapher_live", used by the React Component</span></div></pre></td></tr></table></figure>
+      <h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">meteor <span class="keyword">add</span><span class="bash"> cultofcoders:grapher-live</span></div><div class="line">meteor npm install --save-dev react react-ace</div></pre></td></tr></table></figure>
+<h3 id="Server-Side-Setup"><a href="#Server-Side-Setup" class="headerlink" title="Server Side Setup"></a>Server Side Setup</h3><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// in your /imports/startup/server</span></div><div class="line"><span class="comment">// don't initialize it in your production environment, or it will lead to unwanted data exposure.</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; initialize &#125; <span class="keyword">from</span> <span class="string">'meteor/cultofcoders:grapher-live'</span>;</div><div class="line"></div><div class="line">initialize(); <span class="comment">// exposes a method "grapher_live", used by the React Component</span></div></pre></td></tr></table></figure>
 <h3 id="Client-Side-Setup"><a href="#Client-Side-Setup" class="headerlink" title="Client Side Setup"></a>Client Side Setup</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// client side expose a route using your router</span></div><div class="line"><span class="comment">// example with FlowRouter</span></div><div class="line"><span class="comment">// don't initialize this in production environment</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; render &#125; from <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> &#123; GrapherLive &#125; from <span class="string">'meteor/cultofcoders:grapher-live'</span>;</div><div class="line"></div><div class="line">FlowRouter.route(<span class="string">'/grapher'</span>, () =&gt; &#123;</div><div class="line">    render(&lt;GrapherLive /&gt;, <span class="built_in">document</span>.getElementById(<span class="string">'app'</span>)); </div><div class="line">    <span class="comment">// where app is your main id to render stuff (you can also use "render-target")</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><p>Grapher Live uses <em>createQuery</em>:</p>
 <p>```
@@ -258,7 +295,7 @@
           href="../guide/namedQuery.html">
           <span class="icon-arrow-left-alt"></span>
           <span class="subtitle-pagination">Previous</span>
-          Named Query
+          Using Named Query
         </a>
       
       
