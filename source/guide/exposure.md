@@ -32,9 +32,11 @@ Exposing a collection to logged in users
 ----------------------------------------
 
 ```
-Collection.expose((filters, options, userId) {
-    if (!userId) {
-        throw new Meteor.Error('...');
+Collection.expose({
+    firewall(filters, options, userId) {
+        if (!userId) {
+            throw new Meteor.Error('...');
+        }
     }
 });
 ```

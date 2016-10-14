@@ -270,11 +270,13 @@
 <p>Or check it live:
 <a href="http://grapher-live.cultofcoders.com" target="_blank" rel="external">http://grapher-live.cultofcoders.com</a></p>
 <h3 id="Fixtures"><a href="#Fixtures" class="headerlink" title="Fixtures"></a>Fixtures</h3><p>Currently we have demo data and it is linked like this:</p>
-<p>Users has many posts
-Posts has many comments
-Posts belong in a Group
-Users belong in multiple Groups
-Comment has one User</p>
+<ul>
+<li>Users has many posts</li>
+<li>Posts has many comments</li>
+<li>Posts belong in a Group</li>
+<li>Users belong in multiple Groups</li>
+<li>Comment has one User</li>
+</ul>
 <h3 id="Sample-Queries"><a href="#Sample-Queries" class="headerlink" title="Sample Queries"></a>Sample Queries</h3><p>To fetch all posts with their comments and their authors in Grapher Live:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">posts</span>: &#123;</div><div class="line">        <span class="attr">title</span>: <span class="number">1</span>,</div><div class="line">        <span class="attr">comments</span>: &#123;</div><div class="line">            <span class="attr">text</span>: <span class="number">1</span>,</div><div class="line">            <span class="attr">user</span>: &#123;</div><div class="line">                <span class="attr">profile</span>: <span class="number">1</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="Fetch-only-“Good”-comments"><a href="#Fetch-only-“Good”-comments" class="headerlink" title="Fetch only “Good” comments:"></a>Fetch only “Good” comments:</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    post<span class="variable">s:</span> &#123;</div><div class="line">        comment<span class="variable">s:</span> &#123;</div><div class="line">            $<span class="built_in">filter</span><span class="variable">s:</span> &#123;tex<span class="variable">t:</span> <span class="string">"Good"</span>&#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
