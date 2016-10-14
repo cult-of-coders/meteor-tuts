@@ -19,6 +19,13 @@ Grapher is a Meteor package that:
 meteor add cultofcoders:grapher
 ```
 
+## Read The Guide
+
+- [Managing Links](/guide/links.html)
+- [Exposing Collections](/guide/exposure.html)
+- [Queries](/guide/query.html)
+- [Named Queries](/guide/namedQuery.html)
+
 ## Boilerplate
 
 A meteor project with some links setup and grapher-live integrated.
