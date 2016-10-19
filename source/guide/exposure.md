@@ -258,6 +258,8 @@ You can return *undefined* or *false* in your function if you want to disable th
 *But Why ?*
 The reason we do this is to allow linking exposure bodies in a very secure manner.
 
+Given the scenario where Comment has a User link:
+
 ```
 const userBody = (userId) => {
     if (isAdmin(userId)) {
@@ -268,7 +270,7 @@ const userBody = (userId) => {
 }
 
 Users.expose({
-    userBody
+    body: userBody
 })
 
 Comments.expose({
