@@ -18,8 +18,10 @@ Exposing a collection does the following things:
 Collection.find(filters, options, userId);
 ```
 
-*Important Note:* If *userId* is undefined, the firewall and constraints will not be applied. If the *userId* is *null*, the firewall will be applied. This is to allow server-side fetching without any restrictions.
 
+{% pullquote 'warning' %}
+If *userId* is undefined, the firewall and constraints will not be applied. If the *userId* is *null*, the firewall will be applied. This is to allow server-side fetching without any restrictions.
+{% endpullquote %}
 
 Exposing a collection to everyone
 ---------------------------------
@@ -71,8 +73,10 @@ When querying for a data-graph like:
 It is not necessary to have an exposure for *comments*, however if you do have it, and it has a firewall. The firewall will be called.
 The reason for this is security.
 
-Note: Don't worry about performance. We went great lengths to retrieve data in as few MongoDB requests as possible, in the scenario above,
+{% pullquote 'warning' %}
+Don't worry about performance. We went great lengths to retrieve data in as few MongoDB requests as possible, in the scenario above,
 if you do have a firewall for users and comments, both will be called only once, because we only make 2 MongoDB requests.
+{% endpullquote %}
 
 Global Exposure Configuration
 -----------------------------
@@ -140,3 +144,65 @@ Collection.expose({
     }
 });
 ```
+
+## Exposure Body
+
+Restricting exposure information using body. By using body, what you request from the client will be *intersected* deeply with the specified body.
+
+{% pullquote 'warning' %}
+By using body, Grapher automatically assumes you have control over what you give, meaning all firewalls from other exposures for linked elements (if they exist) will be bypassed. But not the firewall of the current exposure.
+{% endpullquote %}
+
+For example if you would have:
+
+```
+Collection.expose({
+    body: {
+        firstName: 1,
+        link: {
+            someField: 1
+        }
+    }
+})
+```
+
+If you query from the *client-side* something like:
+```
+createQuery({
+    collection: {
+        firstName: 1,
+        lastName: 1,
+        link: {
+            someOtherField: 1
+        }
+    }
+})
+```
+
+The body that will be executed will be:
+```
+{
+    firstName: 1,
+    link: {}
+}
+```
+
+You can construct a custom body depending on the userId:
+
+```
+Collection.expose({
+    body(userId) {
+        let body = { firstName: 1 };
+        
+        if (isAdmin(userId)) {
+            _.extend(body, { lastName: 1 })
+        }
+        
+        return body;
+    }
+})
+```
+
+{% pullquote 'warning' %}
+Deep nesting will not be allowed unless your *body* specifies it.
+{% endpullquote %}

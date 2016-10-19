@@ -1,8 +1,7 @@
 ---
-title: Using Named Query
+title: Named Queries
 description: How to secure your queries via Named Queries
 ---
-
 
 ## Introduction
 
@@ -19,6 +18,7 @@ We have two options:
 - Bad Way: Manipulate exposure in such a manner to see if the user is EndUser and has an Order and the ids he wants to see
 are linked to an Order he has. But if you do that, then you may also need to restrict the fields he has access to and so on.
 - Good Way: Use named queries
+- Another good way: [Use exposure body](/guide/exposure.html#Exposure-Body)
 
 {% pullquote 'warning' %}
 NamedQuery is not affected by exposure at all. It has it's own firewall.

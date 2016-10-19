@@ -1,5 +1,5 @@
 ---
-title: Exposure API
+title: Exposure
 description: Reference API for Grapher Exposure
 ---
 
@@ -37,7 +37,8 @@ Collection.expose({
     restrictedFields: [], // array of fields you want to restrict
     method: true, // allow it via method
     publication: true, // allow it via 
-    restrictLinks, // function(userId) that returns array, or array
+    restrictLinks, // function(userId) that returns array, or array,
+    body, // object that will intersect with the actual request body from the client
 });
 ```
 
@@ -69,6 +70,10 @@ Users.expose({
 ```
 
 ## Firewalls are linked
+
+{% pullquote 'warning' %}
+If you specify a body to your exposures, in that case firewalls will not be linked, they will be bypassed.
+{% endpullquote %}
 
 ```
 {
