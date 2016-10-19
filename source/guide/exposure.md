@@ -145,9 +145,11 @@ Collection.expose({
 });
 ```
 
-## Exposure Body
+## Exposure Body 
 
 Restricting exposure information using body. By using body, what you request from the client will be *intersected* deeply with the specified body.
+
+This is for advanced usage and it completes the security of exposure. This may be a bit tricky to understand at first because there are many rules.
 
 {% pullquote 'warning' %}
 By using body, Grapher automatically assumes you have control over what you give, meaning all firewalls from other exposures for linked elements (if they exist) will be bypassed. But not the firewall of the current exposure.
@@ -206,3 +208,73 @@ Collection.expose({
 {% pullquote 'warning' %}
 Deep nesting will not be allowed unless your *body* specifies it.
 {% endpullquote %}
+
+If you want to allow the client to specify $filters and $options at any level you must specify it in your body like this:
+```
+Collection.expose({
+    body: {
+        $filters: 1,
+        $options: 1,
+        linkedItems: {
+            $filters: 1,
+            $options: 1
+        }
+    }
+})
+```
+
+The reason this works is because the *deep intersection function* favors objects, meaning:
+```
+intersection({a: 1}, {a: {b: 1}}) === {a: {b: 1}}
+```
+
+If the *body* contains functions they will be computed before intersection. Each function will receive userId.
+
+```
+{
+    linkName(userId) { return {test: 1} }
+}
+
+// transforms into
+{
+    linkName: {
+        test: 1
+    }
+}
+```
+
+You can return *undefined* or *false* in your function if you want to disable the field for intersection.
+
+```
+{
+    linkName(userId) {
+        if (isAdmin(userId)) {
+            return true; // or { object }
+        }
+    }
+}
+```
+
+*But Why ?*
+The reason we do this is to allow linking exposure bodies in a very secure manner.
+
+```
+const userBody = (userId) => {
+    if (isAdmin(userId)) {
+        return something;        
+    }
+    
+    return somethingElse;
+}
+
+Users.expose({
+    userBody
+})
+
+Comments.expose({
+    body: {
+        text: 1,
+        user: userBody
+    }
+})
+```
