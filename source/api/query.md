@@ -12,7 +12,9 @@ Available $options: *sort*, *skip* and *limit*
 
 ```
 const query = Posts.createQuery({
-    $filters: {},
+    $filters: {
+        isPublished: true
+    },
     $options: {},
     $filter({filters, options, params}) {
         // modify filters and options don't override
@@ -22,7 +24,9 @@ const query = Posts.createQuery({
         nestedFieldItem: 1
     }
     comments: {
-        $filters: {}, // will only be applied to linked elements
+        $filters: {
+            isApproved: true // only retrieves the comments linekd to the post, that have isApproved: true
+        }, // will only be applied to linked elements
         $options: {}, // will only be applied to linked elements
         $filter({filters, options, params}) {
             // params is global at query level, so params here are the same as params from the parent

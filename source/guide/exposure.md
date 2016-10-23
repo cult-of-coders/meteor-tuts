@@ -147,15 +147,19 @@ Collection.expose({
 
 ## Exposure Body 
 
-Restricting exposure information using body. By using body, what you request from the client will be *intersected* deeply with the specified body.
+Creating an exposure body basically states that:
+"I allow the client to request anything he wants from what I allow him to."
 
-This is for advanced usage and it completes the security of exposure. This may be a bit tricky to understand at first because there are many rules.
+If *body* is specified, it is first applied on the request and then the subsequent rules such as *restrictedFields*, *restrictLinks*, *firewall*
+
+This is for advanced usage and it completes the security of exposure. 
+This may be a bit tricky to understand at first because there are many rules, but don't give up hope, it's quite easy.
 
 {% pullquote 'warning' %}
 By using body, Grapher automatically assumes you have control over what you give, meaning all firewalls from other exposures for linked elements (if they exist) will be bypassed. But not the firewall of the current exposure.
 {% endpullquote %}
 
-For example if you would have:
+### Basic Usage
 
 ```
 Collection.expose({
@@ -181,7 +185,7 @@ createQuery({
 })
 ```
 
-The body that will be executed will be:
+The intersected body will look like:
 ```
 {
     firstName: 1,
@@ -189,7 +193,7 @@ The body that will be executed will be:
 }
 ```
 
-You can construct a custom body depending on the userId:
+Ok, but what if I want to have a different body based on the userId ? Body can also be a function that takes in an userId, and returns an object.
 
 ```
 Collection.expose({
@@ -206,30 +210,21 @@ Collection.expose({
 ```
 
 {% pullquote 'warning' %}
-Deep nesting will not be allowed unless your *body* specifies it.
+Deep nesting with other links not be allowed unless your *body* specifies it.
 {% endpullquote %}
 
-If you want to allow the client to specify $filters and $options at any level you must specify it in your body like this:
-```
-Collection.expose({
-    body: {
-        $filters: 1,
-        $options: 1,
-        linkedItems: {
-            $filters: 1,
-            $options: 1
-        }
-    }
-})
-```
+The special fields "$filters" and "$options" are allowed at any link level (including root). However, they will go through a phase of cleaning,
+meaning it will only allow to filter and sort for fields that exist in the body.
 
-The reason this works is because the *deep intersection function* favors objects, meaning:
-```
-intersection({a: 1}, {a: {b: 1}}) === {a: {b: 1}}
-```
+
+{% pullquote 'warning' %}
+We got your back covered!
+
+This check goes deeply to verify "$and", "$or", "$nin" and "$not" special MongoDB selectors. This way you are sure you do not expose data you don't want to.
+Because, given enough requests, a hacker playing with $filters and $sort options can figure out a field that you may not want to give him access to.
+{% endpullquote %}
 
 If the *body* contains functions they will be computed before intersection. Each function will receive userId.
-
 ```
 {
     linkName(userId) { return {test: 1} }
@@ -243,27 +238,39 @@ If the *body* contains functions they will be computed before intersection. Each
 }
 ```
 
-You can return *undefined* or *false* in your function if you want to disable the field for intersection.
+You can return *undefined* or *false* in your function if you want to disable the field/link for intersection.
 
 ```
 {
     linkName(userId) {
         if (isAdmin(userId)) {
-            return true; // or { object }
+            return object;
         }
     }
 }
 ```
 
-*But Why ?*
-The reason we do this is to allow linking exposure bodies in a very secure manner.
+### Linking Grapher Exposure Bodies
 
-Given the scenario where Comment has a User link:
+You can link bodies in your own way and also reference other bodies'links.
+Functions are computed on-demand, meaning you can have self-referencing body functions:
 
 ```
+// Comments ONE link to Users as 'user' 
+// Users INVERSED 'user' from Comments AS 'comments'
+
+const commentBody = (userId) => {
+    return {
+        user: userBody
+        text: 1
+    }
+}
+
 const userBody = (userId) => {
     if (isAdmin(userId)) {
-        return something;        
+        return {
+            comments: commentBody
+        };        
     }
     
     return somethingElse;
@@ -274,9 +281,20 @@ Users.expose({
 })
 
 Comments.expose({
-    body: {
-        text: 1,
-        user: userBody
-    }
+    body: commentBody
 })
+```
+
+This will allow requests like:
+```
+{
+    users: {
+        comments: {
+            user: {
+                // It doesn't make much sense for this case
+                // but you can have 
+            }
+        }
+    }
+}
 ```

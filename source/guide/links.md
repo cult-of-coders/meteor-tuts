@@ -236,6 +236,46 @@ groupLink.metadata() // returns {isAdmin: true, _id: groupId}}
 groupLink.metadata({isAdmin: false}) // runs the update in the database.
 ```
 
+Meta filters
+------------
+
+Given a relationship between 2 entities: Users and Groups
+```
+Users.addLinks({
+    groups: {
+        collection: Groups,
+        type: 'many',
+        metadata: {
+            isAdmin: { type: Boolean }
+        }
+    }
+})
+```
+
+You can now fetch only the groups you are admin to like this:
+
+```
+const groupsLink = Users.getLink(userId, 'groups');
+groupsLink.fetch({$meta: {isAdmin: true}});
+```
+
+It also works from the inversed side as well:
+```
+Groups.addLinks({
+    users: {
+        collection: Users,
+        inversedBy: 'groups'
+    }
+})
+
+
+const usersLink = Groups.getLink(groupId, 'users');
+usersLink.fetch({$meta: {isAdmin: true}});
+```
+
+{% pullquote 'warning' %}
+Meta filters also works with Query
+{% endpullquote %}
 
 Link Loopback
 -------------

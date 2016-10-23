@@ -13,6 +13,10 @@ Grapher is a Meteor package that:
 - Offers the same API for Reactive and Non-Reactive queries
 - !! Integrates with your existing Meteor projects, MongoDB relations and SimpleSchema
 
+## LTS version: 1.2 until 2020
+
+Grapher version 1.2 now has long-term support until 2020.
+
 ## Installation
 
 ```

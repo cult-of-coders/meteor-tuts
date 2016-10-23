@@ -288,6 +288,10 @@ You could do is export a factory that creates your query on the fly, however, fo
 we created a .clone() method, that clones the query and it is completely isolated.
 {% endpullquote %}
 
+{% pullquote 'warning' %}
+When you have metadata links. A $metadata object will be stored to the children referncing the $metadata from the parent.
+{% endpullquote %}
+
 ## Security and Performance
 
 By default the options "disableOplog", "pollingIntervalMs", "pollingThrottleMs" are not available on the client.
