@@ -15,19 +15,6 @@
   </div>
 
   <div class="sidebar-content">
-    <div class="topcap">
-      <span class="title-sidebar"><%- config.title %></span>
-      <% if (config.versions.length > 1) { %>
-        <span class="select version-sidebar nochrome">
-          <select class="version-select">
-            <% config.versions.forEach(function (v) { %>
-              <option value="v<%- v %>"><%- v %></option>
-            <% }) %>
-          </select>
-        </span>
-      <% } %>
-    </div>
-
     <% if (config.apis && config.apis.docsearch) { %>
     <div class="wrapper-search">
       <div class="input-symbol small round">

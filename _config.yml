@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Grapher Docs
+title: Meteor Tutorials
 subtitle:
-description: Documentation for grapher
+description: Meteor Tutorials - From Noob to PRO
 author: Theodor Diaconu
 language: en
 timezone:
@@ -16,48 +16,47 @@ apis:
     apiKey: c6162b5842b0dc5f7af8c186fff8f5bb
     indexName: grapher
 
-versions:
-  - '1.1.0'
-
 sidebar_categories:
   null:
     - index
-  API:
-    - api/links
-    - api/query
-    - api/exposure
-    - api/namedQuery
-  Guide:
-    - guide/links
-    - guide/query
-    - guide/exposure
-    - guide/namedQuery
-  Packages:
-    - packages/live
-    - packages/boilerplate
+  'Chapter 1':
+    - chapters/1/intro
+    - chapters/1/collections
+    - chapters/1/methods
+    - chapters/1/reactivity
+    - chapters/1/pubsub
+    - chapters/1/users
+    - chapters/1/security
+    - chapters/1/meteorSnacks
 
 github_repo: 'cult-of-coders/grapher-docs'
 content_root: 'source'
 
 # themeing
-favicon: '../images/favicon.png'
+favicon: '/images/favicon.png'
 
 logo:
-  nav_mobile: '../images/logo.png'
+  nav_mobile: '/images/logo.png'
   url: 'http://www.cultofcoders.com'
   title: 'Grapher'
   subtitle: ''
 
 nav_links:
-  'GitHub':
-    url: https://github.com/cult-of-coders/grapher
+  'Atmosphere':
+    url: https://www.atmospherejs.com
     target: _new
-  'Test Live':
-    url: http://grapher-live.cultofcoders.com/grapher
+  'NPM':
+    url: https://www.npmjs.com/
+    target: _new
+  'Meteor API':
+    url: https://docs.meteor.com/
+    target: _new
+  'Meteor Guide':
+    url: https://guide.meteor.com/
     target: _new
 
 social_links:
-  github: 'https://github.com/cult-of-coders/grapher'
+  github: 'https://github.com/cult-of-coders/meteor-tuts.com'
   twitter: '@culotfcoders'
 
 # URL

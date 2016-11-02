@@ -1,47 +1,29 @@
 ---
 title: Introduction
-description: Grapher is a collection relationship manager and a secure data fetcher.
+description: What are these tutorials about ?
 ---
 
-## What is Grapher?
+<h1>Hello!</h1>
 
-Grapher is a Meteor package that:
+We are Cult of Coders, a young company focused on Meteor. We absolutely love it, and we only work with it.
 
-- Allows Collections Relationship Management with an easy and intuitive API
-- Allows you to securely expose collections client-side
-- Allows you to fetch the data graph using JS objects as your request
-- Offers the same API for Reactive and Non-Reactive queries
-- !! Integrates with your existing Meteor projects, MongoDB relations and SimpleSchema
+In the past years we gathered a lot of experience, Meteor has changed a lot, but it is now fully packed with lots
+of cool stuff that will help you create from the most simple apps to complex enterprise-level applications.
 
-## LTS version: 1.2 until 2020
+Our tutorials will be structured in chapters. Each chapter will have different lessons.
 
-Grapher version 1.2 now has long-term support until 2020.
+We encourage you to put in practice everything you learn. This way you will remember it better in the future.
 
-## Installation
+<h1>Before you begin</h1>
 
-```
-meteor add cultofcoders:grapher
-```
+This tutorial is focused on Meteor. We need to keep our concerns separated, this is why, it will assume that you already have
+a JavaScript ES6 foundation.
 
-## Read The Guide
+If you are not familiar with JavaScript at all:
+- https://www.quora.com/What-are-the-best-online-resources-to-learn-JavaScript-programming-beyond-Coursera-Udacity-and-Udemy
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript
 
-- [Managing Links](/guide/links.html)
-- [Exposing Collections](/guide/exposure.html)
-- [Queries](/guide/query.html)
-- [Named Queries](/guide/namedQuery.html)
-
-## Boilerplate
-
-A meteor project with some links setup and grapher-live integrated.
-
-```
-git clone https://github.com/cult-of-coders/grapher-boilerplate
-```
-
-[Read more](/packages/boilerplate.html)
-
-## Grapher-Live
-
-View documentation and test your queries live.
-
-[Read more](/packages/live.html)
+If you are familiar with JS, but not with the ES6 syntax:
+- https://github.com/ericdouglas/ES6-Learning
+- http://es6katas.org/
+- http://learnharmony.org/
