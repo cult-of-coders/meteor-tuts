@@ -11,10 +11,10 @@ language: en
 timezone:
 
 apis:
-  ga: UA-40568040-9
-  docsearch:
-    apiKey: c6162b5842b0dc5f7af8c186fff8f5bb
-    indexName: grapher
+  ga: UA-40568040-10
+#  docsearch:
+#    apiKey: c6162b5842b0dc5f7af8c186fff8f5bb
+#    indexName: grapher
 
 sidebar_categories:
   null:
