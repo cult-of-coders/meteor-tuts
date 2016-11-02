@@ -122,7 +122,30 @@
     <a class="link tertiary " href="<%- githubUrl %>" target="_blank">
       <span class="icon-github"></span>Edit on GitHub</a>
   </div>
+  <% if (page.disqusPage) { %>
+    <div class="content-wrapper">
+      <div id="disqus_thread"></div>
+    </div>
+    <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+       */
+       window.disqus_config = function () {
+         this.page.url = '<%= url %>'
+         this.page.identifier = "<%= page.disqusPage %>"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+         this.page.title = "<%= page.disqusPage %>"
+       };
+      (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
 
+        s.src = '//meteor-tuts.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+  <% } %>
   <% if (page.discourseTopicId) { %>
     <div class="discourse-comments-wrapper content-wrapper">
       <div id='discourse-comments'></div>

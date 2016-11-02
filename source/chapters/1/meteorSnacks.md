@@ -1,6 +1,7 @@
 ---
 title: Meteor Snacks & Conclusions
 description: Some interesting tools that Meteor has to offer.
+disqusPage: 'Chapter 1: Meteor Snacks'
 ---
 
 ## Environment Variables

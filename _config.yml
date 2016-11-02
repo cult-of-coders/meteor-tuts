@@ -38,7 +38,7 @@ favicon: '/images/favicon.png'
 logo:
   nav_mobile: '/images/logo.png'
   url: 'http://www.cultofcoders.com'
-  title: 'Grapher'
+  title: 'Meteor Tuts'
   subtitle: ''
 
 nav_links:
@@ -61,7 +61,7 @@ social_links:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://grapher.cultofcoders.com
+url: http://www.meteor-tuts.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:

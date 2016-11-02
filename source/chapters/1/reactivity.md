@@ -1,6 +1,7 @@
 ---
 title: Tracker
 description: The Meteor's way of building reactive apps
+disqusPage: 'Chapter 1: Tracker'
 ---
 
 Let's now explore a nice concept for Meteor, the Tracker system.

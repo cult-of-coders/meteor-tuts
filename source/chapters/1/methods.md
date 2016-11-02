@@ -1,6 +1,7 @@
 ---
 title: Methods
 description: The RPC of Meteor.
+disqusPage: 'Chapter 1: Methods'
 ---
 
 ## What is Method ?

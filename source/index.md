@@ -1,6 +1,7 @@
 ---
-title: Meteor-Tuts
-description: Learn Meteor. From NOOB to PRO
+title: Welcome
+description: 'Meteor Tuts. Learning Meteor From NOOB to PRO'
+disqusPage: 'Welcome'
 ---
 
 <h1>Hello!</h1>

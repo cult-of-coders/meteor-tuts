@@ -1,6 +1,7 @@
 ---
 title: Publications & Subscriptions
 description: The Meteor's way of building reactive apps
+disqusPage: 'Chapter 1: Pub/Sub'
 ---
 
 Hey there, you seem tenacious, it seems that Methods did not put you down, and you continued, I like that.

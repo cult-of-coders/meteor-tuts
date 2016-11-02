@@ -1,6 +1,7 @@
 ---
-title: Intro
+title: 'Intro'
 description: Getting started with Meteor
+disqusPage: 'Chapter 1: Intro'
 ---
 
 So you want to begin learning Meteor huh ?

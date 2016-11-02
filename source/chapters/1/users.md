@@ -1,6 +1,7 @@
 ---
 title: Accounts
 description: How Meteor handles users
+disqusPage: 'Chapter 1: Accounts'
 ---
 
 Oh, hello again, so Meteor has a very opinionated way on doing this stuff, and it offers very friendly and dead simple APIs for:

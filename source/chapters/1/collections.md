@@ -1,6 +1,7 @@
 ---
 title: Collections
 description: How we store our data in Meteor.
+disqusPage: 'Chapter 1: Collections'
 ---
 
 Hello again.
