@@ -29,7 +29,7 @@ sidebar_categories:
     - chapters/1/security
     - chapters/1/meteorSnacks
 
-github_repo: 'cult-of-coders/grapher-docs'
+github_repo: 'cult-of-coders/meteor-tuts'
 content_root: 'source'
 
 # themeing
