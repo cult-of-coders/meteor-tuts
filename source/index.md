@@ -1,6 +1,6 @@
 ---
-title: Introduction
-description: What are these tutorials about ?
+title: Meteor-Tuts
+description: Learn Meteor. From NOOB to PRO
 ---
 
 <h1>Hello!</h1>
