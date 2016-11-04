@@ -10,7 +10,7 @@ You think you got what it takes ?
 
 You think you are ready to learn the most beautiful and elegant JS Framework ?
 
-<strong style="font-size: 2em">Yes, I am ready.</strong>
+<strong style="font-size: 1.4em">Yes, I am ready.</strong>
 
 Cool, let's begin our journey.
 
@@ -154,7 +154,6 @@ because it found no reference to SimpleSchema, because you do not imported. Hard
 
 Meteor comes packed with MongoDB, Node, Npm, so you don't have to worry about any dependencies.
 
-## Homework
 
 
 

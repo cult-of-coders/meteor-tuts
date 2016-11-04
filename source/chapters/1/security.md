@@ -9,13 +9,16 @@ you need to more and more careful on how you handle this. We'll show you first h
 secure our methods and publications, then you will be shown some tips and tricks to handle 
 it for an evergrowing code base.
 
-So, remember the methods ?
+## Securing Methods & Publicaions
+
+So, remember the Methods ?
 
 ```
 Meteor.methods({
     'do_something': function () {
         // in it you have access to this.userId
         // which represents the logged in user
+        // if your user is not logged in it will be null
         console.log(this.userId);
     }
 })
@@ -27,14 +30,14 @@ Same thing in publications:
 Meteor.publish('something', function () {
     console.log(this.userId);
     
-    return this.ready(); // 
+    return this.ready(); 
 })
 ```
 
+## Managing Roles
+
 Based on the userId you have the ability to check if he is logged in, maybe you have multiple roles in the system,
 that you may store as an array at "user document" level, and you can check for that, the thing is, you can do anything you want.
-
-Now, how we recommend you do it:
 
 We recommend installing the infamous package, [alanning:roles](https://atmospherejs.com/alanning/roles):
 
@@ -42,7 +45,10 @@ We recommend installing the infamous package, [alanning:roles](https://atmospher
 meteor add alanning:roles
 ```
 
-Centralize security in a component:
+
+## Security Module
+
+Centralize security in a module:
 
 ```
 // file: /imports/api/security.js
@@ -75,7 +81,7 @@ export default class Security {
     
     // add other business logic checks here that you use throughout the app
     // something like: isUserAllowedToSeeDocument()
-    // always keep decoupling your code if this class gets large.
+    // always keep decoupling your code if this class gets huge.
 }
 ```
 
@@ -123,5 +129,4 @@ Meteor.publish('posts', function () {
 })
 ```
 
-
-
+That's it. With this knowledge you can build very secure apps!

@@ -85,6 +85,13 @@ unless you restart or implement a handler that stops it, so be careful!
 Remember the emails we received in console when we were talking about Users ? Well, in the back, they used this module:
 If you don't specify MAIL_URL, all Emails that you send, will go to your console. Pretty cool, right?
 
+If you want an email, we recommend: http://www.mailgun.com/ <- Free for < 10,000 per month
+
+```
+// we use %40 to represent @ because the username, because they need to be URI encoded
+MAIL_URL="smtp://postmaster%40yourdomain.com:b23f5872166c187ad5b5f1abece071b2@smtp.mailgun.org:25" meteor run
+```
+
 ```
 // Most Basic Usage
 import { Email } from 'meteor/email';
@@ -154,3 +161,53 @@ Assets.getText('/some_folder/test.txt')
 You would use this when for example, you have a business, logic-packed csv, or .xls file.
 Or you may have a JSON with car models and makes. 
 The idea is that you can have any type of file, even binary, that you can use privately on the server.
+
+## Meteor Settings
+
+https://docs.meteor.com/api/core.html#Meteor-settings
+
+```
+// file: .deploy/local.json
+{
+    "public": {
+        "visible": "Something that the client can see"
+    },
+    "private": {
+        "API_KEY": "XXX"
+    }
+}
+```
+
+You can access the settings from the client-side:
+```
+Meteor.settings.public.visible
+```
+
+You can access all settings from the server-side:
+```
+Meteor.settings.private.API_KEY
+```
+
+## Run Meteor Easy
+
+Inside your Meteor folder you have a file "package.json", that packages keeps track of what npm packages you use, and some other
+cool stuff. So for example, you may start an app with diff settings like MAIL_URL, etc, you would do something like:
+```
+{
+  ...
+  "scripts": {
+    "start": "MAIL_URL='xxx' meteor run --port 3000",
+    "deploy": "We'll get into that in another chapter ;)"
+  }
+}
+```
+
+```
+// in your terminal:
+npm run start
+```
+
+## Conclusion
+
+So, we just scratched the surface. Meteor has many good things to offer. The journey has only begun. Stay tooned. More stuff will follow!
+

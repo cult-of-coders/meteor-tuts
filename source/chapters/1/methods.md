@@ -10,8 +10,8 @@ Q: First off, what the heck is RPC ?
 
 A: RPC stands for "Remote Procedure Call", in basic terms it means that you invoke "something" with (optionally) some arguments, and expect a response, OR AN ERROR! HAHAHAHAHAHA. Ok.
 
-In Meteor, this is achieved by communicating with a websocket. You can disable websockets and it falls back to something else, but let's not get into
-this right now, lets stay focused.
+In Meteor, this is achieved by communicating through a websocket with the server. You can disable websockets and it falls back to something else,
+but let's not get into this right now, lets stay focused.
 
 In a project we use methods to perform actions such as:
 - Fetching the data
@@ -20,7 +20,11 @@ In a project we use methods to perform actions such as:
 - Making API calls
 - Any other dirty thing you can possibly think of
 
-Methods are created server-side, but they can work client-side also (we'll explain it later)
+Methods are created server-side, and they can be called from the client or from the server as well.
+Because we use `meteor shell`, it means we are calling them from the server.
+
+We can also have registered methods client-side, that's for Optimistic UI, something we don't need to bother with right now.
+
 
 ## Creating a Method
 
@@ -189,15 +193,20 @@ Now, methods are very complex in functionality, however, we will get into them l
 
 ## Homework
 
-1. Create a method that returns all donuts
+#### 1. Get me all the donuts
 ```
-Meteor.call('donuts.list', {price: {$gt: 200}, callback)
+Meteor.call('donuts.list', callback)
 ```
 
-2. Create a method that returns all donuts with a set of filters that you pass in the client:
+#### 2. Give me some donuts
 ```
 Meteor.call('donuts.list_filtered', {price: {$gt: 200}, callback)
 ```
 
-3. Create a method that takes two arguments, _id and data, and *$set*s the data for the donut with that _id
+#### 3. Updating
+Create a method that takes two arguments, _id and data, and *$set*s the data for the donut with that _id.
+
+```
+Meteor.call('donuts.list_filtered', donutId, {price: 1000})
+```
 
