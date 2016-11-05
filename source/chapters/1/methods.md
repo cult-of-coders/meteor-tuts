@@ -31,7 +31,7 @@ We can also have registered methods client-side, that's for Optimistic UI, somet
 ```
 // imports/api/donuts/methods.js
 import { Meteor } from 'meteor/meteor';
-import Donuts from '/imports/api/donuts/collection.js';
+import Donuts from '/imports/api/donuts/collection'; // no .js ? yep, works like that too!
 
 Meteor.methods({
     'create_a_donut': function () {
