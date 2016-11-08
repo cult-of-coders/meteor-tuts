@@ -1,5 +1,5 @@
 ---
-title: Meteor Snacks & Conclusions
+title: Meteor Snacks
 description: Some interesting tools that Meteor has to offer.
 disqusPage: 'Chapter 1: Meteor Snacks'
 ---
@@ -206,8 +206,3 @@ cool stuff. So for example, you may start an app with diff settings like MAIL_UR
 // in your terminal:
 npm run start
 ```
-
-## Conclusion
-
-So, we just scratched the surface. Meteor has many good things to offer. The journey has only begun. Stay tooned. More stuff will follow!
-
