@@ -4,25 +4,27 @@ description: Getting started with Meteor
 disqusPage: 'Chapter 1: Intro'
 ---
 
-So you want to begin learning Meteor huh ?
-
-You think you got what it takes ?
-
-You think you are ready to learn the most beautiful and elegant JS Framework ?
-
-<strong style="font-size: 1.4em">Yes, I am ready.</strong>
-
-Cool, let's begin our journey.
-
 ## Installing
 
 https://www.meteor.com/install
 
+## Creating a project
+
+After you have installed Meteor, you can easily create a new project:
+
 ```
+meteor create myProjectName
+```
+
+## Start Meteor
+
+```
+cd myProjectName
 meteor run
 ```
 
-That's it. This is how easy it is to get up and running with Meteor.
+That's it, now access http://localhost:3000
+This is how easy it is to get up and running with Meteor.
 
 ## Resources
 
@@ -36,27 +38,35 @@ This is the default folder structure that we will use.
 
 <pre>
 ├── client 
-│   └── main.js // this file contains "import /imports/startup/client"
+│   └── main.js // this file contains: import /imports/startup/client
 ├── imports
-│   ├── ui // contains anything User-Interface related
+│   ├── ui // contains anything User-Interface related (We won't cover UI in this Chapter)
 │   ├── startup
 │   │   ├── client
-│   │   │   └── index.js // loads everything that is needed for the client to function
+│   │   │   └── index.js // loads everything that is needed for the client to function (ex: routes, jQuery plugins, css, anything concerning the client)
 │   │   └── server
 │   │       └── index.js // loads everything that is needed for the server to function
 │   ├── api // contains the rest
 └── server 
-    └── main.js // this file contains "import /imports/startup/server"
+    └── main.js // this file contains: import /imports/startup/server
 </pre>
 
-Everything in "/imports" must be explicitly imported so Meteor can know about it.
-The advantage of this is that it offers the ability to build modular applications.
+```
+// prototype it quickly (works on Mac/Linux)
+mkdir -p client server imports/ui imports/startup/client imports/startup/server imports/api
+echo "import /imports/startup/client;" > client/main.js
+echo "import /imports/startup/server;" > server/main.js
+```
+
 
 Everything in "/client" and "/server" is eagerly loaded (automatically loaded) [Read more](https://guide.meteor.com/structure.html#load-order) 
 
-Pretty straight forward right ?
+We won't use auto-loading in order to gain more control about the file order.
 
-Let's move forward.
+Everything in "/imports" must be explicitly imported so Meteor can know about it.
+The advantage of this is that it offers the ability to build modular applications.
+[Read more](https://danmartensen.svbtle.com/build-better-apps-with-es6-modules)
+
 
 ## Importing from NPM
 
@@ -75,7 +85,7 @@ import moment from 'moment';
 moment(new Date()).format('YYYY-MM-DD')
 ```
 
-## Importing from Atmosphere
+## Atmosphere
 
 You can access it on: https://atmospherejs.com
 
@@ -91,22 +101,29 @@ meteor add twbs:bootstrap
 
 That's it. You now have bootstrap in your application loaded. There are many cool packages out there that we'll explore during these tutorials.
 
-Ok. Let's dive into more details now.
-
+## Importing from Atmosphere
 You can use the modular approach with Meteor package also:
+
+Sample we are using SimpleSchema, a package that allows us to easily validate objects:
+https://github.com/aldeed/meteor-simple-schema
 
 ```
 // in your console
 meteor add aldeed:simple-schema
 ```
+
 ```
 // in any file
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
-// use SimpleSchema object
+const schema = new SimpleSchema({
+    title: {
+        type: String
+    }
+})
 ```
 
-If the package exports the objects, you will be able to access them by importing from the package, but prefixing it with "meteor/".
+If the package exports the objects, you will be able to access them by importing from the package, but note that we are prefixing it with "meteor/".
 
 ## Importing from local files
 
@@ -139,21 +156,11 @@ Find out more about exports and imports:
 - http://exploringjs.com/es6/ch_modules.html
 - https://stackoverflow.com/questions/25494365/es6-module-export-options/34842087#34842087
 
-We believe that is critical for you to understand how we define our "requirements" in a file, because this will be used very often.
 
-Side note: For meteor packages, you don't actually have to import them, because they are pseudo-globals, which means, you can use what the package exports
-as a global variable. For the example above with simple-schema we could easily have in a file:
+## Need Help ?
 
-```
-// no importing SimpleSchema
-new SimpleSchema(config);
-```
+If you need help, or you get stuck you can ask other Meteor evangelists out there:
+- https://forums.meteor.com
+- #meteor channel on FreeNode Server: [https://webchat.freenode.net/](https://webchat.freenode.net/)
 
-However, it is not recommended, because if you use a code-linter (a thingie that will check your code syntax and what you use) it will burst out with failures,
-because it found no reference to SimpleSchema, because you do not imported. Hard-core programmers are against globals, and for a good reason.
-
-Meteor comes packed with MongoDB, Node, Npm, so you don't have to worry about any dependencies.
-
-
-
-
+Make sure you google first, before asking!
