@@ -1,6 +1,6 @@
 ---
 title: Conclusions
-description: Some interesting tools that Meteor has to offer.
+description: Here we are, at the end of this chapter.
 disqusPage: 'Chapter 1: Conclusion'
 ---
 
