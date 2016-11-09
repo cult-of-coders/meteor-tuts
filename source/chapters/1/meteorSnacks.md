@@ -25,7 +25,7 @@ ROOT_URL="http://localhost:3000" MAIL_URL="smtp://gmail.com:25" meteor run
 You will use this to be able to do async operations in your methods. Let's say you use S3, or an npm library, that is not in sync,
  it requires you to specify a callback. Well if you do something like 
  
-```
+```js
 Meteor.methods({
     'something_async': function () {
         coolLibrary.coolFunction(function (err, res) {
@@ -37,7 +37,7 @@ Meteor.methods({
 
 You may have a very weird error saying that code cannot run outside "Fibers". Don't want to get into details on that, but here's how you would do it:
 
-```
+```js
 Meteor.methods({
     'something_async': function () {
         const run = Meteor.wrapAsync(coolLibrary.coolFunction, coolLibrary);
@@ -67,7 +67,7 @@ Meteor.methods({
 You may already be familiar, with setTimeout, setInterval from JavaScript, well, Meteor has them too,
 but they will run inside fibers. For example:
 
-```
+```js
 Meteor.methods({
     'something_async': function () {
         Meteor.setInterval(() => {
@@ -92,7 +92,7 @@ If you want an email, we recommend: http://www.mailgun.com/ <- Free for < 10,000
 MAIL_URL="smtp://postmaster%40yourdomain.com:b23f5872166c187ad5b5f1abece071b2@smtp.mailgun.org:25" meteor run
 ```
 
-```
+```js
 // Most Basic Usage
 import { Email } from 'meteor/email';
 
@@ -112,7 +112,7 @@ Sometimes you want to do something, and then notify the user by email. However, 
 it takes between 50ms to 1s for the mail to be fully sent, and will give the user the impression that your Meteor app is slow. 
 This is why you should use this function:
 
-```
+```js
 Meteor.methods({
     'action_plus_email': function () {
         // do something
@@ -134,7 +134,7 @@ Want to use an external REST API ? No problem for Meteor, it has a super simple 
 
 http://docs.meteor.com/api/http.html
 
-```
+```js
 Meteor.methods({
     'an_api_call': function () {
         const data = HTTP.get('https://jsonplaceholder.typicode.com/posts/1')
@@ -144,7 +144,6 @@ Meteor.methods({
         return data;
     }
 })
-
 ```
 
 ## Assets
@@ -166,7 +165,7 @@ The idea is that you can have any type of file, even binary, that you can use pr
 
 https://docs.meteor.com/api/core.html#Meteor-settings
 
-```
+```json
 // file: .deploy/local.json
 {
     "public": {
@@ -192,7 +191,7 @@ Meteor.settings.private.API_KEY
 
 Inside your Meteor folder you have a file "package.json", that packages keeps track of what npm packages you use, and some other
 cool stuff. So for example, you may start an app with diff settings like MAIL_URL, etc, you would do something like:
-```
+```json
 {
   ...
   "scripts": {

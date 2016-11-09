@@ -112,7 +112,7 @@ https://github.com/aldeed/meteor-simple-schema
 meteor add aldeed:simple-schema
 ```
 
-```
+```js
 // in any file
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 

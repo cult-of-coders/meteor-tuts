@@ -13,7 +13,7 @@ it for an evergrowing code base.
 
 So, remember the Methods ?
 
-```
+```js
 Meteor.methods({
     'do_something': function () {
         // in it you have access to this.userId
@@ -26,7 +26,7 @@ Meteor.methods({
 
 Same thing in publications:
 
-```
+```js
 Meteor.publish('something', function () {
     console.log(this.userId);
     
@@ -50,7 +50,7 @@ meteor add alanning:roles
 
 Centralize security in a module:
 
-```
+```js
 // file: /imports/api/security.js
 import { Roles } from 'meteor/alanning:roles';
 
@@ -92,7 +92,7 @@ code right from the start!
 
 Simple usage in methods:
 
-```
+```js
 import Security from '/imports/api/security.js';
 
 Meteor.methods({
@@ -115,7 +115,7 @@ Meteor.methods({
 
 Simple usage in publications:
 
-```
+```js
 import Security from '/imports/api/security.js';
 
 Meteor.publish('posts', function () {

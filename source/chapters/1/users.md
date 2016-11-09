@@ -20,7 +20,7 @@ meteor add accounts-base accounts-password
 
 Open your server-side shell and type:
 
-```
+```js
 Accounts.createUser({
     email: 'donut@lover.com', 
     password: '12345'
@@ -32,7 +32,7 @@ It's the same kind of collection that we learned about in the past chapters.
 
 Now go to your browser's console:
 
-```
+```js
 Meteor.loginWithPassword('donut@lover.com', '12345', function (err) {
     if (!err) {
         console.log('I was called because authentication was a success')
@@ -44,7 +44,7 @@ Meteor.loginWithPassword('donut@lover.com', '12345', function (err) {
 
 Bam! You're logged in.
 
-```
+```js
 // in browser console:
 Meteor.user() // will return the current logged in user
 Meteor.userId() // will return the _id of the current logged in user
@@ -54,7 +54,7 @@ Meteor.userId() // will return the _id of the current logged in user
 meaning you can show some stuff for logged in users, and hide for anonymous ones.
 
 Another thing you may notice is how `emails` key is structured:
-```
+```js
 [
     {
         address: 'donut@lover.com',
@@ -65,7 +65,7 @@ Another thing you may notice is how `emails` key is structured:
 
 This may seem a bit complicated, but they decided to stick with this, maybe because they wanted to satisfy easily the people
 who want multiple email addresses on their account. To get the email of your user, you would have to do:
-```
+```js
 Meteor.user().emails[0].address
 ```
 
@@ -73,7 +73,7 @@ But don't worry about this now, when we'll learn how to make this easy, so you w
 
 You think '12345' is not a very secure password, and you are correct, let's change it:
 
-```
+```js
 Accounts.changePassword('12345', 'My1337L333Tpasswurt%', function (err) {
     if (!err) {
         console.log('Change password was a success!')
@@ -85,7 +85,7 @@ Accounts.changePassword('12345', 'My1337L333Tpasswurt%', function (err) {
 
 Very nice, now let's try a logout:
 
-```
+```js
 Meteor.logout(function (err) {
     if (!err) {
         console.log('Logout was a success!')
@@ -102,7 +102,7 @@ Btw, the callbacks we used in `loginWithPassword`, `changePassword` and `logout`
 
 But wait, your new password is so complex, you already forgot it.
 
-```
+```js
 Accounts.forgotPassword({ email: 'donut@lover.com' })
 ```
 
@@ -113,7 +113,7 @@ http://localhost:3000/#/reset-password/eNqDzCvx0F3OA6B0dzmx4i6kLs4-veJ36j3X2Rhxu
 
 The last part is your token.
 
-```
+```js
 Accounts.resetPassword('eNqDzCvx0F3OA6B0dzmx4i6kLs4-veJ36j3X2Rhxui7', 'NewPassword123', function (err) {
     if (!err) {
         console.log('Password reset was a success!')
@@ -127,7 +127,7 @@ Bam!
 What if you want registration, but with mail confirmation ?
 
 Go to your meteor shell:
-```
+```js
 Accounts.createUser({
     email: 'user@withoutPassword.com'
 })

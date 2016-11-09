@@ -47,16 +47,16 @@ logo:
   subtitle: ''
 
 nav_links:
-  'Atmosphere':
+  Atmosphere:
     url: https://www.atmospherejs.com
     target: _new
-  'NPM':
+  NPM:
     url: https://www.npmjs.com/
     target: _new
-  'Meteor API':
+  Meteor API:
     url: https://docs.meteor.com/
     target: _new
-  'Meteor Guide':
+  Meteor Guide:
     url: https://guide.meteor.com/
     target: _new
 

@@ -15,7 +15,7 @@ to fully understand what's going on here check the following resources:
 - http://jaketrent.com/post/smart-dumb-components-react/
 
 ## Setting Up
-```
+```bash
 meteor add cultofcoders:meteor-react-routing
 meteor npm install --save react react-mounter react-dom 
 ```
@@ -36,7 +36,7 @@ https://github.com/cult-of-coders/meteor-react-routing
 After you have setup your files, created `/imports/routing/router.js`, `/imports/routing/index.js`, and you included the routing in your client/startup folder,
 created your `/imports/ui/App.jsx` file, and now it's time to see this baby in action!
 
-```
+```js
 // file: /imports/ui/Home.jsx
 import React from 'react';
 
@@ -47,7 +47,7 @@ export default class Home extends React.Component {
 }
 ```
 
-```
+```js
 // file: /imports/routing/index.js
 import route from './router.js'
 
@@ -63,9 +63,8 @@ rerender efficiently your Component.
  
 Let's see how we would call a method and show a response in our component:
 
-```
+```js
 // file: /imports/ui/Home.jsx
-
 export default class Home extends React.Component {
     constructor() {
         super();
@@ -87,7 +86,13 @@ export default class Home extends React.Component {
         }
         
         return (
-            {this.state.donuts.map(donut => <div>{donut._id}</div>)}
+            <div>
+                {
+                    this.state.donuts.map(donut => {
+                        return <div key={donut._id}>{donut._id}</div>
+                    })
+                }
+            </div>
         )
     }
 }
@@ -103,12 +108,12 @@ to easily do it:
 
 https://guide.meteor.com/react.html#using-createContainer
 
-```bash
+```
 // terminal
 meteor add react-meteor-data
 ```
 
-```
+```js
 // assuming you have a publication 'donuts' that returns Donuts.find()
 // file: /imports/ui/Home.jsx
 
@@ -124,7 +129,13 @@ class Home extends React.Component {
         }
         
         return (
-            {donuts.map(donut => <div>{donut._id}</div>)}
+            <div>
+                {
+                    donuts.map(donut => {
+                        return <div key={donut._id}>{donut._id}</div>
+                    })
+                }
+            </div>
         )
     }
 }

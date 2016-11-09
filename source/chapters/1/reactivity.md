@@ -14,14 +14,14 @@ A: Man, it's like Mister Myiagi trying to teach Karate Kid, before we reach the 
 bare with me, this is the best way to take you to the learning curve.
 
 Let's make sure you have the right packages.
-```
+```js
 // terminal
 meteor add tracker reactive-var
 ```
 
 Now open up your browser:
 
-```
+```js
 // browser console
 var a = new ReactiveVar('a default value');
 a.get() // will display 'a default value'
@@ -33,7 +33,7 @@ Nothing fancy, what's the deal with this ?
 
 ReactiveVar is a **reactive-data source** and you can follow it's changes. To be able to follow the changes we'll be using our infamous *Tracker*
 
-```
+```js
 var computation = Tracker.autorun(() => {
     // this is the run function
     console.log(a.get())
@@ -42,12 +42,12 @@ var computation = Tracker.autorun(() => {
 
 Now each time you set some value to it, it will get *console.log*ed. Try it!
 
-```
+```js
 a.set('something')
 ```
 
 Doing:
-```
+```js
 computation.stop()
 ```
 

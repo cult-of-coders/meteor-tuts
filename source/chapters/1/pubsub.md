@@ -18,7 +18,7 @@ In Meteor we use this to have reactive data, meaning when something happens, lik
 
 **Publishing** = "Hey bro, I will give you access to this data."
 
-```
+```js
 // file: /imports/api/donuts/publication.js
 import { Meteor } from 'meteor/meteor';
 import Donuts from '/imports/api/donuts/collection'; // no .js ? yep, works like that too!
@@ -57,14 +57,14 @@ You noticed that when we created our publication, we first passed a string, 'don
 that same string in order to subscribe to it.
 
 Go to http://localhost:3000 and open your console:
-```
+```js
 var handler = Meteor.subscribe('donuts');
 ```
 
 The handler contains:
 - subscriptionId : which is a unique identifier for your subscription
 - ready() : a function that returns true, if the subscription is ready
-```
+```js
 handler.ready(); // should return true
 ```
 - stop() : stop the subscription
@@ -85,14 +85,14 @@ This time for the client: [Nasty Globals](/chapters/1/collections.html#Nasty-Glo
 It's got the same API. You can do insert(), update(), remove() but we will discuss later why this is not recommended, even if it is possible.
 
 If you still want to do it like that because it's easier, fine by me. You could try it:
-```
+```js
 DonutsCollection.insert({})
 ```
 
 This works because you have `insecure` package installed in Meteor. `meteor remove insecure` and this will no longer work.
 
 Now that we got access to our collection, let's do:
-```
+```js
 // Meteor, give me my donuts:
 Meteor.subscribe('donuts')
 
@@ -100,12 +100,12 @@ Meteor.subscribe('donuts')
 DonutsCollection.find().fetch()
 ```
 
-```
+```js
 // meteor shell, or browser (because we have insecure package)
 DonutsCollection.insert(somethingThatYouWant)
 ```
 
-```
+```js
 // browser console
 DonutsCollection.find().fetch()
 ```
@@ -115,7 +115,7 @@ You should see your elements here. Wow! Cool. But you mentioned something about 
 
 Cursors are reactive data sources, and we can track reactive data sources using the tracker:
 
-```
+```js
 Tracker.autorun(() => {
     console.log(DonutsCollection.find().fetch());
 })
@@ -132,7 +132,7 @@ you don't have to understand how electricity works in order to use it right ?
 
 ## Managing the subscription
 
-```
+```js
 var handle = Meteor.subscribe('some_publication');
 handle.stop(); // will stop listening to changes
 handle.ready(); // will return true/false if the subscription is ready

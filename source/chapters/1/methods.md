@@ -44,7 +44,7 @@ Meteor.methods({
 
 Methods can be called from server or client. First let's try it in our *meteor shell*:
 
-```
+```js
 Meteor.call('create_a_donut')
 ```
 
@@ -56,7 +56,7 @@ Error: Method 'create_a_donut' not found [404]
 Meteor has basically no idea about your method, you just created a file, inside imports. There is absolutely no link to it.
 
 Remember the "/imports/startup/server/index.js" file, welp, that's where you have to import the methods.js file:
-```
+```js
 // file: /imports/startup/server/js
 import '/imports/api/donuts/methods.js';
 ```
@@ -74,7 +74,7 @@ arrays, strings, dates. Back scene, data is serialized to [EJSON](http://docs.me
 Now let's finally open that browser. http://localhost:3000 open it.
 Now open your browser's console. We recommend Chrome, but you can use anything you want.
 
-```
+```js
 Meteor.call('create_a_donut')
 ```
 
@@ -83,7 +83,7 @@ Hmm... I got no feedback here. Let me check the database. Oops, it's there! What
 Well, client-side when you do a call, you don't get the answer instantly, because it has to communicate through the websocket with the server,
 the server needs to do it's thingie and return the results, this can take few miliseconds. This is why we need to provide a callback:
 
-```
+```js
 Meteor.call('create_a_donut', function (err, res) {
      console.log(res);
 })
@@ -97,7 +97,7 @@ The why is explained here: http://fredkschott.com/post/2014/03/understanding-err
 If you do a `console.log(err)` you will see that it's undefined. Because the server did not throw any error while handling your method.
 
 Let's trigger an error:
-```
+```js
 // imports/api/donuts/methods.js
 import { Meteor } from 'meteor/meteor';
 
@@ -109,14 +109,14 @@ Meteor.methods({
 ```
 
 Now if we do this in the shell:
-```
+```js
 Meteor.call('create_a_donut')
 ```
 
 We will receive a simple string with the error. Doesn't help us very much, we don't know if it's an actual response or an error. However,
 don't panic and don't get confused, you can use server-side callbacks as well:
 
-```
+```js
 Meteor.call('create_a_donut', function (err, res) {
     console.log(err, res);
 })
@@ -128,7 +128,7 @@ is critical to any web developer.
 Make the same call as above for the client.
 
 You should get something like:
-```
+```js
 errorClass {
     details: undefined
     error: 500
@@ -142,7 +142,7 @@ Not very helpful is it ? You have no clue about what the error is about on the c
 
 This is why, in order to throw errors that are descriptive for the client as well we need to use [Meteor.Error](https://docs.meteor.com/api/methods.html#Meteor-Error)
 
-```
+```js
 Meteor.methods({
     'create_a_donut': function () {
         throw new Meteor.Error('error', 'I do not really want it', {
@@ -157,7 +157,7 @@ Meteor.methods({
 
 Now if you do the call on the client:
 
-```
+```js
 Meteor.call('create_a_donut', function (err, res) {
     if (err) {
         console.log('There was an error: ', err);
@@ -174,7 +174,7 @@ Makes sense ? Just keep this in mind, use Meteor.Error for throwing exceptions.
 
 Methods can ofcourse receive arguments (any kind of arguments):
 
-```
+```js
 // server
 Meteor.methods({
     'create_a_donut': function (one, two, three) {
@@ -194,19 +194,19 @@ Now, methods are very complex in functionality, however, we will get into them l
 ## Homework
 
 #### 1. Get me all the donuts
-```
+```js
 Meteor.call('donuts.list', callback)
 ```
 
 #### 2. Give me some donuts
-```
+```js
 Meteor.call('donuts.list_filtered', {price: {$gt: 200}, callback)
 ```
 
 #### 3. Updating
 Create a method that takes two arguments, _id and data, and *$set*s the data for the donut with that _id.
 
-```
+```js
 Meteor.call('donuts.list_filtered', donutId, {price: 1000})
 ```
 

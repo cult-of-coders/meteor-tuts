@@ -25,7 +25,7 @@ Ok, so if you're familiar with SQL. Make this analogy, it'll help you grasp thin
 
 I like donuts, don't you like donuts, I love them so much I want to store them in a database:
 
-```
+```js
 // file: /imports/api/donuts/collection.js
 import { Mongo } from 'meteor/mongo';
 
@@ -45,7 +45,7 @@ meteor shell
 ```
 
 Meteor shell is like a console for the server-side. Some quick tips, if you do in the shell:
-```
+```js
 console.log('hello shell');
 ```
 
@@ -56,7 +56,7 @@ You won't see it there, because the actual message is logged in the console of w
 Ok so, now we want to gain access to our Donuts collection. Which is isolated in it's own module.
 This is why, for this tutorial only, we are going to use globals. Never use globals, and don't say this tutorial taught you bad approaches!
 
-```
+```js
 // file: /imports/startup/server/index.js
 import './nasty-globals.js'
 
@@ -72,7 +72,7 @@ DonutsCollection = Donuts // we did not use var, let, const before it, so it's a
 ## Insert
 
 Now let's do our first insert:
-```
+```js
 DonutsCollection.insert({
     color: 'pinkish-green', 
     flavors: ['mustard', 'onions'], 
@@ -100,24 +100,24 @@ That's because .insert() returns the newly created id. (Which is stored as _id i
 
 ## Find
 Now let's fetch this baby:
-```
+```js
 DonutsCollection.find()
 ```
 
 Now if you run that, you will be like: What the hell is that ?
 That's a cursor! We'll explain later what's the deal with find() and fetch().
 
-```
+```js
 DonutsCollection.find().fetch()
 ```
 
 Ok now lets do a more complex search, for that let's add another donut:
-```
+```js
 DonutsCollection.insert({price: 50, isCommestible: true});
 ```
 
 Let's search our database:
-```
+```js
 // Getting the commestible donuts
 DonutsCollection.find({isCommestible: true}).fetch()
 
@@ -129,7 +129,7 @@ You have ability to use the selectors that MongoDB provides, here are all of the
 https://docs.mongodb.com/manual/reference/operator/query/#query-and-projection-operators
 
 There is also another argument that find() takes in, it's called "options":
-```
+```js
 DonutsCollection.find({}, {
     sort: {price: -1} // sorts price in descending order
     limit: 2 // limits the results to 2
@@ -144,7 +144,7 @@ http://docs.meteor.com/api/collections.html#Mongo-Collection-find
 
 What about updating ?
 
-```
+```js
 DonutsCollection.update({price: 50}, {
     $set: {price: 51}
 })
@@ -159,7 +159,7 @@ https://docs.mongodb.com/manual/reference/operator/update/
 ## Remove
 
 Removing is easy, the argument it takes is what to remove:
-```
+```js
 DonutsCollection.remove({price: {gt: 1000}})
 ```
 
@@ -172,7 +172,7 @@ You can connect to it by using "localhost" and port 3001 (but you must have Mete
 ## Tips & Tricks
 
 You can find/update/remove by using id as a string
-```
+```js
 DonutsCollection.update('XXX', modifier)
 // equivallent
 DonutsCollection.update({_id: 'XXX'}, modifier)
