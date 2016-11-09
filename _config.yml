@@ -29,6 +29,10 @@ sidebar_categories:
     - chapters/1/security
     - chapters/1/meteorSnacks
     - chapters/1/conclusion
+  'Chapter 2':
+    - chapters/2/intro
+    - chapters/2/react
+    - chapters/2/conclusion
 
 github_repo: 'cult-of-coders/meteor-tuts'
 content_root: 'source'

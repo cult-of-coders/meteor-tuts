@@ -11,7 +11,7 @@ In the previous chapter we learned how to harness Meteor's powers. But we didn't
 Meteor is a data-system more than anything else, ofcourse it gives you some snacks to help you
 code faster: The User System, Emails, much more. But the View Layer it's up to you.
 
-Don't get this the wrong way, Meteor integrates with any View Layer/Template Engine/UI Framework you want to use. 
+Don't get this the wrong way, Meteor can be integrated with any View Layer/Template Engine/UI Framework you want to use. 
 
 ## Brief history
 
@@ -23,7 +23,10 @@ view layer. You cannot expect one company to do everything. So they began decoup
 Even if Blaze is one of the most friendliest View Layers you'll ever meet, they gave it to the community
 to take care of it, decoupling it from Meteor. This does not mean you should not use Blaze. Blaze is rock-solid and battle-tested.
 
-However, times changes, new View Layers appeared that support reactivity such as:
+However, from a personal opinionated experience, we noticed that for mobile builds, Blaze is inferior to React, in terms
+of speed and stability. Especially for older mobile phones.
+
+However, times change, new View Layers appeared that support reactivity such as:
 - React
 - Vue.JS
 - Angular2
@@ -42,4 +45,6 @@ Reasons for this choice:
 
 However, at this stage, (Q4 2016) Vue.JS is looking very promising and gaining a lot of momentum. 
 Who wins? It's a race. It's the survival of the fittest. Time will decide. For now, pick a technology
-and master it. Keep in mind, Banks still use software written 50 years ago in COBOL. Why ? Because they work and to the job.
+and master it. 
+
+Keep in mind, many companies out there still use software written 50 years ago in COBOL. Why ? Because they work and to the job.

@@ -14,5 +14,11 @@ You now have the knowledge how to use Meteor's powers for your application:
 - How to secure your methods/publications for a robust application
 
 
+Further reading:
+
+- https://guide.meteor.com/ 
+- https://themeteorchef.com/
+
+
 Feedback is not just welcomed, it's expected. Please share your experience with this tutorial to help improve 
 it for the next readers!

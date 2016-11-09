@@ -163,4 +163,4 @@ If you need help, or you get stuck you can ask other Meteor evangelists out ther
 - https://forums.meteor.com
 - #meteor channel on FreeNode Server: [https://webchat.freenode.net/](https://webchat.freenode.net/)
 
-Make sure you google first, before asking!
+Make sure you Google your questions first, before asking the community!
