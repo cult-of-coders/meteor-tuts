@@ -103,7 +103,7 @@ to easily do it:
 
 https://guide.meteor.com/react.html#using-createContainer
 
-```
+```bash
 // terminal
 meteor add react-meteor-data
 ```
