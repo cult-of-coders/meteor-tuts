@@ -54,8 +54,8 @@ This is the default folder structure that we will use.
 ```
 // prototype it quickly (works on Mac/Linux)
 mkdir -p client server imports/ui imports/startup/client imports/startup/server imports/api
-echo "import /imports/startup/client;" > client/main.js
-echo "import /imports/startup/server;" > server/main.js
+echo "import '/imports/startup/client';" > client/main.js
+echo "import '/imports/startup/server';" > server/main.js
 ```
 
 
