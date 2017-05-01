@@ -5,9 +5,34 @@ disqusPage: 'Chapter 1: Intro'
 ---
 
 ## Installing the framework
-Since the good folks over at Meteor have already explained how to do this, there's no point in repeating what they said.
-As such, you'll be fine with following their instructions on installing Meteor on your system :
-https://www.meteor.com/install
+In order to be able to develop with Meteor, you will need three basic components: Nodejs, NPM and the Meteor framework itself.
+So, to get what you need, run the following commands on your system:
+
+For Nodejs:
+```
+sudo apt-get install nodejs
+```
+
+For NPM:
+```
+sudo apt-get install npm
+```
+
+For Meteor:
+```
+curl https://install.meteor.com/ | sh
+```
+
+These commands will work on an Ubuntu based distribution, such as Linux Mint, Elementary OS and so on.
+To check that you really have installed what you needed, check the software versions of the components:
+```
+nodejs -v
+npm -v
+meteor --version
+```
+If you don't have errors after running these commands, congratulations ! You can move on ! 
+However, if you have erros, check to see if your distribution really is based on Ubuntu, 
+if you ran the commands correctly. Afterwards, Google is your best friend ! 
 
 ## Creating a project
 
@@ -29,6 +54,8 @@ meteor run
 That's it ! You've just created your first project in Meteor !
 Now, to view your work, type http://localhost:3000 in your browser and hit Enter.
 Yes ! It's THAT easy !
+
+To stop the project from running, just stop the process in your terminal with Ctrl+c !
 
 ## Official resources
 
