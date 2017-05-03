@@ -6,24 +6,14 @@ disqusPage: 'Chapter 1: Intro'
 
 ## Installing the framework
 In order to be able to develop with Meteor, you will need three basic components: Nodejs, NPM and the Meteor framework itself.
-So, to get what you need, run the following commands on your system:
+So, to get what you need, run the following command on your system terminal:
 
-For Nodejs:
-```
-sudo apt-get install nodejs
-```
-
-For NPM:
-```
-sudo apt-get install npm
-```
-
-For Meteor:
 ```
 curl https://install.meteor.com/ | sh
 ```
 
-These commands will work on an Ubuntu based distribution, such as Linux Mint, Elementary OS and so on.
+This command will work on an Ubuntu based distribution, such as Linux Mint, Elementary OS and so on.
+This will also work on a Mac!
 To check that you really have installed what you needed, check the software versions of the components:
 ```
 nodejs -v
@@ -31,8 +21,21 @@ npm -v
 meteor --version
 ```
 If you don't have errors after running these commands, congratulations ! You can move on ! 
-However, if you have erros, check to see if your distribution really is based on Ubuntu, 
-if you ran the commands correctly. Afterwards, Google is your best friend ! 
+However, if you have erros, if you ran the commands correctly. 
+Afterwards, Google is your best friend ! 
+
+On Windows, simply download the installer and follow the basic Windows installation procedure that most software has.
+Here, instead of Bash,Terminator or iTerm, you can use Powershell or the good old Command Prompt.
+The commands are mostly the same.
+
+##Tools
+The tool that works best for us, and the one which we recommend you use, would be WebStorm,from Jetbrains.
+Students can get it for free,and other people can get a free 30-day evaluation trial.
+You can learn more about Webstorm [here](https://www.jetbrains.com/webstorm/documentation/).
+
+Another tool which is quite easy to learn and use would be Sublime Text. 
+This is a code editor with a lot of features that will make your life a whole lot easier, 
+if you're looking to get in the coding business. 
 
 ## Creating a project
 
