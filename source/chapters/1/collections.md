@@ -4,29 +4,40 @@ description: How we store our data in Meteor.
 disqusPage: 'Chapter 1: Collections'
 ---
 
-## Hello again!
-So you want to learn how to store the data in Meteor, fine...
+## Let's talk data!
 
-Let's proceed.
+Meteor uses MongoDB as its default database system. Theoretically you can use any database you want, because
+you have access to http://www.npmjs.com, therefore you have access to almost all the existing database drivers out there 
+(a database driver is a program which implements a protocol for connecting to a database). 
 
-Meteor uses MongoDB as its backbone. Theoretically you can use any database you wish with Meteor, because
-you have access to http://www.npmjs.com, therefore you have access to all db drivers. Even MySQL!
- 
+## Show and tell comparison
+Since everyone knows what MySQL is, let's compare MongoDB with it, so you can better understand why it's better for what we need. 
+Unlike MySQL, in MongoDB you don't have to CREATE TABLE, or CREATE FIELD in order to to have a field, because MongoDB 
+lets you structure your data the way you want. You still however need consistency across your data, which is why, later on,
+we will teach you how to ensure this consistency at an application level, not at the database level.
 
-## SQL Comparison
-However, MongoDB enables you to build apps faster, unlike SQL, you don't have to CREATE TABLE, or CREATE FIELD to have a field,
-it lets you structure your data the way you want. You still need consistency, this is why later on,
-we'll explore how we can ensure this consistency at APP level, not DB level, very easily.
+Now we'd like to make some analogies, but you're going to need to be familiar with the syntax of MySQL at a basic level.
+If you're not, read a little bit about it [here](https://www.tutorialspoint.com/mysql/).
 
-Ok, so if you're familiar with SQL. Make this analogy, it'll help you grasp things faster:
-- DATABASE = Database (yep, we got the same name)
-- TABLE = Collection (something that a list of data, a collection)
+Now let's make those analogies:
+- DATABASE = Database (yes, the same name)
+- TABLE = Collection (a list of data, a collection)
 - ROW = Document (the actual list of data inside the collection)
 
-I like donuts, don't you like donuts, I love them so much I want to store them in a database:
+I like donuts...despite knowing that they're unhealthy.
+I love donuts so much that I want to store them in a database !
+
+Firstly, let's create a new file in the project file structure we created earlier, by running these commands in the 
+/imports/api folder:
+```
+mkdir donuts
+cd donuts
+touch collection.js
+```
+
+Now let's write some code in this file we have just created:
 
 ```js
-// file: /imports/api/donuts/collection.js
 import { Mongo } from 'meteor/mongo';
 
 const Donuts = new Mongo.Collection('donuts');
@@ -34,12 +45,12 @@ const Donuts = new Mongo.Collection('donuts');
 export default Donuts;
 ```
 
-Ok now what. Well, now let's play with it. Go to your terminal and type: 
+What effect does this have ? Let's run it an see: 
 ```
 meteor run
 ```
-
-Then open another terminal, go to same folder and run:
+You're getting errors, right ? No problem ! Let's solve them !!
+Open another terminal, go to the same folder, and run this command:
 ```
 meteor shell
 ```
