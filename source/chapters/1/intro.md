@@ -6,7 +6,7 @@ disqusPage: 'Chapter 1: Intro'
 
 ## Installing the framework
 In order to be able to develop with Meteor, you will need three basic components: Nodejs, NPM and the Meteor framework itself.
-So, to get what you need, run the following command on your system terminal:
+So, to get what you need, run the following command in your system terminal:
 
 ```
 curl https://install.meteor.com/ | sh
@@ -20,22 +20,27 @@ nodejs -v
 npm -v
 meteor --version
 ```
-If you don't have errors after running these commands, congratulations ! You can move on ! 
-However, if you have erros, if you ran the commands correctly. 
-Afterwards, Google is your best friend ! 
+If you don't have errors after running these commands, congratulations! You can move on! 
+However, if you have errors, check if you ran the commands correctly. 
+Afterwards, Google is your best friend! 
 
 On Windows, simply download the installer and follow the basic Windows installation procedure that most software has.
-Here, instead of Bash,Terminator or iTerm, you can use Powershell or the good old Command Prompt.
+Here, instead of Bash, Terminator or iTerm, you can use Powershell or the good old Command Prompt.
 The commands are mostly the same.
 
 ##Tools
-The tool that works best for us, and the one which we recommend you use, would be WebStorm,from Jetbrains.
-Students can get it for free,and other people can get a free 30-day evaluation trial.
-You can learn more about Webstorm [here](https://www.jetbrains.com/webstorm/documentation/).
+The tool that works best for us, and the one which we recommend you use, would be WebStorm, from Jetbrains.
+Students can get it for free, and other people can get a free 30-day evaluation trial.
+You can download Webstorm from [here](https://goo.gl/gqmqwt).
+
+To learn more about Webstorm go [here](https://www.jetbrains.com/webstorm/documentation/).
 
 Another tool which is quite easy to learn and use would be Sublime Text. 
 This is a code editor with a lot of features that will make your life a whole lot easier, 
-if you're looking to get in the coding business. 
+if you're looking to get in the coding business.
+You can download it from [here](https://www.sublimetext.com/3).
+
+To learn how to use it properly,go [here](https://scotch.io/bar-talk/the-complete-visual-guide-to-sublime-text-3-getting-started-and-keyboard-shortcuts).
 
 ## Creating a project
 
@@ -54,11 +59,11 @@ cd myProjectName
 meteor run
 ```
 
-That's it ! You've just created your first project in Meteor !
-Now, to view your work, type http://localhost:3000 in your browser and hit Enter.
-Yes ! It's THAT easy !
+That's it! You've just created your first project in Meteor!
+Now, to view your work, type *http://localhost:3000* in your browser and hit Enter.
+Yes ! It's **THAT** easy!
 
-To stop the project from running, just stop the process in your terminal with Ctrl+c !
+To stop the project from running, just stop the process in your terminal with Ctrl+c!
 
 ## Official resources
 
@@ -115,6 +120,8 @@ As an idea, to get you to realise just how many resources you have at your dispo
 // This is how you install it:
 meteor npm install --save moment
 ```
+We use save here because it will save it in our packages.json, meaning that if we work in collaboration with other developers, 
+ when they download the project to start working on it,they will have the same package with the version you specified, making their life much easier. 
 
 To use "moment" in your project, at a basic level, use this code snippet:
 ```
@@ -137,7 +144,7 @@ https://atmospherejs.com/twbs/bootstrap
 meteor add twbs:bootstrap
 ```
 
-That's it. You now have added bootstrap in your application. And it's ready for you to use it !
+That's it. You now have added bootstrap in your application. And it's ready for you to use it!
 There are a lot of cool and useful packages out there that we'll explore during these tutorials.
 
 ## Importing from Atmosphere
@@ -147,7 +154,7 @@ As a sample, we are using SimpleSchema, a package that allows us to easily valid
 This is the github page of the project: https://github.com/aldeed/meteor-simple-schema
 
 ```
-//type into your in your console
+//type into your console
 meteor add aldeed:simple-schema
 ```
 
@@ -174,10 +181,12 @@ import X from /imports/something.js
 ```
 // relative path
 // given you have two files: /imports/api/X.js and /imports/api/Y.js
-// in Y.js file you can use a relative path ( not a lot of details in that file path ):
+// in Y.js file you can use a relative path (not a lot of details in that file path) :
 import X from './X.js'
+
 // but you could also use an absolute path ( all the details, no room to wiggle out of it :-) )
 import X from '/imports/api/X.js'
+
 // or you can use ".." to specify the previous folder
 import X from '../api/X.js'
 
@@ -186,6 +195,7 @@ import X from './X';
 
 // if you have a folder that contains "index.js", by importing the folder you will actually import "index.js" from that folder
 import Z from './Z';
+
 // if Z is a file (Z.js) it will import it, if Z is a folder it will try to import Z/index.js
 ```
 
@@ -203,3 +213,5 @@ If you need help, or you get stuck you can ask other Meteor evangelists out ther
 - #meteor channel on FreeNode Server: [https://webchat.freenode.net/](https://webchat.freenode.net/)
 
 Make sure you Google your questions first, to find out if somebody had the same problem as well ( and most likely has found an answer to that problem ), before asking the community!
+
+

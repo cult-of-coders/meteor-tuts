@@ -4,9 +4,9 @@ description: 'Meteor Tuts. Learning Meteor From NOOB to PRO'
 disqusPage: 'Welcome'
 ---
 
-<h1>Hello stranger!</h1>
+<h1>Hi there!</h1>
 
-We are Cult of Coders, a company which focuses on developing the best possible applications.
+We are Cult of Coders, a company which focuses on developing the best possible web applications.
 We only work with Meteor, we absolutely love it, and we'd like to teach you how to use it.
 
 During the last few years we've gathered a lot of experience, and we'd like to share that experience with you.
