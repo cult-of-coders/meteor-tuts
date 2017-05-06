@@ -12,7 +12,7 @@ you have access to http://www.npmjs.com, therefore you have access to almost all
 
 ## Show and tell comparison
 Since everyone knows what MySQL is, let's compare MongoDB with it, so you can better understand why it's better for what we need. 
-Unlike MySQL, in MongoDB you don't have to CREATE TABLE, or CREATE FIELD in order to to have a field, because MongoDB 
+Unlike MySQL, in MongoDB you don't have to CREATE TABLE, or CREATE FIELD in order to have a field, because MongoDB 
 lets you structure your data the way you want. You still however need consistency across your data, which is why, later on,
 we will teach you how to ensure this consistency at an application level, not at the database level.
 
@@ -45,44 +45,38 @@ const Donuts = new Mongo.Collection('donuts');
 export default Donuts;
 ```
 
-What effect does this have ? Let's run it an see: 
-```
-meteor run
-```
-You're getting errors, right ? No problem ! Let's solve them !!
-Open another terminal, go to the same folder, and run this command:
-```
-meteor shell
-```
-
-Meteor shell is like a console for the server-side. Some quick tips, if you do in the shell:
-```js
-console.log('hello shell');
-```
-
-You won't see it there, because the actual message is logged in the console of where meteor is started. Keep that in mind it will help you in the future.
+You've already tried to run your project and now you're getting a ton of errors,right ? 
+Do not fear, we will solve them, and then we'll run the project !
 
 ## Nasty Globals
 
-Ok so, now we want to gain access to our Donuts collection. Which is isolated in it's own module.
-This is why, for this tutorial only, we are going to use globals. Never use globals, and don't say this tutorial taught you bad approaches!
+So let's start solving those errors,right ?
+Since our Donuts are isolated in their own module, we need to gain access to them. For that purpose, and only in this tutorial, we will use some very nasty global variables.
+Don't try this in a production project ! It fits into the category "Bad practices" !!
+
+Go to "/imports/startup/server/index.js" and type this in the source file:
 
 ```js
-// file: /imports/startup/server/index.js
 import './nasty-globals.js'
+```
+Now, let's move over to "/imports/startup/server/nasty-globals.js":
 
-// file: /imports/startup/server/nasty-globals.js
-import Donuts from '/imports/api/donuts/collection.js'; 
-
-// Keep in mind: because we used export default, when we import, we can import as any name:
-// import AnyNameIWantWillBeTheSame from '/imports/api/donuts/collection.js'
-
-DonutsCollection = Donuts // we did not use var, let, const before it, so it's a global
+```js
+import Donuts from '/imports/api/donuts/collection.js';
 ```
 
-## Insert
+As a reminder: because we used export default, when we import, we can import as any name:
+```
+import AnyNameIWantWillBeTheSame from '/imports/api/donuts/collection.js'
+```
+```js
+DonutsCollection = Donuts 
+```
+Because we did not use var, let, const before it, it's a global variable !
 
-Now let's do our first insert:
+## Inserting data 
+Since we have gained access to our donuts in the file '/imports/startup/server/nasty-globals.js', we need to continue in there.
+This is how we will do our first insert:
 ```js
 DonutsCollection.insert({
     color: 'pinkish-green', 
@@ -97,20 +91,38 @@ DonutsCollection.insert({
 })
 ```
 
-Wow! We inserted a string, array, number, date, boolean, and even an object. We can have array of objects, array of dates,
-array of array of array of objects that contains an array of array of dates (you get the idea). It's schemaless.
+We inserted a string, array, number, date, boolean, and even an object. We can have array of objects, array of dates,
+array of array of array of objects that contains an array of array of dates (you get the idea). The sky's the limit ! 
 
+## Result
+
+What effect does all of this have ? Let's run it an see: 
+```
+meteor run
+```
+No errors,right ? :)
+Open another terminal, go to the same folder, and run this command:
+```
+meteor shell
+```
+
+Meteor shell is like a console for the server. Type this into the console:
+```js
+console.log('hello shell');
+```
+
+You won't see it where you types it, however you will notice it will appear in the console from where meteor was started. Keep that in mind as it will help you in the future.
 
 You may notice that you see something like:
 ```
 'MLx7SF79kXvAZuEyx'
 ```
 
-That's because .insert() returns the newly created id. (Which is stored as _id in the Document)
+That's because .insert() returns the newly created id. (Which is stored as _id in the Document in the database)
 
 
-## Find
-Now let's fetch this baby:
+## Finding data
+Now let's fetch the data from the database:
 ```js
 DonutsCollection.find()
 ```
