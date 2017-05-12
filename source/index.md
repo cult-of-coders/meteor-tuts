@@ -4,27 +4,33 @@ description: 'Meteor Tuts. Learning Meteor From NOOB to PRO'
 disqusPage: 'Welcome'
 ---
 
-<h1>Hello!</h1>
+<h1>Hi there!</h1>
 
-We are Cult of Coders, a young company focused on Meteor. We absolutely love it, and we only work with it.
+We are Cult of Coders, a company which focuses on developing the best possible web applications.
+We only work with Meteor, we absolutely love it, and we'd like to teach you how to use it.
 
-In the past years we gathered a lot of experience, Meteor has changed a lot, but it is now fully packed with lots
-of cool stuff that will help you create from the most simple apps to complex enterprise-level applications.
+During the last few years we've gathered a lot of experience, and we'd like to share that experience with you.
+Meteor has changed a lot, and is now fully packed with lots of cool stuff that will enable you to create both
+simple and complex enterprise-level applications.
 
-Our tutorials will be structured in chapters. Each chapter will have different lessons.
+This tutorial will be structured in chapters, which are made up of lessons.
 
-We encourage you to put in practice everything you learn. This way you will remember it better in the future.
+We encourage you to follow along in a practical manner. This way, you will encounter problems, and learn more.
+Also, the information will come back to you a lot easier when you work on projects !
 
 <h1>Before you begin</h1>
 
-This tutorial is focused on Meteor. We need to keep our concerns separated, this is why, it will assume that you already have
-a JavaScript ES6 foundation.
+This tutorial is focused on Meteor, which is a Javascript framework.
+Because we want to teach you Meteor, we will already assume you know Javascript ES6, in order to keep this tutorial focused.
 
-If you are not familiar with JavaScript at all:
+However, if you do need to learn Javascript, you can use these resources:
 - https://www.quora.com/What-are-the-best-online-resources-to-learn-JavaScript-programming-beyond-Coursera-Udacity-and-Udemy
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript
+- https://www.codecademy.com/learn/javascript
 
-If you are familiar with JS, but not with the ES6 syntax:
+If you are familiar with Javascript, but not with the ES6 syntax:
+- http://exploringjs.com/es2016-es2017.html
+- http://exploringjs.com/es6/index.html
 - https://github.com/ericdouglas/ES6-Learning
 - http://es6katas.org/
 - http://learnharmony.org/
