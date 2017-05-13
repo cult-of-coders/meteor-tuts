@@ -4,32 +4,34 @@ description: The RPC of Meteor.
 disqusPage: 'Chapter 1: Methods'
 ---
 
-## What is Method ?
+## RPC's - a way to express yourself
 
-Q: First off, what the heck is RPC ?
+Well, you probably already ask yourself what is an RPC. Even if you have already googled the term, allow us to explain to you what an RPC is. 
 
-A: RPC stands for "Remote Procedure Call", in basic terms it means that you invoke "something" with (optionally) some arguments, and expect a response, OR AN ERROR! HAHAHAHAHAHA. Ok.
+First of all, RPC stands for "Remote Procedure Call", which basically means that you invoke "something" with some arguments ( only if you want to use arguments, of course).
+Then you expect a response, just like you would do when in a conversation. If you get an error, then your "conversation" might not be so productive, so check your code :).
 
-In Meteor, this is achieved by communicating through a websocket with the server. You can disable websockets and it falls back to something else,
-but let's not get into this right now, lets stay focused.
+Having a conversation in Meteor is quite simple.
+In Meteor, the usual way of doing this, and the best, is by communicating through a websocket with the server. 
+if you disable websockets, it falls back to something else, which we won't talk about in this tutorial
 
-In a project we use methods to perform actions such as:
-- Fetching the data
+So what actions we can do in our "conversations" with RPC's ?
+- Fetching data
 - Inserting Data
 - Updating/Deleting Data
 - Making API calls
-- Any other dirty thing you can possibly think of
+- Anything you can possibly think of
 
 Methods are created server-side, and they can be called from the client or from the server as well.
-Because we use `meteor shell`, it means we are calling them from the server.
+In the `meteor shell`, since we've already established where it is located, it means we are calling RPC's from the server.
 
-We can also have registered methods client-side, that's for Optimistic UI, something we don't need to bother with right now.
+We can also have methods on the client-side, which can be used for Optimistic UI, something we won't be discussing.
 
 
-## Creating a Method
+## Let's create a method( or RPC)
+Let's use the sample application we created at the beginning of the tutorial, and in the file *imports/api/donuts/methods.js* we'll write:
 
 ```
-// imports/api/donuts/methods.js
 import { Meteor } from 'meteor/meteor';
 import Donuts from '/imports/api/donuts/collection';
 
@@ -40,15 +42,16 @@ Meteor.methods({
 })
 ```
 
-## Calling a Method
+## Now...how to use it ?
 
-Methods can be called from server or client. First let's try it in our *meteor shell*:
+Methods can be called from the server-side or from the client-side. Let's try it first in *meteor shell*:
 
 ```js
 Meteor.call('create_a_donut')
 ```
 
-OOOPS! 
+BANG!
+Another error ! But we've already dealt with errors before, so fear not...you can do this ! 
 ```
 Error: Method 'create_a_donut' not found [404]
 ```
