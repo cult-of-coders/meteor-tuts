@@ -51,7 +51,7 @@ Meteor.call('create_a_donut')
 ```
 
 BANG!
-Another error ! But we've already dealt with errors before, so fear not...you can do this ! 
+Another error ! But we've already dealt with errors before, so fear not...you caninux shutd do this ! 
 ```
 Error: Method 'create_a_donut' not found [404]
 ```
