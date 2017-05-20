@@ -65,7 +65,7 @@ Well, in the "/imports/startup/server/index.js" file, import the methods.js file
 import '/imports/api/donuts/methods.js';
 ```
 
-Now let the server refresh itself ( it does that when you change the code in your application ).
+Now let the server restart itself ( it does that when you change the code in your application ).
 After calling the method in the *meteor shell*, it will respond to you with a message that looks like this:
 ```
 > Meteor.call('create_a_donut')
@@ -94,10 +94,12 @@ It might even give you some perspective as to how you could optimize an applicat
 Meteor.call('create_a_donut')
 ```
 
-Hmm... I got no feedback here. Let me check the database. Oops, it's there! What's going on ?
+That's weird...nothing happened. 
+Let's check the database. What's going on ?
 
-Well, client-side when you do a call, you don't get the answer instantly, because it has to communicate through the websocket with the server,
-the server needs to do it's thingie and return the results, this can take few miliseconds. This is why we need to provide a callback:
+Well, when you make a call from the client, you can't get the answer instantly, because your call initiates a "conversation" through a [websocket](https://en.wikipedia.org/wiki/WebSocket) with the server.
+Then, the server needs to complete the operation you requested in that call and "get back to you" with the results.
+This operation can take few milliseconds, which is why we need to provide a [callback](https://en.wikipedia.org/wiki/Callback_(computer_programming)) to our method:
 
 ```js
 Meteor.call('create_a_donut', function (err, res) {
@@ -105,32 +107,33 @@ Meteor.call('create_a_donut', function (err, res) {
 })
 ```
 
-Ok, now it works, but what is "err" ? Why is it like this ? 
-The why is explained here: http://fredkschott.com/post/2014/03/understanding-error-first-callbacks-in-node-js/
+Now it works, but why did we use "err" ?  
+You will find an explanation [here](http://fredkschott.com/post/2014/03/understanding-error-first-callbacks-in-node-js/).
 
-## Method Errors
+## Errors in methods
 
-If you do a `console.log(err)` you will see that it's undefined. Because the server did not throw any error while handling your method.
+If you try using `console.log(err)` in *Meteor Shell*, you will see that it's undefined. Because the server did not throw any error while handling your method.
 
-Let's trigger an error:
+Let's cause an error and see what happens:
+Type this code in the *imports/api/donuts/methods.js* file:
 ```js
-// imports/api/donuts/methods.js
 import { Meteor } from 'meteor/meteor';
 
 Meteor.methods({
     'create_a_donut': function () {
-        throw "I don't wanna!"; // throw accepts any type argument, not only string
+        throw "I don't wanna!"; // notice that the "throw" statement accepts any type of argument, not just strings
     }
 })
 ```
 
-Now if we do this in the shell:
+Now if we call the method we just created in the shell ( "initiate a conversation with the server", if you want to call it like that):
 ```js
 Meteor.call('create_a_donut')
 ```
 
-We will receive a simple string with the error. Doesn't help us very much, we don't know if it's an actual response or an error. However,
-don't panic and don't get confused, you can use server-side callbacks as well:
+We'll get a response in the form of a string containing the error message. 
+This doesn't help us very much, since we don't know if it's an actual response or an error. 
+However, we ave another way for solving this, as we have at our disposal server-side callbacks as well:
 
 ```js
 Meteor.call('create_a_donut', function (err, res) {
@@ -138,12 +141,10 @@ Meteor.call('create_a_donut', function (err, res) {
 })
 ```
 
-Now let's move a bit to the client. The reason I insist in this, it's because you'll encounter a lot of errors and identifying and treating them
-is critical to any web developer.
+Now let's move to the client for a little bit. The reason we have to do this, and the reason for which we have been dealing with errors since the beginning is
+ because, while working on projects you'll encounter a lot of errors and identifying and treating them is a critical part of being a good web developer.
 
-Make the same call as above for the client.
-
-You should get something like:
+After making the same operations we did on the server, to the client, you should get a response that looks like this:
 ```js
 errorClass {
     details: undefined
@@ -154,9 +155,9 @@ errorClass {
 }
 ```
 
-Not very helpful is it ? You have no clue about what the error is about on the client, unlike the server.
+That's not very helpful, is it ? It' doesn't help you identify the error, nor does it give you tips about solving the error, unlike the message from the server.
 
-This is why, in order to throw errors that are descriptive for the client as well we need to use [Meteor.Error](https://docs.meteor.com/api/methods.html#Meteor-Error)
+This is why, in order to make the errors that originate from the client descriptive and comprehensive, we need to use [Meteor.Error](https://docs.meteor.com/api/methods.html#Meteor-Error)
 
 ```js
 Meteor.methods({
@@ -164,14 +165,14 @@ Meteor.methods({
         throw new Meteor.Error('error', 'I do not really want it', {
             why: "I have eaten too many"
         });
-        // First argument (error): is something very general, can be a number like 500, 404, 
-        // Second argument (reason): is a description of the error
-        // Third argument (details): is for providing more details about the error.
+        // The first argument (error): is something very general, can be a number like 500, 404, 
+        // The second argument (reason): is a description of the error
+        // The third argument (details): is for providing more details about the error.
     }
 })
 ```
 
-Now if you do the call on the client:
+Now, if you do the call on the client:
 
 ```js
 Meteor.call('create_a_donut', function (err, res) {
@@ -184,11 +185,11 @@ Meteor.call('create_a_donut', function (err, res) {
 })
 ```
 
-Makes sense ? Just keep this in mind, use Meteor.Error for throwing exceptions.
+So, from now on, to make errors comprehensible everywhere, use *Meteor.Error* for throwing exceptions.
 
-## Method Arguments 
+## Arguments for our methods
 
-Methods can ofcourse receive arguments (any kind of arguments):
+Just like in a normal conversation, in which you have to use arguments, methods can receive arguments of any kind !
 
 ```js
 // server
@@ -204,23 +205,28 @@ Meteor.call('create_a_donut', 'One', 'Two', {three: 'Arguments'}, function (err,
 })
 ```
 
-Now, methods are very complex in functionality, however, we will get into them later in this or other chapters.
+The fact that we can now use arguments with methods opens a world of possibilities to us. But this can make methods fairly complex, 
+which is why, during the course of this tutorial, we will talk some more about methods.
 
+## Work more to learn more
 
-## Homework
+Now let's practice what we've learned in this section with a few simple exercises:
 
 #### 1. Get me all the donuts
+Try out this code, to get all the donuts from the database :
 ```js
 Meteor.call('donuts.list', callback)
 ```
 
 #### 2. Give me some donuts
+Try out this code snippet, to get some donuts ( after all, moderation is good when consuming sweets):
 ```js
 Meteor.call('donuts.list_filtered', {price: {$gt: 200}, callback)
 ```
 
 #### 3. Updating
-Create a method that takes two arguments, _id and data, and *$set*s the data for the donut with that _id.
+Test yourself !
+Create a method that takes two arguments, *_id* and *data*, and *$set*s the data for the donut with that _id.
 
 ```js
 Meteor.call('donuts.list_filtered', donutId, {price: 1000})
