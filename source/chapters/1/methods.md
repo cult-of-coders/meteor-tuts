@@ -29,7 +29,7 @@ We can also have methods on the client-side, which can be used for Optimistic UI
 
 
 ## Let's create a method( or RPC)
-Let's use the sample application we created at the beginning of the tutorial, and in the file *imports/api/donuts/methods.js* we'll write:
+Let's keep using the sample application we created at the beginning of the tutorial (  yes, i still love donuts! ), and in the file *imports/api/donuts/methods.js* we'll write:
 
 ```
 import { Meteor } from 'meteor/meteor';
@@ -44,7 +44,7 @@ Meteor.methods({
 
 ## Now...how to use it ?
 
-Methods can be called from the server-side or from the client-side. Let's try it first in *meteor shell*:
+Methods can be called from the server-side or from the client-side. Let's try it first in the *meteor shell*:
 
 ```js
 Meteor.call('create_a_donut')
@@ -56,26 +56,39 @@ Another error ! But we've already dealt with errors before, so fear not...you ca
 Error: Method 'create_a_donut' not found [404]
 ```
 
-Meteor has basically no idea about your method, you just created a file, inside imports. There is absolutely no link to it.
+Meteor has basically no idea that the method you just wrote exists. So you just created a file inside imports, but there is absolutely no link to it.
+So, as a golden rule, if you don't create a link to your file, it's just as ineffective as if it wouldn't exist.
 
-Remember the "/imports/startup/server/index.js" file, welp, that's where you have to import the methods.js file:
+How do you create such a link ?
+Well, in the "/imports/startup/server/index.js" file, import the methods.js file:
 ```js
-// file: /imports/startup/server/js
 import '/imports/api/donuts/methods.js';
 ```
 
-Now let the server refresh itself and try again you should see something like:
+Now let the server refresh itself ( it does that when you change the code in your application ).
+After calling the method in the *meteor shell*, it will respond to you with a message that looks like this:
 ```
 > Meteor.call('create_a_donut')
 'MLx7SF79kXvAZuEyx'
 ```
 
-That's because we do `return Donuts.insert({price: 100})` and insert() returns the newly created _id,
-and what you return in the method body is returned to the caller. You can return anything you want, objects,
-arrays, strings, dates. Back scene, data is serialized to [EJSON](http://docs.meteor.com/api/ejson.html) then deserialized where it's called.
+That's because of this line:
+ ```js
+ return Donuts.insert({price: 100})
+  ```
+Let's ignore the "return" part for now and focus on the "insert" for a little bit.
+With "insert()", we just inserted content into the database. As a consequence, the occurrence of this operation will determine the system
+to "spit out"  the newly created _id, thus giving us a way of identifying the operation.
+Now let's get back to the "return()" part !
+What you return in the method body is returned to the caller. 
+You can return anything you want: objects, arrays, strings, dates, and, you guessed it-id's !
+In the background, the data is serialized to the [EJSON](http://docs.meteor.com/api/ejson.html) format, then deserialized where it's called.
 
-Now let's finally open that browser. http://localhost:3000 open it.
-Now open your browser's console. We recommend Chrome, but you can use anything you want.
+Now let's view the results of our work in the browser.
+Open your web browser and navigate to *http://localhost:3000* .
+Now open your browser's console by typing Ctrl+Shift+I in Google Chrome. 
+We recommend Google Chrome, as it is the best, but feel free to test into other browsers as well.
+It might even give you some perspective as to how you could optimize an application to work well with multiple browsers !
 
 ```js
 Meteor.call('create_a_donut')
