@@ -127,7 +127,7 @@ This will allow you to build reactive web pages with absolute ease. You simply t
 
 This is the most barebones, straight forward way of showing you how Meteor's reactivity works. 
 
-It is magical, and it the way it works is absolutely genious, but! we shouldn't really discuss this right now,
+It is magical, and the way it works is absolutely genious, but! we shouldn't really discuss this right now,
 you don't have to understand how electricity works in order to use it right ?
 
 ## Managing the subscription
