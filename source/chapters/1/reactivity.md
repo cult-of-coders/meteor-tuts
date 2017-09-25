@@ -4,7 +4,9 @@ description: The Meteor's way of building reactive apps
 disqusPage: 'Chapter 1: Tracker'
 ---
 
-## Introduction
+## Let's talk about...a tracking system
+
+Don't freak out! We're not tracking anyone, we're not teaching you how to become the Big Brother !
 
 Let's now explore a nice concept for Meteor, the Tracker system.
 
