@@ -55,8 +55,10 @@ meteor create myProjectName
 
 ![Windows](../images/windowsSmall.png "Windows icon")
 If you get any errors when trying to create a Meteor project in Windows, download the NodeJs installer from 
-[here](https://nodejs.org/en/) and run it.
-Then restart you PC and you should now be able to create a Meteor project !
+[here](https://nodejs.org/en/) and run it. This will automatically update your Nodejs installation and add it to the 
+system path if it was not added already when you installed meteor with the installer.
+Then restart you PC to allow for all the modifications to be implemented and you should now be able to create a 
+Meteor project without any other errors!
 
 
 ## Start Meteor
@@ -124,7 +126,8 @@ Everything in "/client" and "/server" is automatically loaded, as it is explaine
 That's all great ! However, we need more control over our application, and in order to gain that control,
 we will refrain from using auto-loading in our projects.
 
-This compiles all the modules when we type **"meteor run"** into the command line, but does ot load all of them.  
+This compiles all the modules we specified into our project with the "import" keyword, when we type **"meteor run"** 
+into the command line, but does not load all of them.  
 
 Because of this, everything in "/imports" must be explicitly imported so Meteor can "gain knowledge" about it.
 This also gives us the ability to build modular applications.
@@ -138,12 +141,16 @@ For now, we won't get into a lot of details, but the basic idea is that with Met
 As an idea, to get you to realise just how many resources you have at your disposal, the NPM system contained roughly 445 797 packages on May 1st of 2017.
 
 "moment" is a library you will use when working with dates in your projects.
-You install it by running the following command into your terminal:
+
+Most of the command line commands we will run during this tutorial we will run when we are in the root directory of the project we are working on.
+As an example, for "meteor-tuts", this is the root directory for the project, on my machine: "/home/user/Documents/meteor-tuts".
+
+As such, to install "moment", go into meteor-tuts (in this case), by using the "cd" command, and run this command:
 ```
 meteor npm install --save moment
 ```
 We use save here because it will save it in our packages.json, meaning that if we work in collaboration with
- other developers, when they download the project to start working on it,they will have the same package 
+ other developers, when they download the project to start working on it, they will have the same package 
  installed, with the version you specified, making their life much easier. 
 
 To use "moment" in your project, at a basic level, use this code snippet:
@@ -155,7 +162,7 @@ moment(new Date()).format('YYYY-MM-DD')
 
 ## Atmosphere
 
-Atmosphere is a package manager which is specific to Meteor only, just like pip is for Python. 
+Atmosphere is a package manager which is specific to Meteor only, just like npm is for NodeJs. 
 It will help you manage project dependencies with ease.
 You can find great resources to help you with Collections, Server-Side Routes, Mailing, etc.
 
@@ -172,23 +179,29 @@ There are a lot of cool and useful packages out there that we'll explore during 
 ## Importing from Atmosphere
 You also can use the modular approach with Meteor packages!
 
-As a sample, we will use SimpleSchema, a package that allows us to easily validate objects.
-This is the github page of the project: https://github.com/aldeed/meteor-simple-schema
+As a sample, we will use Grapher, a package we maintain, and are very proud of ! 
+Grapher is a high performance data fetcher and collection relationship manager for Meteor and MongoDB.
+We will talk later about collections and why they are so important.
+If you want to know more about Grapher, you can read the official documentation [here](http://grapher.cultofcoders.com/).
 
 To add this package to your project, type into your console:
 ```
-meteor add aldeed:simple-schema
+meteor add cultofcoders:grapher
 ```
 
+To use Grapher, add this code snippet to any of your source files:
 ```js
-//to use SimpleSchema, add this snippet to any of your source files:
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { grapher } from 'meteor/cultofcoders:grapher';
 
-const schema = new SimpleSchema({
-    title: {
-        type: String
+const Users = Meteor.users;
+const Comments = new Mongo.Collection('comments');
+Comments.addLinks({
+    user: { // user represents the link name, can be any name you wish to use
+        type: 'one', // we would have used 'many' if we wanted to store multiple user ids
+        collection: Users,
+        field: 'userId' // optional, if not specified it will generate a specific field, according to the stored value.
     }
-})
+});
 ```
 
 If the package exports the objects, you will be able to access them by importing from the package, 
