@@ -1,136 +1,155 @@
 ---
 title: Publications & Subscriptions
-description: The Meteor's way of building reactive apps
+description: Building reactive apps with Meteor
 disqusPage: 'Chapter 1: Pub/Sub'
 ---
 
-Hey there, you seem tenacious, it seems that Methods & Tracker did not put you down, and you continued, I like that.
+## The Pub/Sub System - going live!
 
-## Pub/Sub System
+To be able to understand what we mean when we say Pub/sub in Meteor, we need to explain to you what a pub/sub system is in the first place. 
 
-The first step in understand the pub/sub system in Meteor, is to understand what a pub/sub system is in the first place.
+The explanation is fairly straightforward: a pub/sub system is a communication system, where the "publishers" send messages 
+to the "subscribers". Which is why, in Meteor, you will meet, very frequently, the term of **"reactive data"**.
 
-Basically, it's a communication system, where the "publishers" send messages to the "subscribers".
-
-In Meteor we use this to have reactive data, meaning when something happens, like a new donut is added, I can see it live in my web-page.
+Having this feature available in Meteor means that we can build **live applications**. If we go to our donut example,
+and we add a new donut, all the users that are **subscribed** to that data will see the changes made to the data in real time.
+Just like you would see on Facebook !
 
 ## Publishing in Meteor
 
-**Publishing** = "Hey bro, I will give you access to this data."
-
+So how would we explain publishing in a very simple manner ? Well, let's assume you're talking to a friend about you application,
+ and you want to give him access to your data. I other words, you are going to make that data **public** for him.
+ As such,  **publishing** would be equivalent to saying to him "I will give you access to this data !".
+ 
+ Let's start by inserting code into "/imports/api/donuts/publication.js":
 ```js
-// file: /imports/api/donuts/publication.js
 import { Meteor } from 'meteor/meteor';
-import Donuts from '/imports/api/donuts/collection'; // no .js ? yep, works like that too!
+import Donuts from '/imports/api/donuts/collection'; 
 
 Meteor.publish('donuts', function () {
     return Donuts.find();
 })
+```
 
-// file: /imports/startup/server/index.js
+And now let's put some code into "/imports/startup/server/index.js" and let the server know about the code we inserted 
+into "publication.js"":
+```js
 import '/imports/api/donuts/publication.js'; // the server needs to know about it!
 ```
 
-Hmm, wait, why didn't we returned the elements directly, where is `.fetch()` in this equation ?
-
-It's because a publication needs to return:
+It's a basic rule that a publication needs to return 2 things:
 1. A cursor
 2. An array of cursors
 
+It is because of this rule that we aren't using `.fetch()` in our code.
+
 ## What is a cursor ?
 
-A good way to think about a cursor is to think of it as an "address". In the example above, we returned an address to all Donuts.
+A good way to think about a cursor is to think of it as if you would think of an "address". 
+In the example above, we returned an address to all Donuts.
 
-Q: Wait, isn't that what methods also do ?
+Q: Wait, isn't that also what methods do ? <br />
+A: Yes, but by using publications we benefit from reactivity.
 
-A: Yes, but with publication we benefit of reactivity and we'll discover how this works next.
-
-Q: Ok, so when should I use methods and when pub/sub ?
-
-A: You'll use pub/sub when you want to see the data changing live for you. Methods for the rest.
+Q: Ok, so when should I use methods and when should i use pub/sub ? <br />
+A: You should use pub/sub when you want your data changes to be **live**. Otherwise you should stick to using methods.
 
 ## Subscribing to a publication
 
-**Subscribing** = "Hey bro, I want access to the data you are offering me."
+We have now published the data changes, but how are the users going to know about the data that we've made available for them ?
+Well, that's where subscriptions come in ! If we are to use the "friend" analogy that we have used to explain **publishing*,
+the friend to which we have given access to the data will say: "Hey! I want access to the data you are offering me."
 
-You noticed that when we created our publication, we first passed a string, 'donuts'. We must use
-that same string in order to subscribe to it.
+You noticed that when we created our publication, we first passed a string to it in the code-'donuts'. 
+We must use that same string in order to subscribe to the publication.
 
-Go to http://localhost:3000 and open your console:
+Go to http://localhost:3000 and the console in your browser's developer tools. Then, type into it:
 ```js
 var handler = Meteor.subscribe('donuts');
 ```
+<br />
 
-The handler contains:
-- subscriptionId : which is a unique identifier for your subscription
-- ready() : a function that returns true, if the subscription is ready
 ```js
 handler.ready(); // should return true
 ```
-- stop() : stop the subscription
+<br />
 
-When a subscription is ready, basically it means that the server got your request, and it will fill the data.
+```js
+handler.stop(); // should return true
+```
 
-How do we get the data is very very interesting, but we need to understand Client-Side collections first. But before that! 
-Let's see how we can access these modules from our browser.
+The variable *handler* contains:
+-a *subscriptionId*, which is a unique identifier for the subscription
+- *ready()*, which is a function that returns true, if the subscription is ready
+- *stop()*, which is a function that will stop the subscription
 
-## Nasty Globals
+When a subscription is ready, it means that the server got your request, and it give the specified user access to the **live** data.
 
-We meet again! Darn you globals. This time we need to access our DonutsCollection on the client.
+How the data is served to us is a very interesting process, but in order to delve into that process, we first have to 
+have a good understanding of Client-Side collections.
 
-This time for the client: [Nasty Globals](/chapters/1/collections.html#Nasty-Globals)
+## Nasty Globals...again
+
+Again, we must sacrifice our pride for a higher purpose and use global variables. 
+This time we need to access our *DonutsCollection* on the client-side.
+
+we've talked about [Nasty Globals](/chapters/1/collections.html#Nasty-Globals) before!
 
 ## Client-side Collections
 
-It's got the same API. You can do insert(), update(), remove() but we will discuss later why this is not recommended, even if it is possible.
+The collections we are using on the client-side have the same API  as the collections from the server-side.
+We can do insert(), update(), remove() but we will explain later why this is not recommended, even if it is possible.
 
-If you still want to do it like that because it's easier, fine by me. You could try it:
+If you still want to do it like that because, just because it's easier, it's fine, but it is not recommended that you do so!
+We could try it, just this time:
 ```js
 DonutsCollection.insert({})
 ```
 
-This works because you have `insecure` package installed in Meteor. `meteor remove insecure` and this will no longer work.
+This works because you have the `insecure` package installed in Meteor.
+ Running `meteor remove insecure` in your terminal will stop this from working.
 
-Now that we got access to our collection, let's do:
+Now that we got access to our collection, let's get those *donuts*:
 ```js
-// Meteor, give me my donuts:
+// Meteor, give me my donuts !
 Meteor.subscribe('donuts')
 
-// wait for 1-2 seconds
+// wait for 1-2 seconds while Meteor is getting the donuts...
 DonutsCollection.find().fetch()
 ```
 
+Now, because we can use an insecure package, let's use the Meteor shell,:
 ```js
-// meteor shell, or browser (because we have insecure package)
 DonutsCollection.insert(somethingThatYouWant)
 ```
+<br />
 
+Or the browser console:
 ```js
 // browser console
 DonutsCollection.find().fetch()
 ```
 
-## Seeing changes live
-You should see your elements here. Wow! Cool. But you mentioned something about reactivity ?
+## Watching the changes while they happen
 
-Cursors are reactive data sources, and we can track reactive data sources using the tracker:
-
+The cursors that we've used earlier are *reactive data sources*, and we can track reactive data sources by using the tracker:
 ```js
 Tracker.autorun(() => {
     console.log(DonutsCollection.find().fetch());
 })
 ```
 
-Now everytime something in the "address" changes, like a new element is inserted, or updated, or removed. Meteor will communicate that to you, because you subscribed to that, and the cursor will change.
+Now everytime something in the "address" changes, like a new element is inserted, or updated, or removed, Meteor will communicate that to you, 
+because you subscribed to that publication, and the cursor will change, to a new address.
 
-This will allow you to build reactive web pages with absolute ease. You simply track changes, and when changes are made, you do something in the UI.
+This will allow you to build reactive web pages with ease. You simply track changes, and when changes are made, you 
+"react" with some UI changes ( see what we did there ? "react"->ReactJS... No ? Ok... :( Let's move on!).
 
-This is the most barebones, straight forward way of showing you how Meteor's reactivity works. 
+This is the most simplistic way of showing you how Meteor's reactivity works. 
 
-It is magical, and it the way it works is absolutely genious, but! we shouldn't really discuss this right now,
-you don't have to understand how electricity works in order to use it right ?
+It is like magic !
 
-## Managing the subscription
+## Managing subscriptions
 
 ```js
 var handle = Meteor.subscribe('some_publication');
@@ -138,8 +157,9 @@ handle.stop(); // will stop listening to changes
 handle.ready(); // will return true/false if the subscription is ready
 ```
 
-Just keep in mind: when you have handle.ready() true, if you do super quick `.find().fetch()` might be empty, that's because
-ready() does not mean that you got all the data, it means that the connections was established, and Meteor will pump the data there.
+Just keep in mind: when **handle.ready()** returns *true*, if it is followed by a `.find().fetch()`, the results might be empty.
+That's because *ready()* returning a *true* value does not mean that you got all the data. 
+Instead, it means that the connections was established, and Meteor will pump the data there.
 
  
 
