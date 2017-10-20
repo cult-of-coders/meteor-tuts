@@ -33,7 +33,7 @@ Let's keep using the sample application we created at the beginning of the tutor
 
 ```
 import { Meteor } from 'meteor/meteor';
-import Donuts from '/imports/api/donuts/collection';
+import Donuts from '/imports/api/donuts/collection'; // no .js ? yep, works like that too!
 
 Meteor.methods({
     'create_a_donut': function () {
