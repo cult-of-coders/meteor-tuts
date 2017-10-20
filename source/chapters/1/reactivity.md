@@ -1,71 +1,68 @@
 ---
 title: Tracker
-description: The Meteor's way of building reactive apps
+description: Building reactive apps with Meteor
 disqusPage: 'Chapter 1: Tracker'
 ---
 
-## Introduction
+## Introducing the tracking system
 
-Let's now explore a nice concept for Meteor, the Tracker system.
+Now you're wondering "why would i need a tracking system ? I'm not Big Brother...".
 
-Q: I'm getting sick and tired of this. I'm a web dev, I don't want to see things in my console no more..
-
-A: Man, it's like Mister Myiagi trying to teach Karate Kid, before we reach the level on making everything work in a page, you'll be a master and you'll flow through it,
-bare with me, this is the best way to take you to the learning curve.
-
-Let's make sure you have the right packages.
+The tracker is one of the concepts that sets Meteor apart from other frameworks out there. As such, before we show you
+what it's all about, we need to make sure you have all the packages that you need installed on your machine.
+For that, run this in your terminal:
 ```js
-// terminal
 meteor add tracker reactive-var
 ```
 
-Now open up your browser:
-
+Now open up your browser and type this into the browser console 
+(the browser console is available for you in the "developer tools" menu of your browser):
 ```js
-// browser console
 var a = new ReactiveVar('a default value');
 a.get() // will display 'a default value'
 a.set('some other value')
 a.get() // will display 'some other value'
 ```
 
-Nothing fancy, what's the deal with this ?
+That does not seem to be very complicated, but you might be asking yourself "what's the deal with this ?". 
+Allow us to explain it step by step, so you can understand it!
 
-ReactiveVar is a **reactive-data source** and you can follow it's changes. To be able to follow the changes we'll be using our infamous *Tracker*
-
+**ReactiveVar** is a reactive-data source and because of that, you can follow its changes at runtime. 
+To be able to do that, we will be using the *Tracker* feature that got mentioned earlier in the tutorial:
 ```js
 var computation = Tracker.autorun(() => {
-    // this is the run function
+    // this is the function that runs it
     console.log(a.get())
 })
 ```
 
-Now each time you set some value to it, it will get *console.log*ed. Try it!
-
+Now each time you set some value to the **a** variable, it will get logged into the console. Let's try it:
 ```js
 a.set('something')
 ```
 
-Doing:
+To stop the execution, use:
 ```js
 computation.stop()
 ```
 
-Will stop the computation, so now if you set values to your data source, the run function will no longer execute.
+Now, if you give values to your data source, the **run** function's execution will be stopped.
 
-Let's recap, we can track changes to reactive data sources, using Tracker. That's all you need to know for now. We needed
-to explain this concept before we dive into the next step.
+Let's do a recap, so that you will be sure that you understood the concept !
+With the **tracker**, we can track changes occurring to reactive data sources, in real time. 
+That's everything you need to know for now in order to use this feature.
 
-Tracker has many interesting things about it. Read more:
-- https://docs.meteor.com/api/tracker.html
+Aside from the introduction you read in our tutorial, the tracker has many features. You can read more
+ about them [here](https://docs.meteor.com/api/tracker.html).
 
-There are other reactive "watchers" out there, it's not the single one in the world, but this one is used by Meteor in many use-cases, and it just works.
+Broadly speaking, this tracker is, at its core, a reactive "watcher". And it is not unique !
+However, this one is very well integrated with Meteor, and this brings down the integration issues you might face when 
+working on projects, which is why we are using it !
 
-
-## Homework
+## Practice makes perfect
 
 #### 1. Stop. It's too much!
-Create a tracker that will stop after 5th time it entered the computation
+Create a tracker that will stop after the 5th change to a reactive variable.
 
 #### 2. Reactive-Dict ?
-Find out what's ReactiveDict and use it to track it's changes.
+Find out what's ReactiveDict and use it to track changes.

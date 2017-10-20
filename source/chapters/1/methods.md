@@ -13,7 +13,7 @@ Then you expect a response, just like you would do when in a conversation. If yo
 
 Having a conversation in Meteor is quite simple.
 In Meteor, the usual way of doing this, and the best, is by communicating through a websocket with the server. 
-if you disable websockets, it falls back to something else, which we won't talk about in this tutorial
+If you disable websockets, it falls back to something else, which we won't talk about in this tutorial.
 
 So what actions we can do in our "conversations" with RPC's ?
 - Fetching data
@@ -25,11 +25,11 @@ So what actions we can do in our "conversations" with RPC's ?
 Methods are created server-side, and they can be called from the client or from the server as well.
 In the `meteor shell`, since we've already established where it is located, it means we are calling RPC's from the server.
 
-We can also have methods on the client-side, which can be used for Optimistic UI, something we won't be discussing.
+We can also have methods on the client-side, which can be used for [Optimistic UI](https://uxplanet.org/optimistic-1000-34d9eefe4c05).
 
 
 ## Let's create a method( or RPC)
-Let's keep using the sample application we created at the beginning of the tutorial (  yes, i still love donuts! ), and in the file *imports/api/donuts/methods.js* we'll write:
+Let's keep using the sample application we created at the beginning of the tutorial (yes, i still love donuts), and in the file *imports/api/donuts/methods.js* we'll write:
 
 ```
 import { Meteor } from 'meteor/meteor';
@@ -51,13 +51,13 @@ Meteor.call('create_a_donut')
 ```
 
 BANG!
-Another error ! But we've already dealt with errors before, so fear not...you caninux shutd do this ! 
+Another error ! But we've already dealt with errors before, so fear not...you can do this ! 
 ```
 Error: Method 'create_a_donut' not found [404]
 ```
 
-Meteor has basically no idea that the method you just wrote exists. So you just created a file inside imports, but there is absolutely no link to it.
-So, as a golden rule, if you don't create a link to your file, it's just as ineffective as if it wouldn't exist.
+Meteor has basically no idea that the method you just wrote exists. You just created a file inside imports, but there is absolutely no link to it.
+So, as a golden rule, if you don't create a link to your file, it's just as ineffective as if it would not be there.
 
 How do you create such a link ?
 Well, in the "/imports/startup/server/index.js" file, import the methods.js file:
@@ -78,16 +78,17 @@ That's because of this line:
   ```
 Let's ignore the "return" part for now and focus on the "insert" for a little bit.
 With "insert()", we just inserted content into the database. As a consequence, the occurrence of this operation will determine the system
-to "spit out"  the newly created _id, thus giving us a way of identifying the operation.
+to "spit out"  the newly created _id, thus giving us a way of identifying the operation. So, as a rule of thumb, each transaction generates and _id !
 Now let's get back to the "return()" part !
 What you return in the method body is returned to the caller. 
 You can return anything you want: objects, arrays, strings, dates, and, you guessed it-id's !
-In the background, the data is serialized to the [EJSON](http://docs.meteor.com/api/ejson.html) format, then deserialized where it's called.
+In the background, the data is serialized to the [EJSON](http://docs.meteor.com/api/ejson.html) format, then deserialized into a more user-friendly format where it's called.
 
 Now let's view the results of our work in the browser.
 Open your web browser and navigate to *http://localhost:3000* .
-Now open your browser's console by typing Ctrl+Shift+I in Google Chrome. 
-We recommend Google Chrome, as it is the best, but feel free to test into other browsers as well.
+Now open your browser's console by typing Ctrl+Shift+I in Google Chrome or Command+Shift+I on a Mac. 
+We recommend Google Chrome, as it is the best, but feel free to test into other browsers as well. Actually, when working
+ on production projects, it is recommended that you test your code with the most used browsers out there.
 It might even give you some perspective as to how you could optimize an application to work well with multiple browsers !
 
 ```js

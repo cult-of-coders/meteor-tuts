@@ -6,29 +6,31 @@ disqusPage: 'Chapter 1: Collections'
 
 ## Let's talk data!
 
-Meteor uses MongoDB as its default database system. Theoretically you can use any database you want, because
-you have access to *http://www.npmjs.com*, therefore you have access to almost all the existing database drivers out there 
-(a database driver is a program which implements a protocol for connecting to a database). 
+Meteor uses MongoDB as its default database. You can use any database you want, because you have access to 
+*http://www.npmjs.com*, therefore you have access to almost all the existing database drivers out there 
+(a database driver is a program which implements a protocol for connecting to a specific database, like MongoDB, MySQL, SqLite and so on). 
 
 ## Show and tell comparison
-Since everyone knows what MySQL is, let's compare MongoDB with it, so you can better understand why it's better for what we need. 
-Unlike MySQL, in MongoDB you don't have to CREATE TABLE, or CREATE FIELD in order to create a table or a field, because MongoDB 
-lets you structure your data the way you want. You still however need consistency across your data, which is why, later on,
-we will teach you how to ensure this consistency at an application level, not at the database level.
+Since everyone knows what MySQL is, let's compare MongoDB with it, so you can better understand why it's better suited for the applications we will develop. 
+Unlike MySQL, in MongoDB you don't have to use commands like CREATE TABLE, or CREATE FIELD in order to create a table or a field !
+That's because MongoDB lets you structure your data the way you want. You don't need tables ! That's why MongoDB is a **non-SQL** database solution.
+You still need consistency across your data, which is why, later on, we will teach you how to ensure this consistency at
+ the application level, not at the database level.
 
-Now we'd like to make some analogies, but you're going to need to be familiar with the syntax of MySQL at a basic level.
-If you're not, read a little bit about it [here](https://www.tutorialspoint.com/mysql/).
+Now we'd like to make some analogies, to help you understand some concepts faster, but you're going to need to be familiar 
+with the syntax of MySQL at a basic level.
+If you're not, read a little bit about it [here](https://www.tutorialspoint.com/mysql/), then you can continue with the tutorial.
 
 Now let's make those analogies:
 - DATABASE = Database (yes, the same name)
-- TABLE = Collection (a list of data, a collection)
+- TABLE = Collection (a list of data - a *collection* of data)
 - ROW = Document (the actual list of data inside the collection)
 
-I like donuts...despite knowing that they're unhealthy.
+I like donuts...despite being aware of the fact that they're unhealthy.
 I love donuts so much that I want to store them in a database !
 
-Firstly, let's create a new file in the project file structure we created earlier, by running these commands in the 
-/imports/api folder:
+First, let's create a new file in the project file structure we created in the previous chapter, by running these commands
+ in the */imports/api* folder:
 ```
 mkdir donuts
 cd donuts
@@ -47,7 +49,7 @@ export default Donuts;
 
 ## Nasty Globals
 
-So let's start solving those errors,right ?
+Let's start solving those errors,right ?
 Since our Donuts are isolated in their own module, we need to gain access to them. For that purpose, and only in this tutorial, we will use some very nasty global variables.
 Don't try this in a production project ! It fits into the category "Bad practices" !!
 
@@ -67,7 +69,7 @@ As a reminder: because we used export default, when we import, we can import as 
 //import Any_Name_I_Want_Will_Have_The_Same_Effect from '/imports/api/donuts/collection.js'
 DonutsCollection = Donuts 
 ```
-Because we did not use var, let, const before it, it's a global variable !
+Because we did not use "var", "let" or "const" before it, it's a global variable !
 
 ## The Meteor console
 In Meteor, we have at our disposal a console for the server side of the application.
