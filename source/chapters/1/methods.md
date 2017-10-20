@@ -134,7 +134,7 @@ Meteor.call('create_a_donut')
 
 We'll get a response in the form of a string containing the error message. 
 This doesn't help us very much, since we don't know if it's an actual response or an error. 
-However, we ave another way for solving this, as we have at our disposal server-side callbacks as well:
+However, we have another way for solving this, as we have at our disposal server-side callbacks as well:
 
 ```js
 Meteor.call('create_a_donut', function (err, res) {
@@ -222,7 +222,7 @@ Meteor.call('donuts.list', callback)
 #### 2. Give me some donuts
 Try out this code snippet, to get some donuts ( after all, moderation is good when consuming sweets):
 ```js
-Meteor.call('donuts.list_filtered', {price: {$gt: 200}, callback)
+Meteor.call('donuts.list_filtered', {price: {$gt: 200}}, callback)
 ```
 
 #### 3. Updating

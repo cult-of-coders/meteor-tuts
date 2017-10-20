@@ -47,9 +47,6 @@ const Donuts = new Mongo.Collection('donuts');
 export default Donuts;
 ```
 
-You've already tried to run your project and now you're getting a ton of errors,right ? 
-Do not fear, we will solve them, and then we'll run the project !
-
 ## Nasty Globals
 
 Let's start solving those errors,right ?
