@@ -1,5 +1,5 @@
 ---
-title: 'Chatper 3 - Conclusion'
+title: 'Chapter 3 - Conclusion'
 description: On your way to properly scale
 disqusPage: 'Chapter 3: Conclusion'
 ---
