@@ -41,23 +41,17 @@ You may have a very weird error saying that code cannot run outside "Fibers". Do
 Meteor.methods({
     'something_async': function () {
         const run = Meteor.wrapAsync(coolLibrary.coolFunction, coolLibrary);
-        // the second argument is to provide context to the function, bc if that function uses "this" inside it, then it will fail without the context specified.
+        // the second argument is to provide context to the function, 
+        // if that function uses "this" inside it, then it will fail without the context specified.
         
         try {
-            const results = run(); 
+            const results = run("some-argument");
+            return results;
             // if the callback accepts err then res (standard), then result will be put in sync into results.
         } catch (e) {
             // if an exception occurs, that exception will be caught here
+            // and you can treat it by dispatching a Meteor.Error
         }
-        
-        // some API's will not have callbacks with (err, res), but instead give you other arguments with other order
-        // for those edge-cases you may need to use the same "async" like syntax:
-        
-        const results = run((arguments, of, the, callback) => {
-            // do something here, this time you are inside a fiber, so it will not crash!
-        })
-        
-        return results;
     }
 })
 ```

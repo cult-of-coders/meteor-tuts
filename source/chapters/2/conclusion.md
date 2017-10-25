@@ -1,5 +1,5 @@
 ---
-title: 'Conclusion'
+title: 'Chapter 2 - Conclusion'
 description: Conclusion
 disqusPage: 'Chapter 2: Conclusion'
 ---

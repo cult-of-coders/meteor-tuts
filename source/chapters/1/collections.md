@@ -10,7 +10,8 @@ Meteor uses MongoDB as its default database. You can use any database you want, 
 *http://www.npmjs.com*, therefore you have access to almost all the existing database drivers out there 
 (a database driver is a program which implements a protocol for connecting to a specific database, like MongoDB, MySQL, SqLite and so on). 
 
-## Show and tell comparison
+## MongoDB vs MySQL
+
 Since everyone knows what MySQL is, let's compare MongoDB with it, so you can better understand why it's better suited for the applications we will develop. 
 Unlike MySQL, in MongoDB you don't have to use commands like CREATE TABLE, or CREATE FIELD in order to create a table or a field !
 That's because MongoDB lets you structure your data the way you want. You don't need tables ! That's why MongoDB is a **non-SQL** database solution.

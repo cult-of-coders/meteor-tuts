@@ -1,5 +1,5 @@
 ---
-title: Conclusions
+title: Chapter 1 - Conclusion
 description: Here we are, at the end of this chapter.
 disqusPage: 'Chapter 1: Conclusion'
 ---

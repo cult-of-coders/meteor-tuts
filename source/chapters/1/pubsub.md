@@ -4,7 +4,7 @@ description: Building reactive apps with Meteor
 disqusPage: 'Chapter 1: Pub/Sub'
 ---
 
-## The Pub/Sub System - going live!
+## Going Live
 
 To be able to understand what we mean when we say Pub/sub in Meteor, we need to explain to you what a pub/sub system is in the first place. 
 
@@ -43,7 +43,7 @@ It's a basic rule that a publication needs to return 2 things:
 
 It is because of this rule that we aren't using `.fetch()` in our code.
 
-## What is a cursor ?
+## What is a cursor?
 
 A good way to think about a cursor is to think of it as if you would think of an "address". 
 In the example above, we returned an address to all Donuts.
@@ -54,7 +54,7 @@ A: Yes, but by using publications we benefit from reactivity.
 Q: Ok, so when should I use methods and when should i use pub/sub ? <br />
 A: You should use pub/sub when you want your data changes to be **live**. Otherwise you should stick to using methods.
 
-## Subscribing to a publication
+## Subscribing
 
 We have now published the data changes, but how are the users going to know about the data that we've made available for them ?
 Well, that's where subscriptions come in ! If we are to use the "friend" analogy that we have used to explain **publishing*,
@@ -88,12 +88,12 @@ When a subscription is ready, it means that the server got your request, and it 
 How the data is served to us is a very interesting process, but in order to delve into that process, we first have to 
 have a good understanding of Client-Side collections.
 
-## Nasty Globals...again
+## Nasty Globals
 
 Again, we must sacrifice our pride for a higher purpose and use global variables. 
 This time we need to access our *DonutsCollection* on the client-side.
 
-we've talked about [Nasty Globals](/chapters/1/collections.html#Nasty-Globals) before!
+We've talked about [Nasty Globals](/chapters/1/collections.html#Nasty-Globals) before!
 
 ## Client-side Collections
 
@@ -130,7 +130,7 @@ Or the browser console:
 DonutsCollection.find().fetch()
 ```
 
-## Watching the changes while they happen
+## Observing Changes
 
 The cursors that we've used earlier are *reactive data sources*, and we can track reactive data sources by using the tracker:
 ```js

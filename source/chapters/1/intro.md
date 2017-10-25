@@ -31,14 +31,14 @@ The tool that works best for us, and the one which we recommend you use, would b
 Students can get it for free, and other people can get a free 30-day evaluation trial.
 You can download Webstorm from [here](https://www.jetbrains.com/webstorm/download/#section=linux).
 
-To learn more about Webstorm go [here](https://www.jetbrains.com/webstorm/documentation/).
+To learn more about Webstorm, [go here](https://www.jetbrains.com/webstorm/documentation/).
 
 A free alternative to Webstorm would be Sublime Text. This is an extensible, feature-rich code editor, that is 
 relatively easy to learn.  
 It will make your life a whole lot easier, if you're looking to get in the coding business.
 You can download it from [here](https://www.sublimetext.com/3).
 
-To learn how to use it properly,go [here](https://scotch.io/bar-talk/the-complete-visual-guide-to-sublime-text-3-getting-started-and-keyboard-shortcuts).
+To learn how to use it properly, [go here](https://scotch.io/bar-talk/the-complete-visual-guide-to-sublime-text-3-getting-started-and-keyboard-shortcuts).
 
 To be more specific, we recommend the following plugins for Meteor development with Sublime Text: 
 -Meteor Snippets
@@ -53,8 +53,7 @@ your terminal:
 meteor create myProjectName
 ```
 
-![Windows](../images/windowsSmall.png "Windows icon")
-If you get any errors when trying to create a Meteor project in Windows, download the NodeJs installer from 
+If you get any errors when trying to create a Meteor project in Windows, download the NodeJS installer from 
 [here](https://nodejs.org/en/) and run it. This will automatically update your Nodejs installation and add it to the 
 system path if it was not added already when you installed meteor with the installer.
 Then restart you PC to allow for all the modifications to be implemented and you should now be able to create a 
@@ -107,14 +106,16 @@ This is not the structure of the application you have just created !
 You need to create a new structure for the application, in order for your project to be better organized, and, as a 
 result, have a somewhat easier life. To do this, run these commands in your terminal :
 
+MacOS & Linux
 ```
 mkdir -p client server imports/ui imports/startup/client imports/startup/server imports/api
 echo "import '/imports/startup/client';" > client/main.js
 echo "import '/imports/startup/server';" > server/main.js
 ```
-![Windows](../images/windowsSmall.png "Windows icon")
-On windows, the script syntax is somewhat different. To achieve the same results on Windows as you would with the 
+
+On Windows, the script syntax is somewhat different. To achieve the same results on Windows as you would with the 
 previous script on Linux, run these command into your CMD or PowerShell:
+
 ```
 echo ./imports, ./imports/api, ./imports/startup , ./imports/ui, ./startup/client, ./startup/server | % { mkdir "$_" }
 echo "import '/imports/startup/client';" > client/main.js
@@ -123,7 +124,7 @@ echo "import '/imports/startup/server';" > server/main.js
 
 Everything in "/client" and "/server" is automatically loaded, as it is explained [here.](https://guide.meteor.com/structure.html#load-order)
 
-That's all great ! However, we need more control over our application, and in order to gain that control,
+That's all great, however, we need more control over our application, and in order to gain that control,
 we will refrain from using auto-loading in our projects.
 
 This compiles all the modules we specified into our project with the "import" keyword, when we type **"meteor run"** 
@@ -179,33 +180,15 @@ There are a lot of cool and useful packages out there that we'll explore during 
 ## Importing from Atmosphere
 You also can use the modular approach with Meteor packages!
 
-As a sample, we will use Grapher, a package we maintain, and are very proud of ! 
-Grapher is a high performance data fetcher and collection relationship manager for Meteor and MongoDB.
-We will talk later about collections and why they are so important.
-If you want to know more about Grapher, you can read the official documentation [here](http://grapher.cultofcoders.com/).
+Let's take an example of an atmosphere package name: *cultofcoders:grapher*
 
-To add this package to your project, type into your console:
-```
-meteor add cultofcoders:grapher
-```
+To import an atmosphere package we prefix it with `meteor/`
 
-To use Grapher, add this code snippet to any of your source files:
 ```js
-import { grapher } from 'meteor/cultofcoders:grapher';
+import {createQuery} from 'meteor/cultofcoders:grapher';
 
-const Users = Meteor.users;
-const Comments = new Mongo.Collection('comments');
-Comments.addLinks({
-    user: { // user represents the link name, can be any name you wish to use
-        type: 'one', // we would have used 'many' if we wanted to store multiple user ids
-        collection: Users,
-        field: 'userId' // optional, if not specified it will generate a specific field, according to the stored value.
-    }
-});
+createQuery({});
 ```
-
-If the package exports the objects, you will be able to access them by importing from the package, 
-but note that we are prefixing the import path with "meteor/".
 
 ## Importing from local files
 
@@ -255,7 +238,7 @@ Would you like to find more about importing and exporting ? You can read more he
 
 If you need help, or you get stuck you can ask other Meteor evangelists out there:
 - https://forums.meteor.com
-- meteor channel on FreeNode Server: [https://webchat.freenode.net/](https://webchat.freenode.net/)
+- Go to the #meteor channel on FreeNode Server: [https://webchat.freenode.net/](https://webchat.freenode.net/)
 
 Make sure you Google your questions first, to find out if somebody had the same problem as well 
 (and most likely has found an answer to that problem), before asking the community!

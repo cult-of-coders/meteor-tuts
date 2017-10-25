@@ -45,18 +45,6 @@ connection and time.
 Due to the fact that some differences in the steps described in this tutorial might occur, depending on the platform 
 that you are using ( Windows, Mac or Linux ), we will address these particularities separately, where they are encountered.
 
-In order for you to know what operating system we are talking about, we will mark the issues with a specific icon, as it follows:
-
--For Linux:
-![Linux](../images/tuxSmall.png "Linux icon")
-
--For Windows:
-![Windows](../images/windowsSmall.png "Windows icon")
-
--For OSX:
-![OSX](../images/OSXsmall.png "OSX icon")
-
-
 <h1>Using the terminal</h1>
 
 Throughout this tutorial, we will be using the command line interface extensively. 

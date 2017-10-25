@@ -33,6 +33,21 @@ sidebar_categories:
     - chapters/2/intro
     - chapters/2/react
     - chapters/2/conclusion
+  'Chapter 3':
+    - chapters/3/intro
+    - chapters/3/persistence-layer
+    - chapters/3/testing
+    - chapters/3/services
+    - chapters/3/events
+    - chapters/3/methods
+    - chapters/3/publications
+    - chapters/3/fixtures
+    - chapters/3/reusable-modules
+    - chapters/3/linting
+    - chapters/3/emails
+    - chapters/3/microservices
+    - chapters/3/structure
+    - chapters/3/conclusion
 
 github_repo: 'cult-of-coders/meteor-tuts'
 content_root: 'source'
