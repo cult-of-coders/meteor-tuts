@@ -1,6 +1,6 @@
 ---
-title: 'Intro'
-description: The View Layer
+title: 'The View Layer'
+description: Understanding how to build interfaces
 disqusPage: 'Chapter 2: Intro'
 ---
 

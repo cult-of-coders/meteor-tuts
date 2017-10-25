@@ -1,5 +1,5 @@
 ---
-title: 'Intro'
+title: 'Enterprise Level'
 description: Getting Meteor to Enterprise Level
 disqusPage: 'Chapter 3: Intro'
 ---

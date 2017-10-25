@@ -1,5 +1,5 @@
 ---
-title: 'Intro'
+title: 'Hello'
 description: Getting started with Meteor
 disqusPage: 'Chapter 1: Intro'
 ---
