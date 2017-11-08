@@ -6,9 +6,9 @@ disqusPage: 'Chapter 3: Intro'
 
 ## Welcome
 
-In this chapter we are going to talk about what does it take to write a solid back-end and how we solve common issues in a very elegant manner.
+In this chapter we are going to talk about what it takes to write a solid back-end and how we solve common issues in a very elegant manner.
 
-We are not going to work on how to structure the front-end part. We are going to address topics such as how do we structure the code, how we test it, how we lint it, and all sorts of elements
+We are not going to work on how to structure the front-end part. We are going to address topics such as: how do we structure the code, how do we test it, how do we lint it, and all sorts of elements
 that make an app great behind the scenes and simply a joy to work with.
 
 ## Why?
@@ -18,7 +18,7 @@ We made these mistakes so you don't have to.
 
 So why are we sharing them for free? When we could easily create a book and make some good bucks? Because money is not our objective. A thriving community is more valuable to us.
 
-The main reason is that we love and support the community, the next is by engaging the community in this, we are able to gain more insights and improve on our knowledge.
+The main reason is that we love and support the community, the next is by engaging the community in this, we are able to gain more insights and to improve our knowledge.
  
 That being said, we hope you enjoy this chapter and that it will open your mind.
 
@@ -29,12 +29,12 @@ May the code be with you.
 We will begin with a story, a young developer joining a team of Meteor developers, and he receives his first task:
 
 `
-I want as a user to create a post.
-After creation, I want to send an email to the admin so he can approve it
+As a user, I want to create a post.
+After creation, I want to send an email to the admin so he can approve it.
 After approval, find the users that are interested in this post by their interests, and notify them.
 `
 
-From the client I would craft a form, and do something like, but since our focus is backend, so we won't get too much on the frontend
+From the client I would craft a form, and do something like a method call, but since our focus is backend, we won't get too much on the frontend
 side of things.
 
 ```js
@@ -87,12 +87,12 @@ Meteor.methods({
 })
 ```
 
-This looks like a simple innocent way of doing things, the code is relatively clean, and it does the job.
+This looks like a simple way of doing things, the code is relatively clean, and it does its job.
 
-But then the *Bigshot Code Reviewer* comes to you and says the following:
+But, then the *Bigshot Code Reviewer* comes to you and says the following:
 
 1. You need to validate the user when creating a post
-2. What prevents the user of setting `isApproved: true` in the post object ? Never trust the client!
+2. What prevents the user from setting `isApproved: true` in the post object ? Never trust the client!
 3. What if I want to change `notifications@app.com` from one place.
 4. Post approval is not secured, you need an Admin role to do that
 5. What if the `/posts/:_id` route changes I want to be able to change it from one place
@@ -193,7 +193,7 @@ By this time your code has grown a lot, and you send it for review being optimis
 3. When you find users you fetch a lot of data you don't need!
 4. ... 
 
-So what's the problem here? You want to do your job, and receiving so many comments makes you feel like you don't know jack. Then after you implement them you realize
+So what's the problem here? You want to do your job, and receiving so many comments makes you feel like you don't know jack. Then, after you implement them you realize
 that your code grows and grows and if another developer wants to read your methods he will have a hard time because it's simply too much. What if later on you want to send some Push Notifications,
 or other stuff, a method can grow to 200 lines? Unacceptable.
 
@@ -333,7 +333,7 @@ export default PostService;
 ```
 
 Ok, nice, now as you can see the code can be read as poetry. By decoupling functions you understand what they do without seeing the code, this brings verbosity and makes the code a pleasure to work with.
-So how will our methods look after these changes?
+So, how will our methods look after these changes?
 
 ```js
 Meteor.methods({
@@ -357,7 +357,7 @@ Meteor.methods({
 Wow! So clean and so sexy! Much more readable. But are we there yet? Is this how the code should look?
 Not by far. 
 
-But we did some good progress already, good job!
+But we made some good progress already, good job!
 We understood that separation of logic, makes the code manageable, easy to understand, and easier to test.
 
 So why do we say *not by far* ?
@@ -383,6 +383,6 @@ It's based on Robert Martin's Clean Code book but tailored for our love, JavaScr
 Please don't treat it as just another link, you must absorb the teachings there, and make sure that until you master them,
 you read them daily or at least weekly for 2 months.
 
-Even I, read it from time to time, to refresh my memory.
+Even I read it from time to time, to refresh my memory.
 
 `After all this time? Always.`

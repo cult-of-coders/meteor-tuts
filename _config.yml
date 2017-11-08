@@ -62,6 +62,9 @@ logo:
   subtitle: ''
 
 nav_links:
+  Meteor jobs:
+    url: https://www.cultofcoders.com
+    taget: _new
   Atmosphere:
     url: https://www.atmospherejs.com
     target: _new
