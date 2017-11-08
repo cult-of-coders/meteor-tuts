@@ -26,7 +26,7 @@ Afterwards, Google is your best friend!
 
 On Windows, simply download the installer and follow the basic Windows installation procedure that most software has.
 
-##Tools
+## Tools
 The tool that works best for us, and the one which we recommend you use, would be WebStorm, from Jetbrains.
 Students can get it for free, and other people can get a free 30-day evaluation trial.
 You can download Webstorm from [here](https://www.jetbrains.com/webstorm/download/#section=linux).
