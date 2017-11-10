@@ -32,6 +32,7 @@ sidebar_categories:
   'Chapter 2':
     - chapters/2/intro
     - chapters/2/react
+    - chapters/2/css
     - chapters/2/conclusion
   'Chapter 3':
     - chapters/3/intro
