@@ -6,7 +6,7 @@ disqusPage: 'Chapter 2: Conclusion'
 
 You made it through Chapter 2, good job :)
 
-So we uncovered how to integrate the View Layer into Meteor. What's next ?
+So we uncovered how to integrate the View Layer into Meteor, how can we write clean CSS code and tools for optimization. What's next ?
 Well, you need to do your homework first, because it will help you form
 new neural synapses that will enable you to remember and code faster.
 
