@@ -94,7 +94,7 @@ This is the basic folder structure that an application, such as the one you've j
 │   ├── ui // contains anything User-Interface related (We won't cover UI in this Chapter)
 │   ├── startup
 │   │   ├── client
-│   │   │   └── index.js // loads everything that is needed for the client to function (ex: routes, jQuery plugins, css, anything concerning the client)
+│   │   │   └── index.js // loads everything that is needed for the client to function (ex: routes, plugins, css, anything concerning the client)
 │   │   └── server
 │   │       └── index.js // loads everything that is needed for the server to function
 │   ├── api // contains the rest

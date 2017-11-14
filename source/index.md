@@ -17,7 +17,7 @@ This tutorial is structured in chapters, which are made up of lessons.
 
 We encourage you to follow along in a practical manner. This way, you will encounter problems, and learn more.
 Also, the information will come back to you a lot easier when you work on projects!
-You can find a pre-installed meteor project having the chapter 1 & 2 examples that you can test on your own machine, [here](https://github.com/cult-of-coders/meteor-tuts-boilerplate)
+You can find a pre-installed meteor project having the chapter 1 & 2 examples that you can test on your own machine, on our [Github Repository](https://github.com/cult-of-coders/meteor-tuts-boilerplate)
 
 <h1>Before you begin</h1>
 
