@@ -85,7 +85,7 @@ This is the basic folder structure we are using and recommend
     └── ...
 </pre>
 
-You can find a pre-installed meteor project with this folder structure, [here](https://github.com/cult-of-coders/meteor-tuts-boilerplate)
+Remeber that you can find a pre-installed meteor project with this folder structure, [here](https://github.com/cult-of-coders/meteor-tuts-boilerplate)
 
 
 ## Use of Flexbox
