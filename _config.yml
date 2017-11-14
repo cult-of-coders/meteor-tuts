@@ -63,21 +63,15 @@ logo:
   subtitle: ''
 
 nav_links:
-  Meteor jobs:
-    url: https://www.cultofcoders.com
-    taget: _new
-  Atmosphere:
-    url: https://www.atmospherejs.com
-    target: _new
-  NPM:
-    url: https://www.npmjs.com/
-    target: _new
   Meteor API:
     url: https://docs.meteor.com/
     target: _new
-  Meteor Guide:
-    url: https://guide.meteor.com/
+  Github repository:
+    url: https://github.com/cult-of-coders/meteor-tuts-boilerplate
     target: _new
+  Jobs:
+    url: https://www.cultofcoders.com
+    taget: _new
 
 social_links:
   github: 'https://github.com/cult-of-coders/meteor-tuts.com'
