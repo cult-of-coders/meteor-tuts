@@ -69,8 +69,8 @@ nav_links:
   Github repository:
     url: https://github.com/cult-of-coders/meteor-tuts-boilerplate
     target: _new
-  Jobs:
-    url: https://www.cultofcoders.com
+  Meteor Jobs:
+    url: https://www.cultofcoders.com/careers
     taget: _new
 
 social_links:
