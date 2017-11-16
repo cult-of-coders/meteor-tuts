@@ -4,9 +4,11 @@ description: Getting started with Meteor
 disqusPage: 'Chapter 1: Intro'
 ---
 
-## Installing the framework
-In order to be able to develop with Meteor, you will need three basic components: Nodejs, NPM and the Meteor framework itself.
-So, to get what you need, run the following command in your system terminal:
+## Installing the framework (Linux and Mac)
+
+In order to be able to develop with Meteor, you will need three basic components: Nodejs, NPM and the Meteor framework itself. Meteor will take care of installing Nodejs and npm for you - and these will always be the correct versions for the app you are developing!
+
+So, to get what you need, simply run the following command in your system terminal:
 
 ```
 curl https://install.meteor.com/ | sh
@@ -16,15 +18,21 @@ This command will work on an Ubuntu based distribution, such as Linux Mint, Elem
 This will also work on a Mac!
 To check that you really have installed what you needed, check the software versions of the components:
 ```
-nodejs -v
-npm -v
 meteor --version
+meteor node -v
+meteor npm -v
 ```
 If you don't have errors after running these commands, congratulations! You can move on! 
 However, if you have errors, check if you ran the commands correctly. 
 Afterwards, Google is your best friend! 
 
-On Windows, simply download the installer and follow the basic Windows installation procedure that most software has.
+## Installing the framework (Windows)
+
+On Windows, first install [Chocolatey](https://chocolatey.org/install), then run the following command at an Administrator PowerShell prompt:
+
+```
+choco install meteor
+```
 
 ## Tools
 The tool that works best for us, and the one which we recommend you use, would be WebStorm, from Jetbrains.
