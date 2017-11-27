@@ -30,7 +30,10 @@ module.exports = {
     "extends": ["eslint:recommended", "plugin:meteor/recommended", "plugin:react/recommended"],
     "parser": "babel-eslint",
     "parserOptions": {
-        "allowImportExportEverywhere": true
+        "allowImportExportEverywhere": true,
+         "ecmaFeatures": {
+            "jsx": true
+         }
     },
     "plugins": [
         "meteor",
@@ -39,8 +42,10 @@ module.exports = {
     "settings": {
         "import/resolver": "meteor"
     },
-    "ecmaFeatures": {
-        "jsx": true,
+    "env": {
+           "es6":     true,
+           "browser": true,
+           "node":    true,
     },
     "rules": {
         "max-len": [0, {code: 100}],
