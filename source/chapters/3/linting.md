@@ -17,7 +17,7 @@ And not allow a commits with bad code, this will force you to write beautiful co
 Also, try integrating it with your IDE, for WebStorm look here: https://www.jetbrains.com/help/webstorm/eslint.html 
 
 ```js
-meteor npm i --save-dev eslint eslint-plugin-import eslint-plugin-meteor eslint-plugin-react eslint-import-resolver-meteor lint-staged pre-commit
+meteor npm i --save-dev babel-eslint eslint eslint-plugin-import eslint-plugin-meteor eslint-plugin-react eslint-import-resolver-meteor lint-staged pre-commit
 ```
 
 ## Config 
@@ -27,22 +27,36 @@ This is an opionated configuration.
 Create `.eslintrc.js` file inside your project root:
 ```
 module.exports = {
-    "extends": ["eslint:recommended", "plugin:meteor/recommended", "plugin:react/recommended"],
     "parser": "babel-eslint",
     "parserOptions": {
-        "allowImportExportEverywhere": true
+        "allowImportExportEverywhere": true,
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "env": {
+        "es6":     true,
+        "browser": true,
+        "node":    true,
     },
     "plugins": [
         "meteor",
         "react"
     ],
+    "extends": ["eslint:recommended", "plugin:meteor/recommended", "plugin:react/recommended"],
     "settings": {
         "import/resolver": "meteor"
     },
-    "ecmaFeatures": {
-        "jsx": true,
-    },
     "rules": {
+        "react/jsx-filename-extension": [1, {
+            "extensions": [".jsx"]
+        }],
+        "react/jsx-no-bind": [2, {
+            "ignoreRefs": false,
+            "allowArrowFunctions": false,
+            "allowFunctions": false,
+            "allowBind": false
+        }],
         "max-len": [0, {code: 100}],
         "import/no-absolute-path": [0],
         "meteor/audit-argument-checks": [0],
@@ -50,9 +64,9 @@ module.exports = {
         "switch-colon-spacing": [0],
         "no-invalid-this": [0],
         "new-cap": [1],
-        "no-trailing-spaces": ["error", {
+        "no-trailing-spaces": [2, {
             skipBlankLines: true
-        }]
+        }],
     },
     "overrides": {
         files: "*.js,*.jsx",
@@ -68,7 +82,7 @@ In your `package.json` file add the following:
   "scripts": {
     "start": "meteor run --settings settings.json",
     "test": "meteor test --driver-package practicalmeteor:mocha --settings settings.json",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --ext .jsx --fix"
   },
   "lint-staged": {
     "*.js": "eslint --fix",
