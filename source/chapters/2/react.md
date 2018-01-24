@@ -6,38 +6,44 @@ disqusPage: 'Chapter 2: React'
 
 ## Introduction
 
-This chapter shows you how to integrate React into Meteor with absolute ease. But be warned! This is not a React tutorial, in order
-to fully understand what's going on here check the following resources:
+This chapter shows you how to integrate React into Meteor. However, this is not a React tutorial! In order
+to fully understand what's going on here, check the following resources:
 
-- https://camjackson.net/post/9-things-every-reactjs-beginner-should-know
-- https://blog.risingstack.com/the-react-way-getting-started-tutorial/
-- https://egghead.io/courses/react-fundamentals
-- http://jaketrent.com/post/smart-dumb-components-react/
+- [9 things every ReactJS beginner should know](https://camjackson.net/post/9-things-every-reactjs-beginner-should-know)
+- [The React way - getting started](https://blog.risingstack.com/the-react-way-getting-started-tutorial/)
+- [React fundamentals](https://egghead.io/courses/react-fundamentals)
+- [Smart and dumb components in React](http://jaketrent.com/post/smart-dumb-components-react/)
 
-## Setting Up
-```bash
+## The environment
+Before we go through some React code, let's set up the environment for the project with these terminal commands:
+
+```
 meteor add cultofcoders:meteor-react-routing
 meteor npm install --save react react-mounter react-dom 
 ```
 
-## Architecture
+## The code structure
 
-As we discussed in the first chapter, we want to build modular apps and not rely on auto loading.
-We will store all our react components in the `/imports/ui` folder.
+As we discussed in the first chapter, we want to build modular apps that do not rely on auto loading.
+We will store all of our React components in the `/imports/ui` folder.
 
-Routing is a general concept. A router decides what to show to the user, and because we regard it
-as a very important piece in our app, we shall put it in `/imports/routing`
+A router decides what to show to the user, and because it is a critical component
+ in our app, we will place it in `/imports/routing`.
 
-## Routing
+## Routing and application flow
 
-Please follow the README.md from: 
-https://github.com/cult-of-coders/meteor-react-routing
+To better understand what we are about to do and look at some code samples, please go through the 
+[README.md](https://github.com/cult-of-coders/meteor-react-routing) file that we maintain for our projects. 
 
-After you have setup your files, created `/imports/routing/router.js`, `/imports/routing/index.js`, and you included the routing in your client/startup folder,
-created your `/imports/ui/App.jsx` file, and now it's time to see this baby in action!
+After the setup you did previously with those 2 terminal commands, you will need to create a few files:
+- `/imports/routing/router.js`
+- `/imports/routing/index.js`
+- `/imports/ui/App.jsx` 
 
+Now include the routing in your client/startup folder, and you should be good to go!
+
+Let's start with some code in `/imports/ui/Home.jsx` :
 ```js
-// file: /imports/ui/Home.jsx
 import React from 'react';
 
 export default class Home extends React.Component {
@@ -46,25 +52,24 @@ export default class Home extends React.Component {
     }
 }
 ```
+Now in `/imports/routing/index.js`:
 
 ```js
-// file: /imports/routing/index.js
 import route from './router.js'
 
 route('/', Home);
 ```
 
-Now access it: http://localhost:3000/
+And let's access [our work](http://localhost:3000/)!
 
 ## Methods
 
-By default, if you read the tutorials on React, you realized that React is already reactive, by doing `this.setState` it will
-rerender efficiently your Component.
+By default, React is already reactive, so by using `this.setState` it will
+render again your component in a very efficient manner.
  
-Let's see how we would call a method and show a response in our component:
+Let's see how we would call a method and show the response in our component with some code in `/imports/ui/Home.jsx`:
 
 ```js
-// file: /imports/ui/Home.jsx
 export default class Home extends React.Component {
     constructor() {
         super();
@@ -98,25 +103,18 @@ export default class Home extends React.Component {
 }
 ```
 
-Try it out, see if it works.
-
 ## Publications
 
-For publications we need Meteor's reactivity, the Tracker, that we discussed about it in Chapter 1. However,
-fortunately we don't have to reinvent the wheel for it, because Meteor has created a package that allows us
-to easily do it:
-
-https://guide.meteor.com/react.html#using-createContainer
-
+To use publications, we need Meteor's reactivity, the Tracker, about which we discussed in Chapter 1 of this tutorial. 
+However,  Meteor has created a package that allows us to easily use [it](https://guide.meteor.com/react.html#using-createContainer).
+This terminal command will add it to our project:
 ```
-// terminal
 meteor add react-meteor-data
 ```
 
+Let's assume you have a publication named 'donuts', that will of course return...Donuts.find().
+In `/imports/ui/Home.jsx`, let's use:
 ```js
-// assuming you have a publication 'donuts' that returns Donuts.find()
-// file: /imports/ui/Home.jsx
-
 import { createContainer } from 'meteor/react-meteor-data';
 import Donuts from '/imports/api/donuts/collection.js'
 
@@ -142,7 +140,7 @@ class Home extends React.Component {
 
 export default createContainer((props) => {
     const handle = Meteor.subscribe('donuts');
-    // reactive data sources will get tracked here
+    // the reactive data sources will get tracked here
     // any change will result into a re-render of "Home" component
     
     return {
@@ -152,20 +150,17 @@ export default createContainer((props) => {
 }, Home)
 ```
 
-Go ahead, try adding a new donut from the Meteor's shell. You'll see it updated live.
+Now try adding a new donut from the Meteor shell. You will see it updated live.
 
-This is it. It's just this simple. You now have the knowledge of integrating Meteor & React. Now, we need to
-master it.
+This is it. It's that simple. You now have the knowledge that allows you to integrate React with Meteor. 
+Now, you need to master it.
 
-In the homework you'll most likely be dealing with forms, here are some starting points:
-- http://www.material-ui.com/
-- https://github.com/christianalfoni/formsy-react
-- https://github.com/mbrookes/formsy-material-ui 
+In the homework you'll most likely be dealing with forms, so here are some recommendations:
+- [Material UI](http://www.material-ui.com/)
+- [Formsy React](https://github.com/christianalfoni/formsy-react)
+- [Formsy material UI](https://github.com/mbrookes/formsy-material-ui) 
 
-But you can use everything you want.
-
-There is a package that leverages work for you:
-https://github.com/meteor-utilities/react-list-container
+There is a [package](https://github.com/meteor-utilities/react-list-container) that contains a lot of components and will do a lot of the work for you!
 
 ## Homework
 
@@ -174,29 +169,26 @@ Create a route `/login` and a `Login.jsx` file. In it you will have a form. When
 it will call `Meteor.loginWithPassword` and redirect him to "/" [Hint 1](/)
 
 #### 2. Private Donuts!
-Only allow logged in users to view the donuts list, it is very private. [Hint]()
+Only allow logged in users to view the donuts list, which is private. [Hint]()
 
 #### 3. Register
-Create a registration, use email and password for now.
+Create a registration. Use just email and password for now.
 
 #### 4. Create a donut
-As a logged in user, present a form and createa donut via the Meteor.call(). You can do it in a separate route, or
+As a logged in user, present a form and create a donut via the Meteor.call(). You can do it with a separate route, or
 where you list the donuts. Whatever you choose, create another component. Always think in components.
 
 ## Over-achievers
 
 #### 1. Filters
-In the donuts list, add a checkbox, when you click it it will only show the donuts with price < 200. Make sure filter
-is in another component, when something changes, your subscription should change. This means you may need a container
-over on top of your container!
+In the donuts list, add a checkbox, when you click it it will only show the donuts with price smaller than 200. Make sure the filter
+is in another component, so that when something changes, your subscription changes as well. This means you may need a container on top of your container!
 
 #### 2. Pagination (By Methods) (From scratch)
-Implement a pagination strategy (You can use: https://www.npmjs.com/package/react-paginator). Where you display
-all the donuts, 3 items per page. *Quick tip*: You may need to create another method that retrieves the count for all donuts.
+Implement a pagination strategy (You can use [React paginator](https://www.npmjs.com/package/react-paginator) where you display
+all the donuts, 3 items per page. *Quick tip*: You may need to create another method that retrieves the count of all the donuts.
 
 #### 3. Pagination (By Subscription) (From scratch)
-This one is a bit tricky. But not impossible, if you want a true reactive pagination (which in most cases you don't) but you want 
-it know because you're an over-achiever, check this meteor package for reactive counting:
-
-- https://github.com/percolatestudio/publish-counts
+This one is a bit tricky. But not impossible, if you want true reactive pagination (which in most cases you don't) but you want 
+to know about it because you're an over-achiever. Check out [this](https://github.com/percolatestudio/publish-counts) package, which can be used for reactive counting.
 
