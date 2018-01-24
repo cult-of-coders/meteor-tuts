@@ -17,7 +17,7 @@ which are the usual enterprise type of applications that may require a bigger te
 and a lot of coding. 
 
 We'll understand how to keep it under-control, how to use testing and how
-to continously integrate and of course: how to deploy!
+to continuously integrate and of course: how to deploy!
 
 It is going to be awesome!
 
