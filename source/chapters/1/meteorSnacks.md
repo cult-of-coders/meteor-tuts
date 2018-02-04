@@ -138,11 +138,13 @@ Basically, *Meteor.defer(fn)* will do a "background" job in a fiber (asynchronou
 
 ## HTTP
 
-"-Would you like an external REST API with that sir ?
- -Yes of course!
+Picture a hungry developer that sits down at a table in the "Meteor restaurant":
+
+"-I'd like an external REST API please.
  -Coming right up!"
- This is how a conversation between a "hungry" developer and Meteor would look like, if the developer wanted to know if Meteor can serve him an external REST API.
-  For that, Meteor has a simple [HTTP](http://docs.meteor.com/api/http.html) package built-in.
+ 
+ This is how a conversation between the "hungry" developer and the Meteor "waiter" would look like, if the developer wanted to have a [REST API](https://www.youtube.com/watch?time_continue=1&v=llpr5924N7E).
+ For that, Meteor has a simple [HTTP](http://docs.meteor.com/api/http.html) package built-in.
 
 ```js
 Meteor.methods({
@@ -171,7 +173,7 @@ The idea is that you can use any type of file, even binary, that you can use pri
 
 ## Meteor Settings
 
-Again, the guys and girls at [Meteor](https://docs.meteor.com/api/core.html#Meteor-settings) explain this subject in the best way.
+Again, the developers at [Meteor](https://docs.meteor.com/api/core.html#Meteor-settings) explain this subject in the best way.
 Use this code in your *.deploy/local.json* file:
 ```json
 {

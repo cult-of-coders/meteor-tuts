@@ -40,6 +40,7 @@ The reasons for which we made this choice are:
 - React is modular
 - Even if it is a bit hard to use at first, using React gets much easier once you get the hang of it, and the development process becomes easy and intuitive
 - React is lightning Fast 
+- React is maintained by Facebook, and they actively use it in their projects, including in the source code of Facebook itself!
 
 However, at this stage(Q1 2018), Vue.JS is looking very promising and it is gaining a lot of momentum. 
 Who will win? It's the survival of the fittest. Time will decide. For now, pick a technology and master it. 

@@ -5,7 +5,6 @@ disqusPage: 'Chapter 1: Accounts'
 ---
 
 Congratulations for making in this far with this Meteor tutorial! Now we're going to talk about a very important element in you application: users!
-That's right! Without users, your application cannot become useful.
 Meteor already has implemented some of the core functionality for dealing with users, and it offers simple yet very powerful APIs for helping you to implement user interaction in you application:
 
 - User creation
@@ -98,11 +97,11 @@ Meteor.logout(function (err) {
 ```
 Now, if you check their values, *Meteor.user()* and *Meteor.userId()* will be null, because there is no user that's currently logged in.
 
-The [callbacks](https://en.wikipedia.org/wiki/Callback_(computer_programming)) we used previously in `loginWithPassword`, 
-`changePassword` and `logout` are optional. So you can make the application work without them.
+The [callbacks](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function) we used previously in `loginWithPassword`, 
+`changePassword` and `logout` are optional. So, depending on the situation, you can make the application work without them.
 
-But wait! Your user's new password is so complex, he/she already forgot it(bad user...really bad user).
-Since we're good people, let's reset their password:
+But wait! Your user's new password is so complex, he/she already forgot it.
+In order to reset their password, you simply need to:
 ```js
 Accounts.forgotPassword({ email: 'donut@lover.com' })
 ```
@@ -112,7 +111,7 @@ Now if we check the output in the terminal, where we started Meteor, we should s
 http://localhost:3000/#/reset-password/eNqDzCvx0F3OA6B0dzmx4i6kLs4-veJ36j3X2Rhxui7
 ```
 
-The last part, the one after the last '\', is your token.
+The last part, the one after the last '/', is your token.
 Now let's use that token:
 
 ```js

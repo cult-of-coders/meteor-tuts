@@ -6,8 +6,10 @@ disqusPage: 'Chapter 1: Security'
 
 Security is a very important aspect of any application. When your codebase grows, security must be one of the core aspects 
 that you address. Users need to feel that the data they give you via the application is secure and that it respects the three 
-most important requirements of data security: CIA-**C**onfidentiality, **I**ntegrity and **A**vailability. 
-You can read more about data and application security [here](https://www.owasp.org/index.php/Main_Page).
+most important requirements of data security - CIA:
+- **C**onfidentiality
+- **I**ntegrity
+- **A**vailability. 
  
 Let's start by securing our methods and publications, then we will talk about implementing security best practices for an evergrowing code base.
 
@@ -79,12 +81,12 @@ export default class Security {
 ```
 Word of advice: always keep decoupling your code if classes get huge. And by decoupling we mean that you should separate 
 code into classes, depending on its functionality. Big classes, with multiple functionalities will make it much harder 
-to debug your application in case errors appear. Because of this, we strongly recommend that you abide to [KISS](https://en.wikipedia.org/wiki/KISS_principle). 
+to debug your application in case errors appear. Because of this, we strongly recommend that you abide to KISS : Keep It Smart and Simple. 
 
 Pretty KISS, right ? The reason for which we centralize security in one place is to remove the boilerplate code from 
 inside our methods and separate the purposes of each code file. 
-You can do structure your application however you want. There is no right or wrong.
-However, from our experience, the applications that were structured like this are easier to maintain, and this kind of structure
+You can however structure your application however you want. There is no right or wrong.
+However, from our experience, the applications that are structured like this are easier to maintain, and this kind of structure
  helps beginners write secure code right from the start!
 
 Let's now cover some simple use cases:
