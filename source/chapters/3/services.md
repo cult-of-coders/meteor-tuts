@@ -219,7 +219,7 @@ import PaymentService from 'somewhere';
 
 class ItemService {
     constructor({paymentService}) {
-        this.paymentService = PaymentService;
+        this.paymentService = paymentService;
     }
     
     createItem(item) {
