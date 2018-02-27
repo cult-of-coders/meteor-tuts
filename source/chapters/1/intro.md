@@ -203,7 +203,7 @@ createQuery({});
 As you saw in the example for creating the project folder structure, we have the ability to import from 
 local files by using an "absolute path":
 ```
-import X from /imports/something.js
+import X from '/imports/something.js'
 ```
 
 You can also use a relative path:
