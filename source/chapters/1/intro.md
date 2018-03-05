@@ -4,53 +4,21 @@ description: Getting started with Meteor
 disqusPage: 'Chapter 1: Intro'
 ---
 
-## Installing the framework (Linux and Mac)
+## Installing the framework
 
-In order to be able to develop with Meteor, you will need three basic components: Nodejs, NPM and the Meteor framework itself. Meteor will take care of installing Nodejs and npm for you - and these will always be the correct versions for the app you are developing!
-
-So, to get what you need, simply run the following command in your system terminal:
-
-```
-curl https://install.meteor.com/ | sh
-```
-
-This command will work on an Ubuntu based distribution, such as Linux Mint, Elementary OS and so on.
-This will also work on a Mac!
-To check that you really have installed what you needed, check the software versions of the components:
-```
-meteor --version
-meteor node -v
-meteor npm -v
-```
-If you don't have errors after running these commands, congratulations! You can move on! 
-However, if you have errors, check if you ran the commands correctly. 
-Afterwards, Google is your best friend! 
-
-## Installing the framework (Windows)
-
-On Windows, first install [Chocolatey](https://chocolatey.org/install), then run the following command at an Administrator PowerShell prompt:
-
-```
-choco install meteor
-```
+To install the framework, please follow the steps from the meteor official website: [meteor.com](https://www.meteor.com/install)
 
 ## Tools
 The tool that works best for us, and the one which we recommend you use, would be WebStorm, from Jetbrains.
 Students can get it for free, and other people can get a free 30-day evaluation trial.
-You can download Webstorm from [here](https://www.jetbrains.com/webstorm/download/#section=linux).
+You can download Webstorm from [here](https://www.jetbrains.com/webstorm/download).
 
 To learn more about Webstorm, [go here](https://www.jetbrains.com/webstorm/documentation/).
 
-A free alternative to Webstorm would be Sublime Text. This is an extensible, feature-rich code editor, that is 
+A free alternative to Webstorm would be VSCode. This is an extensible, feature-rich code editor, that is
 relatively easy to learn.  
 It will make your life a whole lot easier, if you're looking to get in the coding business.
-You can download it from [here](https://www.sublimetext.com/3).
-
-To learn how to use it properly, [go here](https://scotch.io/bar-talk/the-complete-visual-guide-to-sublime-text-3-getting-started-and-keyboard-shortcuts).
-
-To be more specific, we recommend the following plugins for Meteor development with Sublime Text: 
--Meteor Snippets
--Meteor Autocomplete (TernJS) 
+You can download it from [here](https://code.visualstudio.com/).
 
 ## Creating a project
 
@@ -60,13 +28,6 @@ your terminal:
 ```
 meteor create myProjectName
 ```
-
-If you get any errors when trying to create a Meteor project in Windows, download the NodeJS installer from 
-[here](https://nodejs.org/en/) and run it. This will automatically update your Nodejs installation and add it to the 
-system path if it was not added already when you installed meteor with the installer.
-Then restart you PC to allow for all the modifications to be implemented and you should now be able to create a 
-Meteor project without any other errors!
-
 
 ## Start Meteor
 
@@ -81,54 +42,28 @@ That's it! You've just created your first project in Meteor!
 Now, to view your work, type *http://localhost:3000* in your browser's address bar and hit Enter.
 Yes ! It's **THAT** easy!
 
-To stop the project from running, just stop the process in your terminal with Ctrl+c ! 
-
-## Official resources
-
-If you want to get more hands-on experience with Meteor ( which is recommended after you finish this tutorial ), you can
- go [here](https://guide.meteor.com). 
-Don't dive directly into it, as it requires you to know a little bit about how Meteor works.
-
-The [Meteor Docs](https://guide.meteor.com) describe the API and features of the modules included with Meteor.
-
 ## Application folder structure
 
 This is the basic folder structure that an application, such as the one you've just created, should be made up of:
 
-<pre>
-├── client 
-│   └── main.js // this file contains: import /imports/startup/client
-├── imports
-│   ├── ui // contains anything User-Interface related (We won't cover UI in this Chapter)
-│   ├── startup
-│   │   ├── client
-│   │   │   └── index.js // loads everything that is needed for the client to function (ex: routes, jQuery plugins, css, anything concerning the client)
-│   │   └── server
-│   │       └── index.js // loads everything that is needed for the server to function
-│   ├── api // contains the rest
-└── server 
-    └── main.js // this file contains: import /imports/startup/server
-</pre>
 
-This is not the structure of the application you have just created ! 
-You need to create a new structure for the application, in order for your project to be better organized, and, as a 
-result, have a somewhat easier life. To do this, run these commands in your terminal :
 
-MacOS & Linux
+```bash
+client
+    main.js # this file contains: /imports/startup/client
+db # This is where our persistence layer is. Including external APIs
+imports
+    ui # contains anything User-Interface related
+    startup
+        client
+            index.js # loads everything that is needed for the client to function (ex: routes, css, anything concerning the client)
+        server
+            index.js # loads everything that is needed for the server to function
+    api # contains the rest
+    server
+        main.js # this file contains: import /imports/startup/server
 ```
-mkdir -p client server imports/ui imports/startup/client imports/startup/server imports/api
-echo "import '/imports/startup/client';" > client/main.js
-echo "import '/imports/startup/server';" > server/main.js
-```
-
-On Windows, the script syntax is somewhat different. To achieve the same results on Windows as you would with the 
-previous script on Linux, run these command into your CMD or PowerShell:
-
-```
-echo ./imports, ./imports/api, ./imports/startup , ./imports/ui, ./startup/client, ./startup/server | % { mkdir "$_" }
-echo "import '/imports/startup/client';" > client/main.js
-echo "import '/imports/startup/server';" > server/main.js
-```
+As a reminder, you could always use the github repository. For that, go [here](www.github.com)
 
 Everything in "/client" and "/server" is automatically loaded, as it is explained [here.](https://guide.meteor.com/structure.html#load-order)
 
@@ -146,28 +81,31 @@ This also gives us the ability to build modular applications.
 ## Importing from NPM
 
 For now, we won't get into a lot of details, but the basic idea is that with Meteor you have access to the
- full NPM ecosystem, allowing you to import modules from http://www.npmjs.com
-As an idea, to get you to realise just how many resources you have at your disposal, the NPM system contained roughly 445 797 packages on May 1st of 2017.
+ full NPM ecosystem, allowing you to import modules from http://www.npmjs.com.
 
 "moment" is a library you will use when working with dates in your projects.
 
-Most of the command line commands we will run during this tutorial we will run when we are in the root directory of the project we are working on.
-As an example, for "meteor-tuts", this is the root directory for the project, on my machine: "/home/user/Documents/meteor-tuts".
+Now, open a new terminal (leave the one with server opened) and in the root directory of the project we are working on, write
 
-As such, to install "moment", go into meteor-tuts (in this case), by using the "cd" command, and run this command:
 ```
 meteor npm install --save moment
 ```
+
 We use save here because it will save it in our packages.json, meaning that if we work in collaboration with
  other developers, when they download the project to start working on it, they will have the same package 
  installed, with the version you specified, making their life much easier. 
 
 To use "moment" in your project, at a basic level, use this code snippet:
+
 ```
+// file: (for example) /imports/startup/server/index.js
 import moment from 'moment';
 
-moment(new Date()).format('YYYY-MM-DD')
+const date = moment(new Date()).format('YYYY-MM-DD')
+console.log(date)
 ```
+
+Now, you should see the current date printed on your terminal in case we added this code server side, otherwise on browser's console on client side
 
 ## Atmosphere
 
@@ -179,62 +117,38 @@ You can learn more about it on the project [webpage](https://atmospherejs.com).
 
 Adding a package is as simple as typing this into the console:
 ```
-meteor add twbs:bootstrap
+meteor add accounts-base accounts-password
+
 ```
 
-That's it. You now have added bootstrap in your application. And it's ready for you to use it!
+That's it. You now have added an user management package in in your application. And it's ready for you to use it!
 There are a lot of cool and useful packages out there that we'll explore during these tutorials.
 
 ## Importing from Atmosphere
 You also can use the modular approach with Meteor packages!
 
-Let's take an example of an atmosphere package name: *cultofcoders:grapher*
-
 To import an atmosphere package we prefix it with `meteor/`
 
 ```js
-import {createQuery} from 'meteor/cultofcoders:grapher';
+import { Accounts } from 'meteor/accounts-base'
 
-createQuery({});
 ```
+
+Don't worry too much about this, we are going to explore them later in this tutorial.
 
 ## Importing from local files
 
 As you saw in the example for creating the project folder structure, we have the ability to import from 
 local files by using an "absolute path":
 ```
-import X from /imports/something.js
+import myService from '/imports/startup/server/myService';
 ```
 
 You can also use a relative path:
 ```
-// given you have two files: /imports/api/X.js and /imports/api/Y.js
-// in Y.js file you can use a relative path (not a lot of details in that file path) :
-import X from './X.js'
+import {sum} from './helpers';
 ```
-
-But you could also use an absolute path ( all the details, no room to wiggle out of it :-) )
-```
-import X from '/imports/api/X.js'
-```
-
-Or you can use ".." to specify the previous folder:
-```
-import X from '../api/X.js'
-```
-You can even omit the ".js" part:
-```
-import X from './X';
-```
-
-If you have a folder that contains "index.js", by importing the folder you will actually import "index.js" from 
-that folder:
-```
-import Z from './Z';
-```
-
-If Z is a file (Z.js) it will import it, if Z is a folder it will try to import Z/index.js.
-
+In order to see how this exactly works in an example, you can go on the github repository, [here](www.github.com)
 Pretty easy right ?
 
 Would you like to find more about importing and exporting ? You can read more here:
