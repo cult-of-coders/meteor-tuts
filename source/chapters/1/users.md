@@ -4,27 +4,36 @@ description: How Meteor handles users
 disqusPage: 'Chapter 1: Accounts'
 ---
 
-Oh, hello again, so Meteor has a very opinionated way on doing this stuff, and it offers very friendly and dead simple APIs for:
+Welcome to this point of tutorial where we will discuss about the friendly and simple APIs for:
 
 - Creating an user
-- Login (Password, Facebook, Google, ...)
+- Login (with Password, Facebook, Google and others)
 - Forgot Password
 - Change Password
 - Reset Password
 
-In this episode we'll focus more on using it with passwords, but we'll also show you how easy it is to integrate it with other systems.
+In this part we'll focus more on you can register and login in the regular way, but we will also guide you moving forward about how you can integrate it with other authentication mechanism.
 
 ```
 meteor add accounts-base accounts-password
 ```
-
-Open your server-side shell and type:
+Create a server side method where we register an user
 
 ```js
-Accounts.createUser({
-    email: 'donut@lover.com', 
-    password: '12345'
-})
+// file: /imports/api/users/methods.js
+'user.register' (data) {
+    Accounts.createUser({
+        email: data.email,
+        password: data.password
+    });
+}
+
+// client side, in the browser try this:
+const data = {email: 'test@test.test', password: '12345'}
+Meteor.call('user.register', email, password, (err, result) => {
+    console.log(err, result) // in case you try it twice, it will throw an exception that email already exists
+});
+
 ```
 
 Users are stored in a collection. You can access this collection via `Meteor.users`. 
@@ -33,7 +42,7 @@ It's the same kind of collection that we learned about in the past chapters.
 Now go to your browser's console:
 
 ```js
-Meteor.loginWithPassword('donut@lover.com', '12345', function (err) {
+Meteor.loginWithPassword('test@test.test', '12345', function (err) {
     if (!err) {
         console.log('I was called because authentication was a success')
     } else {
@@ -41,8 +50,7 @@ Meteor.loginWithPassword('donut@lover.com', '12345', function (err) {
     }
 })
 ```
-
-Bam! You're logged in.
+You should be logged in now!
 
 ```js
 // in browser console:
@@ -50,8 +58,7 @@ Meteor.user() // will return the current logged in user
 Meteor.userId() // will return the _id of the current logged in user
 ```
 
-`Meteor.user()` is a reactive data source, so if you use it in a Tracker, then you will benefit from it's reactivity,
-meaning you can show some stuff for logged in users, and hide for anonymous ones.
+`Meteor.user()` is a reactive data source, so if you use it in a Tracker, then you will benefit from it's reactivity.
 
 Another thing you may notice is how `emails` key is structured:
 ```js
@@ -74,6 +81,7 @@ But don't worry about this now, when we'll learn how to make this easy, so you w
 You think '12345' is not a very secure password, and you are correct, let's change it:
 
 ```js
+// browser's console
 Accounts.changePassword('12345', 'My1337L333Tpasswurt%', function (err) {
     if (!err) {
         console.log('Change password was a success!')
@@ -86,6 +94,7 @@ Accounts.changePassword('12345', 'My1337L333Tpasswurt%', function (err) {
 Very nice, now let's try a logout:
 
 ```js
+//browser's console
 Meteor.logout(function (err) {
     if (!err) {
         console.log('Logout was a success!')
@@ -97,8 +106,6 @@ Meteor.logout(function (err) {
 ```
 
 Next time you login, you'll login with your new password.
-
-Btw, the callbacks we used in `loginWithPassword`, `changePassword` and `logout` are optional, you can simply not use it.
 
 But wait, your new password is so complex, you already forgot it.
 
@@ -123,30 +130,7 @@ Accounts.resetPassword('eNqDzCvx0F3OA6B0dzmx4i6kLs4-veJ36j3X2Rhxui7', 'NewPasswo
 })
 ```
 
-Bam!
-What if you want registration, but with mail confirmation ?
+If you want to read more about this package, you can find documentation for it [here](https://docs.meteor.com/api/accounts.html)
 
-Go to your meteor shell:
-```js
-Accounts.createUser({
-    email: 'user@withoutPassword.com'
-})
-
-// it returns the newly created _id
-
-Accounts.sendEnrollmentEmail(_id);
-```
-
-Now go to where you started meteor and check the email out.
-Get the token and set a new password using `Accounts.resetPassword()`
-
-Emails are customizable:
-http://docs.meteor.com/api/passwords.html#Accounts-emailTemplates
-
-Read more about other cool stuff here:
-http://docs.meteor.com/api/passwords.html
-
-That's a short intro into the account system. Isn't it super-duper easy ?
-
-Login with Facebook, Google, Twitter, etc:
-https://guide.meteor.com/accounts.html#supported-login-services
+# Important
+In order to see this in real action, you can access on [github](www.github.com) and clone the project.
