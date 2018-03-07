@@ -161,6 +161,7 @@ Would you like to find more about importing and exporting ? You can read more he
 If you need help, or you get stuck you can ask other Meteor evangelists out there:
 - https://forums.meteor.com
 - Go to the #meteor channel on FreeNode Server: [https://webchat.freenode.net/](https://webchat.freenode.net/)
+- Contact Cult of Coders for consultancy, [here](https://www.cultofcoders.com/contact)
 
 Make sure you Google your questions first, to find out if somebody had the same problem as well 
 (and most likely has found an answer to that problem), before asking the community!
