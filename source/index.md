@@ -11,6 +11,13 @@ As years passed by and humanity evolved, apps have literally changed the way in 
 Having things simplified gave us more time, time which we, as humans started to use smartly by finding a way so simplify the process of building apps.
 As a result of those efforts MeteorJS was born.
 
+**Important!**
+To further help your understanding we have set a [github repository](http://www.github.com) where you can find a branch for each of the sections
+you will complete on this tutorial.
+In addition to this tutorial you can watch every section of it online [on our youtube channel](http://www.youtube.com). These videos will contain a more detailed explanation
+given by your trainer in order for you to better understand the concepts you are learning.
+
+
 
 <h1>What is Meteor?</h1>
 
@@ -54,41 +61,30 @@ If you are familiar with Javascript, but not with the ES6 syntax, you can use th
 These resources are ordered in the order we thought wold serve you best to go over them. If you think you have found a 
 better way to learn Javascript ES6, then, by all means, please use the resource which fits you better. 
 
-All of the resources linked in here are free to use. Because of this, you will only need a computer with an internet 
-connection and time.
+Even though our primarily focus is Meteor, we are going to use React so that you can visualize how everything works, which is the view layer we recommend for Meteor. Ideally, would be to study first React even though our primary focus on this tutorial is Meteor. To study React, we recommend you: 
+- [https://camjackson.net/post/9-things-every-reactjs-beginner-should-know](https://camjackson.net/post/9-things-every-reactjs-beginner-should-know).
+- [https://blog.risingstack.com/the-react-way-getting-started-tutorial/](https://blog.risingstack.com/the-react-way-getting-started-tutorial/).
+- [https://egghead.io/courses/react-fundamentals](https://egghead.io/courses/react-fundamentals).
+- [http://jaketrent.com/post/smart-dumb-components-react/](http://jaketrent.com/post/smart-dumb-components-react/).
 
-<h1>Compatibility warning</h1>
+<h1>Meteor - what are we going to learn?</h1>
 
-Due to the fact that some differences in the steps described in this tutorial might occur, depending on the platform 
-that you are using ( Windows, Mac or Linux ), we will address these particularities separately, where they are encountered.
+**Introduction:** 
+- We are going to create a post feed application in which users will be able to make a post and users will see the changes reactive (live). Each post will have comments and will allow the owner to edit or remove the post.</br>
 
-<h1>Using the terminal</h1>
+**Curriculum:**
+- Create a meteor project
+- Structuring a meteor application
+- Collections (list, insert, update and  remove)
+- Methods
+- Publications and subscriptions
+- User accounts
+- Registration
+- Login
+- Forgot password
+- Meteor tips&tricks
 
-Throughout this tutorial, we will be using the command line interface extensively. 
-To help you out, here are instructions that should enable you to perform some basic operations in the command line interface:
 
-![Linux](../images/tuxSmall.png "Linux icon")
 
-Bash is the default command line interface on most of the Linux distributions out there. 
-Usually, the shortcut to launch the terminal is Ctrl+Alt+T.
-To insert copied content into the terminal, use the shortcut Shift+Insert, or right click inside the window and click 
-on the "Paste" option from the menu that appears. 
-To find out more information regarding the usage of the command line interface on Linux, go [here](http://linuxcommand.org/). 
+Now let's sail together into the Meteor World!
 
-![Windows](../images/windowsSmall.png "Windows icon")
-
-On Windows, there are 2 options available for you: CMD and PowerShell.
-Search for either of these in the Start menu and launch it with a click.
-To insert copied content into either of the programs, right click inside the window and the content from your clipboard will be pasted into the window.
-To learn how to use CMD effectively, go [here](https://technet.microsoft.com/en-us/library/bb490890.aspx). 
-For PowerShell, this is the official [documentation](https://docs.microsoft.com/en-us/powershell/scripting/core-powershell/console/powershell.exe-command-line-help?view=powershell-5.1).
-
-![OSX](../images/OSXsmall.png "OSX icon")
-
-Mac users can rely on iTerm if they need to use a command line interface.
-To launch iTerm on OSX, either search for the application in the menu, or use the shortcut Command+T.
-To insert copied content into iTerm, use the shortcut Command+v, or, from the "Edit" menu, choose the option "Paste".
-To learn more about using iTerm to its fullest potential, go [here](https://www.iterm2.com/documentation.html).
- 
-Congratulations on finishing the introduction to this tutorial !
-Now you can move on, to the Meteor-related content of this tutorial.
