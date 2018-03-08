@@ -6,13 +6,12 @@ disqusPage: 'Chapter 1: Methods'
 
 ## RPC's - a way to express yourself
 
-Well, you probably already ask yourself what is an RPC. Even if you have already googled the term, allow us to explain to you what an RPC is. 
+Well, you are probably already asking yourself what is an RPC. Even if you have already googled the term, allow us to explain to you what an RPC is. 
 
 First of all, RPC stands for "Remote Procedure Call", which basically means that you invoke "something" with some arguments ( only if you want to use arguments, of course).
-Then you expect a response, just like you would do when in a conversation.
+and you expect a response, just like you would do when in a conversation.
 
-In Meteor, the usual way of doing this, and the best, is by communicating through a websocket with the server.
-If you disable websockets, it falls back to something else, which we won't talk about in this tutorial.
+In Meteor, the usual and most recommended way of doing this, is by communicating through a websocket with the server.
 
 So what actions we can do with RPC's ?
 - Fetching data
@@ -39,11 +38,11 @@ Meteor.methods({
 ```
 
 # Important
-Do not forget to  `` import '/imports/api/methods.js' `` in the server startup file, meaning in the ` /imports/startup/server/index.js ` otherwise meteor won't know of the existence of this file
+Do not forget to  `` import '/imports/api/methods.js' `` in the server's startup file: ` /imports/startup/server/index.js ` otherwise meteor won't know of the existence of this file
 
 ## Now...how to use it ?
 
-Methods can be called from the server-side or from the client-side. Let's try it in the browser's console
+Methods can be called from the server-side or from the client-side. Let's try it in the browser's console:
 
 ```js
 Meteor.call('find.random_number', 25, 50 (err, result ) => {
@@ -57,7 +56,7 @@ To fully understand the reason why we added 2 arguments `err` and `result`, go a
 ## Errors in methods
 
 Let's cause an error and see what happens:
-Type this code in the *imports/api/donuts/methods.js* file:
+Type this code in the */imports/api/methods.js* file:
 ```js
 // file /imports/api/methods.js
 import { Meteor } from 'meteor/meteor';
@@ -74,5 +73,13 @@ Meteor.methods({
            // The first argument (error): is something very general, can be a number like 500, 404,
            // The second argument (reason): is a description of the error
            // The third argument (details): is for providing more details about the error.
+})
+```
+
+Now, make a method call in your browser's console to `method.checkString` and catch the exception:
+
+```js
+Meteor.call('method.checkString', 'exception', (err, result) => {
+    console.log(err);
 })
 ```

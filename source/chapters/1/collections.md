@@ -23,7 +23,7 @@ export default Posts;
 
 ## Inserting data
 
-We already learned how we can create and use a method so we are going to insert in the database a Post
+We already learned how to create and use a method so we are going to insert in the database a Post
 ```js
 // file: /imports/api/posts/methods.js
 // do not forget to import it in the '/imports/startup/server/index.js';
@@ -45,7 +45,7 @@ Meteor.call('post.create', data); // this will call the 'post.create' method and
 We can add in the database whatever we want, from strings to array of objects. The sky is the limit!
 
 ## Mongo tools - check what's in the database
-You could go in a new terminal, go in the root directory of your project and then `meteor mongo` or use an application like [robomongo](https://robomongo.org/) so you can vizualize the data from your database
+You could go in a new terminal, go in the root directory of your project and then `meteor mongo` or use an application like [robomongo](https://robomongo.org/) so you can visualize the data from your database
 
 If we choose to use the terminal and run the command written above, we could check all the posts from the database by typing: `db.posts.find({})`, this will search for all the posts from the database and retrieve an array of objects of there are any.
 
@@ -126,13 +126,13 @@ Meteor.call('post.remove_by_test'm callback)
 ```
 
 #### 4. Updating posts
-Make a method that increment the number of views by 1 for each post that is approved
+Make a method that increments the number of views by 1 for each post that is approved
 ```js
 Meteor.call('post.increment_views', callback)
 ```
 
 #### 5. Remove old posts
-Make a method which removes all the post from last month (from the first day of month, to the last day of that month)
+Make a method which removes all the posts from last month (from the first day of month, to the last day of that month)
 ```js
 Meteor.call('post.remove_from_last_month', callback)
 ```
