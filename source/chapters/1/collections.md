@@ -6,214 +6,136 @@ disqusPage: 'Chapter 1: Collections'
 
 ## Let's talk data!
 
-Meteor uses MongoDB as its default database. You can use any database you want, because you have access to 
+Meteor uses MongoDB as its default database. You can use any database you want, because you have access to
 *http://www.npmjs.com*, therefore you have access to almost all the existing database drivers out there 
 (a database driver is a program which implements a protocol for connecting to a specific database, like MongoDB, MySQL, SqLite and so on). 
 
-## MongoDB vs MySQL
-
-Since everyone knows what MySQL is, let's compare MongoDB with it, so you can better understand why it's better suited for the applications we will develop. 
-Unlike MySQL, in MongoDB you don't have to use commands like CREATE TABLE, or CREATE FIELD in order to create a table or a field !
-That's because MongoDB lets you structure your data the way you want. You don't need tables ! That's why MongoDB is a **non-SQL** database solution.
-You still need consistency across your data, which is why, later on, we will teach you how to ensure this consistency at
- the application level, not at the database level.
-
-Now we'd like to make some analogies, to help you understand some concepts faster, but you're going to need to be familiar 
-with the syntax of MySQL at a basic level.
-If you're not, read a little bit about it [here](https://www.tutorialspoint.com/mysql/), then you can continue with the tutorial.
-
-Now let's make those analogies:
-- DATABASE = Database (yes, the same name)
-- TABLE = Collection (a list of data - a *collection* of data)
-- ROW = Document (the actual list of data inside the collection)
-
-I like donuts...despite being aware of the fact that they're unhealthy.
-I love donuts so much that I want to store them in a database !
-
-First, let's create a new file in the project file structure we created in the previous chapter, by running these commands
- in the */imports/api* folder:
-```
-mkdir donuts
-cd donuts
-touch collection.js
-```
-
-Now let's write some code in this file we have just created:
+## How to create a collection?
 
 ```js
+// imports/db/posts/collection.js
 import { Mongo } from 'meteor/mongo';
 
-const Donuts = new Mongo.Collection('donuts');
+const Posts = new Mongo.Collection('posts');
 
-export default Donuts;
+export default Posts;
 ```
 
-## Nasty Globals
+## Inserting data
 
-Let's start solving those errors,right ?
-Since our Donuts are isolated in their own module, we need to gain access to them. For that purpose, and only in this tutorial, we will use some very nasty global variables.
-Don't try this in a production project ! It fits into the category "Bad practices" !!
-
-Go to "/imports/startup/server/index.js" and type this in the source file:
-
+We already learned how we can create and use a method so we are going to insert in the database a Post
 ```js
-import './nasty-globals.js'
-```
-Now, let's move over to "/imports/startup/server/nasty-globals.js":
+// file: /imports/api/posts/methods.js
+// do not forget to import it in the '/imports/startup/server/index.js';
+import {Meteor} from 'meteor/meteor'
+import Posts from '/imports/db/posts'; // or, as it's on github, for simplicity, import {Posts} from '/db';
 
-```js
-import Donuts from '/imports/api/donuts/collection.js'
-```
-
-As a reminder: because we used export default, when we import, we can import as any name:
-```js
-//import Any_Name_I_Want_Will_Have_The_Same_Effect from '/imports/api/donuts/collection.js'
-DonutsCollection = Donuts 
-```
-Because we did not use "var", "let" or "const" before it, it's a global variable !
-
-## The Meteor console
-In Meteor, we have at our disposal a console for the server side of the application.
-We can use this for debugging purposes.
-To use it, go to the file in which you have created your application, and open a terminal.
-Type the following command into your terminal:
-```
-meteor shell
-```
-
-This will open a terminal from which you can test code snippets. The results of your test will not appear in the command prompt 
-from which you started your terminal
-
-## Inserting data 
-To get a better idea about how data is inserted into MongoDB from Meteor, run the following code snippet in your Meteor Shell, after running your project:
-```js
-DonutsCollection.insert({
-    color: 'pinkish-green', 
-    flavors: ['mustard', 'onions'], 
-    price: 999.0, 
-    expiresAt: new Date(),
-    isCommestible: false,
-    ratings: {
-        taste: 2,
-        awesomeness: 10,
+Meteor.methods({
+    'post.create'(post) {
+        Posts.insert(post);
     }
-})
+});
+
 ```
-
-We inserted a string, array, number, date, boolean, and even an object. We can have array of objects, array of dates,
-array of array of array of objects that contains an array of array of dates (you get the idea). The sky's the limit ! 
-
-## Result
-
-After running the code snippet for data insertion in your Meteor shell, you will get the following output in the terminal window:
-```
-'MLx7SF79kXvAZuEyx'
-```
-
-This represents the response we get from .insert() after inserting the data. This represents the newly created id. 
-(Which is stored as _id in the Document in the database)
-
-
-## Finding data
-Now let's fetch all the the data related to our donuts from the database (we run this in Meteor shell):
+To test this, you can go in the browser's console and try something like this:
 ```js
-DonutsCollection.find()
+const data = {title: 'test', description: 'some description'};
+Meteor.call('post.create', data); // this will call the 'post.create' method and will add a post in the database
 ```
+We can add in the database whatever we want, from strings to array of objects. The sky is the limit!
 
-If you run this code snippet, you will get a bunch of data displayed into your Meteor shell.
-So how was that accomplished ?
-With a cursor! That involves using the methods find() and fetch(), about which we'll talk later!
+## Mongo tools - check what's in the database
+You could go in a new terminal, go in the root directory of your project and then `meteor mongo` or use an application like [robomongo](https://robomongo.org/) so you can vizualize the data from your database
 
+If we choose to use the terminal and run the command written above, we could check all the posts from the database by typing: `db.posts.find({})`, this will search for all the posts from the database and retrieve an array of objects of there are any.
+
+## Find all posts
 ```js
-DonutsCollection.find().fetch()
+// file: /imports/api/posts/methods.js
+    'post.list' () {
+        return Posts.find().fetch();
+    }
 ```
 
-Let's add another *donut* to our "inventory", so that we can do something more advanced with our data: 
-```js
-DonutsCollection.insert({price: 50, isCommestible: true});
-```
-As a tip, you should see an id in your shell. That way you know you did the tutorial right !
-
-Now let's search our database:
-```js
-// we only have to eat commestible donuts
-DonutsCollection.find({isCommestible: true}).fetch()
-
-// and we want to get the good stuf, even if it's expensive, so let's get the donuts with a price bigger than 200
-DonutsCollection.find({price: {$gt: 200}}).fetch()
-```
-To be able to query MongoDB efficiently, you need to know some things about selectors.
+To be able to query MongoDB efficiently, you need to know some things about selectors (meaning what are you going to select from your collection).
 Read [this](https://docs.mongodb.com/manual/reference/operator/query/#query-and-projection-operators) to get acquainted with them.
 
-find() also takes arguments, named "options":
+The second argument for `find()` is useful for sorting, limiting the amount of received documents, to get only specific fields and many others. Read [this](https://docs.meteor.com/api/collections.html#Mongo-Collection-find) for more details
+
+## Updating a post
 ```js
-DonutsCollection.find({}, {
-    sort: {price: -1}, // sorts price in descending order
-    limit: 2, // limits the results to 2
-    fields: {price: 1, isCommestible: 1} // will only return the fields price and isCommestible
-}).fetch()
+    'post.edit' (_id, post) {
+        Posts.update(_id, {
+            $set: {
+                title: post.title,
+                description: post.description
+            }
+        });
+    }
 ```
 
-There are other fields as well, but we don't want to get into the details just yet, and if you're as curious as we are, 
-you can read about them [here](http://docs.meteor.com/api/collections.html#Mongo-Collection-find).
-
-## Updating the data
-
-What about updating the data ?
-Well, it's so simple you won't believe it:
-```js
-DonutsCollection.update({price: 50}, {
-    $set: {price: 51}
-})
-```
-
-The first argument represents the data that you "want to update", and the second tells the system "how you update it". 
-You can use arguments such as "$inc" for incrementing, 
-"$addToSet" if you want to add another delicious ingredient in the "flavors" array.
-
+The first argument represents the data that you "want to update", and the second tells the system "how you update it".
 The idea is you can do a lot of things, and the options are endless.
 So if you want to read more about updating in MongoDB, go [here](https://docs.mongodb.com/manual/reference/operator/update/).
-
-## Removing data
-
-Removing data is easy, and the argument it takes to do it is what we want to remove:
+## Remove a post with a specific _id
 ```js
-DonutsCollection.remove({price: {gt: 1000}})
+    'post.remove' (_id){
+        Posts.remove(_id);
+    }
 ```
 
-Keep playing with the code, try new inserts, try new selectors. Have a little bit of fun! You deserve it!
-
-If you have a MongoDB visualizer, like "[Robomongo](https://robomongo.org/)" for Ubuntu, or any other tools out [there](http://lmgtfy.com/?q=mongodb+admin+software),
-you can connect to the database by using "localhost" and port 3001, when Meteor is started, and see how it works for yourself!
-
-
-## Tips and tricks
-
-You can also find/update/remove by using the id as a string:
+## Fetch a post with a specific _id
 ```js
-DonutsCollection.update('XXX', modifier)
-// equivallent
-DonutsCollection.update({_id: 'XXX'}, modifier)
+    'post.get' (_id) {
+        return Posts.findOne(_id);
+    }
 ```
 
-## Let's have some fun !
+## Work more to learn more
 
-#### 1. Help mr John
-Mr John wants to find all donuts that have a price bigger than 200 and they have at least one flavor!
-Help him with build a query! [Hint](https://docs.mongodb.com/manual/reference/operator/query/size/#op._S_size)
+Now let's practice what we've learned in this section with a few simple exercises:
 
-#### 2. Price change
-It's donut season. Run an update that increases all prices by 100, so you can make more profit! 
-[Hint](https://docs.mongodb.com/manual/reference/operator/update/inc/#up._S_inc)
+We'll consider a post  in the following format:
+```js
 
-#### 3. Reality hit
-People did not like the new prices, so create a query that will decrease the prices for the most 3 expensive 
-donuts by 10%. [Hint](https://docs.mongodb.com/manual/reference/operator/update/mul/#up._S_mul)
+const post = {
+title: 'something', // string
+description: 'meteor-tuts', // string
+isApproved: true, // boolean
+views: 10,
+linkedPostIds: ['aaa', 'bbb', 'ccc', 'ddd'],
+createdAt: new Date // Date
+}
+```
+#### 1. Posts with a specific title
+Make a method which returns all the posts with title: 'test'
+```js
+Meteor.call('post.get_by_title', callback)
+```
 
+#### 2. Posts with views
+Make a method which returns all the posts that have between 100 and 200 views and that returns only the title (as fields)
+```js
+Meteor.call('post.get_by_views', {title: 'test', views: 300}, callback)
+```
 
+#### 3. Removing posts
+Make a method that removes all the posts with title: 'test' or description: 'test'
+```js
+Meteor.call('post.remove_by_test'm callback)
+```
 
+#### 4. Updating posts
+Make a method that increment the number of views by 1 for each post that is approved
+```js
+Meteor.call('post.increment_views', callback)
+```
 
-
+#### 5. Remove old posts
+Make a method which removes all the post from last month (from the first day of month, to the last day of that month)
+```js
+Meteor.call('post.remove_from_last_month', callback)
+```
 
 
 

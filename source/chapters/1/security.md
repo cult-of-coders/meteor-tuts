@@ -15,29 +15,17 @@ So, remember the Methods ?
 
 ```js
 Meteor.methods({
-    'do_something': function () {
-        // in it you have access to this.userId
-        // which represents the logged in user
-        // if your user is not logged in it will be null
-        console.log(this.userId);
-    }
+    'post.create'(post) {
+        Posts.insert(post);
+    },
 })
 ```
 
-Same thing in publications:
-
-```js
-Meteor.publish('something', function () {
-    console.log(this.userId);
-    
-    return this.ready(); 
-})
-```
+In every method & publication we can access `this.userId`, this will return either `null`, meaning the user is not authenticated, or a string with the actual userId, something like `8qLGFKSn6szJkzsyG`
 
 ## Managing Roles
 
-Based on the userId you have the ability to check if he is logged in, maybe you have multiple roles in the system,
-that you may store as an array at "user document" level, and you can check for that, the thing is, you can do anything you want.
+Based on the userId you have the ability to check if the user is logged in, maybe you have multiple roles in the system,
 
 We recommend installing the infamous package, [alanning:roles](https://atmospherejs.com/alanning/roles):
 
@@ -52,6 +40,7 @@ Centralize security in a module:
 
 ```js
 // file: /imports/api/security.js
+// example of a module for security
 import { Roles } from 'meteor/alanning:roles';
 
 export default class Security {
@@ -59,14 +48,6 @@ export default class Security {
         if (!this.hasRole(userId, role)) {
             throw new Meteor.Error('not-authorized');
         }
-    }
-
-    static currentUserHasRole(role) {
-        if (!Meteor.isClient) {
-            throw new Meteor.Error('not-allowed', 'This method is only available on the client');
-        }
-
-        return this.hasRole(Meteor.userId(), role);
     }
 
     static hasRole(userId, role) {
@@ -87,46 +68,56 @@ export default class Security {
 
 Pretty straight forward right ? The reason we do it like this, the reason we centralize security in one place,
 is to remove boilerplate code inside our methods and keep separation of concerns. You can do it however you want it, there is no right or wrong,
-depends on your use-case, but in my opinion I find out that it was easier to maintain, and newly onboarded developers were writing secure
+depends on your use-case, but we believe that it is easier to maintain, and newly onboarded developers were writing secure
 code right from the start!
 
 Simple usage in methods:
 
 ```js
-import Security from '/imports/api/security.js';
+import {Meteor} from 'meteor/meteor'
+import {Posts} from '/db';
+import Security from '/imports/api/security';
 
 Meteor.methods({
-    'do_something': function () {
-        // throw exception if not logged it:
+    'post.create'(post) {
         Security.checkLoggedIn(this.userId);
-        
-        // throw exception if not has role:
-        Security.checkRole(this.userId, 'ADMIN');
-        
-        // conditional return
-        if (Security.hasRole('ADMIN')) {
-            return sensitiveData;
-        } else {
-            return publicData;
-        }
+        post.userId = this.userId;
+        Posts.insert(post);
+    },
+
+    'post.list' () {
+        return Posts.find().fetch();
+    },
+
+    'post.edit' (_id, postData) {
+        Posts.update({_id: _id, userId: this.userId}, {
+            $set: {
+                title: postData.title,
+                description: postData.description
+            }
+        });
+    },
+
+    'post.remove' (_id){
+        Posts.remove({_id: _id, userId: this.userId});
+    },
+
+    'post.get' (_id) {
+        return Posts.findOne(_id);
     }
-})
+});
 ```
 
 Simple usage in publications:
 
 ```js
+
 import Security from '/imports/api/security.js';
+import {Meteor} from "meteor/meteor";
 
 Meteor.publish('posts', function () {
-    let filters = {};
-    if (!Security.hasRole(this.userId, 'ADMIN')) {
-        // if the user is not an admin, we only show posts with "isPublic" true
-        filters.isPublic = true;
-    }
-    
-    return Posts.find(filters);
+    return Posts.find({userId: this.userId});
 })
 ```
 
-That's it. With this knowledge you can build very secure apps!
+That's it. With this knowledge you can build more secured apps!

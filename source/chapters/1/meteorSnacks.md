@@ -19,6 +19,24 @@ To specify these variables you would do:
 ROOT_URL="http://localhost:3000" MAIL_URL="smtp://gmail.com:25" meteor run
 ```
 
+## Run Meteor Easy
+
+Inside your Meteor folder you have a file "package.json", that packages keeps track of what npm packages you use, and some other
+cool stuff. So for example, you may start an app with diff settings like MAIL_URL, etc, you would do something like:
+```json
+{
+  ...
+  "scripts": {
+    "start": "MONGO_URL=mongodb://localhost:27017/meteor-tuts meteor run --settings .deploy/local.json --port 3000",
+    "deploy": "We'll get into that in another chapter ;)"
+  }
+}
+```
+
+```
+// in your terminal:
+npm run start
+```
 
 ## Meteor.wrapAsync
 
@@ -27,8 +45,8 @@ You will use this to be able to do async operations in your methods. Let's say y
  
 ```js
 Meteor.methods({
-    'something_async': function () {
-        coolLibrary.coolFunction(function (err, res) {
+    'something_async'  () {
+        coolLibrary.coolFunction((err, res) => {
             // gets here after some time.
         })
     }
@@ -63,7 +81,7 @@ but they will run inside fibers. For example:
 
 ```js
 Meteor.methods({
-    'something_async': function () {
+    'something_async' () {
         Meteor.setInterval(() => {
             console.log('tick');
         }, 1000);
@@ -179,23 +197,4 @@ Meteor.settings.public.visible
 You can access all settings from the server-side:
 ```
 Meteor.settings.private.API_KEY
-```
-
-## Run Meteor Easy
-
-Inside your Meteor folder you have a file "package.json", that packages keeps track of what npm packages you use, and some other
-cool stuff. So for example, you may start an app with diff settings like MAIL_URL, etc, you would do something like:
-```json
-{
-  ...
-  "scripts": {
-    "start": "MAIL_URL='xxx' meteor run --port 3000",
-    "deploy": "We'll get into that in another chapter ;)"
-  }
-}
-```
-
-```
-// in your terminal:
-npm run start
 ```

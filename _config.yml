@@ -21,11 +21,11 @@ sidebar_categories:
     - index
   'Chapter 1':
     - chapters/1/intro
-    - chapters/1/collections
     - chapters/1/methods
+    - chapters/1/collections
+    - chapters/1/users
     - chapters/1/reactivity
     - chapters/1/pubsub
-    - chapters/1/users
     - chapters/1/security
     - chapters/1/meteorSnacks
     - chapters/1/conclusion
