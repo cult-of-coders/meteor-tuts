@@ -4,19 +4,36 @@ description: 'Getting acquainted with Meteor'
 disqusPage: 'Welcome'
 ---
 
-<h1>Hi there!</h1>
+<h1>Hello and Welcome!</h1>
 
-We are Cult of Coders, a company which focuses on developing the best possible web applications.
-We only work with Meteor, we absolutely love it, and we'd like to teach you how to use it.
+First of all, welcome aboard and congratulations on your choice of embarking on this journey. But before we start, let me tell you a little story:</br>
+As years passed by and humanity evolved, apps have literally changed the way in which the world works, giving us the chance to simplify and optimize many aspects of our lives.
+Having things simplified gave us more time, time which we, as humans started to use smartly by finding a way so simplify the process of building apps.
+As a result of those efforts MeteorJS was born.
 
-During the last few years we've gathered a lot of experience, and we'd like to share that experience with you.
-Meteor has changed a lot, and is now fully packed with lots of cool stuff that will enable you to create both
-simple and complex enterprise-level applications.
 
-This tutorial is structured in chapters, which are made up of lessons.
+<h1>What is Meteor?</h1>
 
-We encourage you to follow along in a practical manner. This way, you will encounter problems, and learn more.
-Also, the information will come back to you a lot easier when you work on projects !
+Meteor is an open-source JavaScript-based framework which allows the developing of complex web and mobile apps at a fast pace.
+The framework’s design is based on simplicity and efficiency, thus making it a good fit for both beginner and advanced developers.
+
+
+
+<h1>What is Cult of Coders?</h1>
+
+We are a Romanian company solely focused on web and mobile development. Analyzing our clients needs we understood that what
+they are looking for in a product is a perfect combination of the newest technologies and fastness, stability and scalability.
+ In order to apply to all those needs and become more professional we chose to work exclusively with Meteor and React.
+ 
+ 
+<h1>What is Meteor-Tuts?</h1>
+
+Being in love with what we do we contributed to a series of open-source projects which you can see [HERE](http://www.github.com/cult-of-coders).</br>0
+Meteor-Tuts is one of the projects closest to our hearts designed as a useful tool for any programmer that wants to step up his/her game.
+Navigating through this complex but rather easy to understand tutorial you will be accompanied by video tutorials for each chapter and sub-chapter.
+Also, to give you an even better overview, we will provide you with a github repository link where you can find the full project 
+although we recommend you to take it step by step in order to achieve a better understanding and mastery of the MeteorJS framework.
+
 
 <h1>Before you begin</h1>
 
