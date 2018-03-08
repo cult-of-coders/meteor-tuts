@@ -4,7 +4,7 @@ description: How Meteor handles users
 disqusPage: 'Chapter 1: Accounts'
 ---
 
-Welcome to this point of tutorial where we will discuss about the friendly and simple APIs for:
+In this part of the tutorial we will discuss about the friendly and simple APIs for:
 
 - Creating an user
 - Login (with Password, Facebook, Google and others)
@@ -12,7 +12,7 @@ Welcome to this point of tutorial where we will discuss about the friendly and s
 - Change Password
 - Reset Password
 
-In this part we'll focus more on you can register and login in the regular way, but we will also guide you moving forward about how you can integrate it with other authentication mechanism.
+In this part we'll focus more on registering and logging in the regular way, but we will also guide you on how you can integrate it with other authentication mechanism.
 
 ```
 meteor add accounts-base accounts-password
@@ -64,13 +64,13 @@ Another thing you may notice is how `emails` key is structured:
 ```js
 [
     {
-        address: 'donut@lover.com',
+        address: 'meteor@cultofcoders.com',
         verified: true|false
     }
 ]
 ```
 
-This may seem a bit complicated, but they decided to stick with this, maybe because they wanted to satisfy easily the people
+This may seem a bit complicated, but they decided to stick with this, maybe because they wanted to easily satisfy  the people
 who want multiple email addresses on their account. To get the email of your user, you would have to do:
 ```js
 Meteor.user().emails[0].address

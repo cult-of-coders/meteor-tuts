@@ -5,9 +5,9 @@ disqusPage: 'Chapter 1: Security'
 ---
 
 Security is a very important aspect of any application. When your code-base grows,
-you need to more and more careful on how you handle this. We'll show you first how we can
-secure our methods and publications, then you will be shown some tips and tricks to handle 
-it for an evergrowing code base.
+you need to more and more careful on how you handle this. We'll first show how we can
+secure our methods and publications, then we will get into some tips and tricks meant to teach you how to handle 
+the security for an evergrowing code base.
 
 ## Securing Methods & Publicaions
 
@@ -66,8 +66,8 @@ export default class Security {
 }
 ```
 
-Pretty straight forward right ? The reason we do it like this, the reason we centralize security in one place,
-is to remove boilerplate code inside our methods and keep separation of concerns. You can do it however you want it, there is no right or wrong,
+Pretty straight forward right ? The reason we do it like this, by centralizing security in one place,
+is to remove boilerplate code inside our methods and keep separation of concerns. You can do it however you want it, there is no right or wrong way to do it,
 depends on your use-case, but we believe that it is easier to maintain, and newly onboarded developers were writing secure
 code right from the start!
 

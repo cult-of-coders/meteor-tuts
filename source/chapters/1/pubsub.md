@@ -16,9 +16,9 @@ and we add a new post, all the users that are **subscribed** to that data will s
 
 ## Publishing in Meteor
 
-So how would we explain publishing in a very simple manner ? Well, let's assume you're talking to a friend about you application,
+So how would we explain publishing in a very simple manner ? Well, let's assume you're talking to a friend about your application,
  and you want to give him access to your data. In other words, you are going to make that data **public** for him.
- As such,  **publishing** would be equivalent to saying to him "I will give you access to this data !".
+ As such,  **publishing** would be equivalent to saying "I will give you access to this data !".
  
 ```js
 //file /imports/api/posts/publications.js
@@ -41,7 +41,7 @@ It is because of this rule that we aren't using `.fetch()` in our code.
 ## What is a cursor?
 
 A good way to think about a cursor is to think of it as if you would think of an "address". 
-In the example above, we returned an address to all Donuts.
+In the example above, we returned an address to all posts.
 
 Q: Wait, isn't that also what methods do ? <br />
 A: Yes, but by using publications we benefit from reactivity.
@@ -52,7 +52,7 @@ A: You should use pub/sub when you want your data changes to be **live**. Otherw
 ## Subscribing
 
 We have now published the data changes, but how are the users going to know about the data that we've made available for them ?
-Well, that's where subscriptions come in ! If we are to use the "friend" analogy that we have used to explain **publishing*,
+Well, that's where subscriptions come in ! If we are to use the "friend" analogy that we have used to explain **publishing**,
 the friend to which we have given access to the data will say: "Hey! I want access to the data you are offering me."
 
 You noticed that when we created our publication, we first passed a string to it in the code called 'posts'.
@@ -76,14 +76,14 @@ The variable *handler* contains:
 - *ready()*, which is a function that returns true, if the subscription is ready
 - *stop()*, which is a function that will stop the subscription
 
-When a subscription is ready, it means that the server got your request, and it give the specified user access to the **live** data.
+When a subscription is ready, it means that the server got your request, and it gave the specified user access to the **live** data.
 
-How the data is served to us is a very interesting process, but in order to dive into that process, we first have to
+How the data is served to us is a very interesting process, but in order to dive into that process, we must first have to
 have a good understanding of Client-Side collections.
 
 ## Observing Changes
 
-Now everytime something in the "address" changes, like a new element is inserted, or updated, or removed, Meteor will communicate that to you, 
+Now every time something in the "address" changes, like a new element is inserted, or updated, or removed, Meteor will communicate that to you, 
 because you subscribed to that publication, and the cursor will change, to a new address.
 
 ## Managing subscriptions
@@ -94,7 +94,7 @@ Instead, it means that the connections was established, and Meteor will pump the
 
 If you want to read more about how pub/sub works, click [here](https://docs.meteor.com/api/pubsub.html)
 
-In order to see this how fully works in a practical way, you could clone our [github repository](www.github.com) and on `/posts/reactive` you could see how it's fully working
+In order to see this how fully works in a practical way, you could clone our [github repository](www.github.com) and on `/posts/reactive` you can see the process.
 
  
 

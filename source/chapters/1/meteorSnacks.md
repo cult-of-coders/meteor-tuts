@@ -1,19 +1,19 @@
 ---
-title: Meteor Snacks
-description: Some interesting tools that Meteor has to offer.
-disqusPage: 'Chapter 1: Meteor Snacks'
+title: Meteor Tips & Tricks
+description: Some interesting tips & tricks that Meteor has to offer.
+disqusPage: 'Chapter 1: Meteor Tips & Tricks'
 ---
 
 ## Environment Variables
 
-Meteor uses these variables to know which MongoDB database should it connect to, how it should send emails, many more:
+Meteor uses these variables to know which MongoDB database should it connect to, how it should send emails, and many more:
 
-- MONGO_URL : you don't have to have this by default, but if you connect to another database here where you would put it
+- MONGO_URL : you don't have to have this by default, but if you connect to another database here is where you would put it
 - MAIL_URL : the smtp:// to your email, we'll show you in a bit how easy it is to set it up.
 - METEOR_PROFILE : if set to 1, you'll see how much time meteor spends on the building/rebuilding process
 - ROOT_URL : the real path of Meteor, default is http://localhost:3000
 
-To specify these variables you would do:
+To specify these variables you should do the following:
 
 ```
 ROOT_URL="http://localhost:3000" MAIL_URL="smtp://gmail.com:25" meteor run
@@ -21,8 +21,8 @@ ROOT_URL="http://localhost:3000" MAIL_URL="smtp://gmail.com:25" meteor run
 
 ## Run Meteor Easy
 
-Inside your Meteor folder you have a file "package.json", that packages keeps track of what npm packages you use, and some other
-cool stuff. So for example, you may start an app with diff settings like MAIL_URL, etc, you would do something like:
+Inside your Meteor folder you have a file "package.json", that package keeps track of what npm packages you use, and some other
+cool stuff. So for example, if you would want to start an app with diff settings like MAIL_URL, etc, you would do something like this:
 ```json
 {
   ...
@@ -41,7 +41,7 @@ npm run start
 ## Meteor.wrapAsync
 
 You will use this to be able to do async operations in your methods. Let's say you use S3, or an npm library, that is not in sync,
- it requires you to specify a callback. Well if you do something like 
+ it requires you to specify a callback. So try this:
  
 ```js
 Meteor.methods({
@@ -94,7 +94,7 @@ unless you restart or implement a handler that stops it, so be careful!
 
 ## Email
 
-Remember the emails we received in console when we were talking about Users ? Well, in the back, they used this module:
+Remember the emails we received in console when we were talking about Users ? Well, a while back, they used this module:
 If you don't specify MAIL_URL, all Emails that you send, will go to your console. Pretty cool, right?
 
 If you want an email, we recommend: http://www.mailgun.com/ <- Free for < 10,000 per month
@@ -169,9 +169,9 @@ Go ahead, put something in "/private/some_folder/test.txt":
 Assets.getText('/some_folder/test.txt')
 ```
 
-You would use this when for example, you have a business, logic-packed csv, or .xls file.
+You would use this when, for example, you have a business, logic-packed csv, or .xls file.
 Or you may have a JSON with car models and makes. 
-The idea is that you can have any type of file, even binary, that you can use privately on the server.
+The idea is that you can have any type of file, even binary, that you can privately use on the server.
 
 ## Meteor Settings
 

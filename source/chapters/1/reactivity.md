@@ -6,7 +6,7 @@ disqusPage: 'Chapter 1: Tracker'
 
 ## Introducing the tracking system
 
-Now you're wondering "why would i need a tracking system ? I'm not Big Brother...".
+What is a tracking system ?
 
 The tracker is one of the concepts that sets Meteor apart from other frameworks out there. As such, before we show you
 what it's all about, we need to make sure you have all the packages that you need installed on your machine.
@@ -48,13 +48,13 @@ computation.stop()
 
 Now, if you give values to your data source, the **run** function's execution will be stopped.
 
-Let's do a recap, so that you will be sure that you understood the concept !
+So, basically:
 With the **Tracker**, we can track changes occurring to reactive data sources, in real time. 
 That's everything you need to know for now in order to use this feature.
 
-Aside from the introduction you read in our tutorial, the tracker has many features. You can read more about them [here](https://docs.meteor.com/api/tracker.html).
+What we presented for you was a brief introduction, the **Tracker** tool is way more complex than that. You can read more about them [here](https://docs.meteor.com/api/tracker.html).
 
-Broadly speaking, this tracker is, at its core, a reactive "watcher". And it is not unique !
+At its core, tracker is a reactive "watcher". And it is not unique !
 However, this one is very well integrated with Meteor, and this brings down the integration issues you might face when 
 working on projects, which is why we are using it !
 

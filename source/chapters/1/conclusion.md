@@ -4,9 +4,9 @@ description: Here we are, at the end of this chapter.
 disqusPage: 'Chapter 1: Conclusion'
 ---
 
-So, we just scratched the surface. Meteor has many good things to offer. The journey has only begun.
+So, even if we barely scratched the surface of the many good things Meteor has to offer, the journey has begun.
 
-You now have the knowledge how to use Meteor's powers for your application:
+You have how acquired new knowledge on how to use Meteor's powers for your application:
 
 - How to store your data in the database via Collections
 - How to use Methods to perform server side actions and return responses to the client
@@ -20,5 +20,5 @@ Further reading:
 - https://themeteorchef.com/
 
 
-Feedback is not just welcomed, it's expected. Please share your experience with this tutorial to help improve 
+Feedback is not just welcomed, it's expected. Please share your experience with this tutorial to help us improve 
 it for the next readers!

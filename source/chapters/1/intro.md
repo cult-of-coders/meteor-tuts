@@ -9,15 +9,13 @@ disqusPage: 'Chapter 1: Intro'
 To install the framework, please follow the steps from the meteor official website: [meteor.com](https://www.meteor.com/install)
 
 ## Tools
-The tool that works best for us, and the one which we recommend you use, would be WebStorm, from Jetbrains.
-Students can get it for free, and other people can get a free 30-day evaluation trial.
+The tool that works best for us, and the one which we recommend you to use is WebStorm from Jetbrains.
 You can download Webstorm from [here](https://www.jetbrains.com/webstorm/download).
 
-To learn more about Webstorm, [go here](https://www.jetbrains.com/webstorm/documentation/).
+To learn more about Webstorm and how to better use it, [go here](https://www.jetbrains.com/webstorm/documentation/).
 
-A free alternative to Webstorm would be VSCode. This is an extensible, feature-rich code editor, that is
+A free alternative to Webstorm would be VSCode. This is an extensible, feature-rich code editor that is
 relatively easy to learn.  
-It will make your life a whole lot easier, if you're looking to get in the coding business.
 You can download it from [here](https://code.visualstudio.com/).
 
 ## Creating a project
@@ -67,7 +65,7 @@ As a reminder, you could always use the github repository. For that, go [here](w
 
 Everything in "/client" and "/server" is automatically loaded, as it is explained [here.](https://guide.meteor.com/structure.html#load-order)
 
-That's all great, however, we need more control over our application, and in order to gain that control,
+In general we will need more control over our application, and in order to gain that control
 we will refrain from using auto-loading in our projects.
 
 This compiles all the modules we specified into our project with the "import" keyword, when we type **"meteor run"** 
@@ -83,17 +81,17 @@ This also gives us the ability to build modular applications.
 For now, we won't get into a lot of details, but the basic idea is that with Meteor you have access to the
  full NPM ecosystem, allowing you to import modules from http://www.npmjs.com.
 
-"moment" is a library you will use when working with dates in your projects.
+"moment" is a library you will use when working with dates and times in your projects.
 
-Now, open a new terminal (leave the one with server opened) and in the root directory of the project we are working on, write
+Now, open a new terminal (leave the one with server open) and in the root directory of the project we are working on, write
 
 ```
 meteor npm install --save moment
 ```
 
-We use save here because it will save it in our packages.json, meaning that if we work in collaboration with
+We use "--save" here because it will save it in our packages.json, meaning that if we work in collaboration with
  other developers, when they download the project to start working on it, they will have the same package 
- installed, with the version you specified, making their life much easier. 
+ installed, with the specified version thus making their life much easier. 
 
 To use "moment" in your project, at a basic level, use this code snippet:
 
@@ -105,15 +103,15 @@ const date = moment(new Date()).format('YYYY-MM-DD')
 console.log(date)
 ```
 
-Now, you should see the current date printed on your terminal in case we added this code server side, otherwise on browser's console on client side
+If added to the server side you will see the current date printed on your terminal, otherwise, if added client side you will see it on the browser's console.
 
 ## Atmosphere
 
 Atmosphere is a package manager which is specific to Meteor only, just like npm is for NodeJs. 
-It will help you manage project dependencies with ease.
+It helps you manage your project's dependencies easily.
 You can find great resources to help you with Collections, Server-Side Routes, Mailing, etc.
 
-You can learn more about it on the project [webpage](https://atmospherejs.com).
+You can learn more about it on the project's [webpage](https://atmospherejs.com).
 
 Adding a package is as simple as typing this into the console:
 ```
@@ -125,7 +123,7 @@ That's it. You now have added an user management package in in your application.
 There are a lot of cool and useful packages out there that we'll explore during these tutorials.
 
 ## Importing from Atmosphere
-You also can use the modular approach with Meteor packages!
+You can also use the modular approach with Meteor packages!
 
 To import an atmosphere package we prefix it with `meteor/`
 
@@ -138,7 +136,7 @@ Don't worry too much about this, we are going to explore them later in this tuto
 
 ## Importing from local files
 
-As you saw in the example for creating the project folder structure, we have the ability to import from 
+As you saw in the example for creating the project's folder structure, we have the ability to import from 
 local files by using an "absolute path":
 ```
 import myService from '/imports/startup/server/myService';
@@ -152,13 +150,13 @@ In order to see how this exactly works in an example, you can go on the github r
 Pretty easy right ?
 
 Would you like to find more about importing and exporting ? You can read more here:
-- http://exploringjs.com/es6/ch_modules.html
-- https://stackoverflow.com/questions/25494365/es6-module-export-options/34842087#34842087
+- [http://exploringjs.com/es6/ch_modules.html](http://exploringjs.com/es6/ch_modules.html)
+- [https://stackoverflow.com/questions/25494365/es6-module-export-options/34842087#34842087](https://stackoverflow.com/questions/25494365/es6-module-export-options/34842087#34842087)
 
 
 ## Need Help ?
 
-If you need help, or you get stuck you can ask other Meteor evangelists out there:
+If you get stuck and need help, you can ask other Meteor evangelists out there:
 - https://forums.meteor.com
 - Go to the #meteor channel on FreeNode Server: [https://webchat.freenode.net/](https://webchat.freenode.net/)
 - Contact Cult of Coders for consultancy, [here](https://www.cultofcoders.com/contact)
