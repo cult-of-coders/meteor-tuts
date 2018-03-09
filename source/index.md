@@ -14,8 +14,6 @@ As a result of those efforts MeteorJS was born.
 **Important!**
 To further help your understanding we have set a [github repository](https://github.com/cult-of-coders/meteor-tuts-tutorial) where you can find a branch for each of the sections
 you will complete on this tutorial.
-In addition to this tutorial you can watch every section of it online [on our youtube channel](http://www.youtube.com). These videos will contain a more detailed explanation
-given by your trainer in order for you to better understand the concepts you are learning.
 
 
 
