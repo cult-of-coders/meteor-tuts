@@ -94,7 +94,7 @@ Instead, it means that the connections was established, and Meteor will pump the
 
 If you want to read more about how pub/sub works, click [here](https://docs.meteor.com/api/pubsub.html)
 
-In order to see this how fully works in a practical way, you could clone our [github repository](www.github.com) and on `/posts/reactive` you can see the process.
+In order to see this how fully works in a practical way, you could clone our [github repository](https://github.com/cult-of-coders/meteor-tuts-tutorial/tree/5-pub/sub) and on `/posts/reactive` you can see the process.
 
  
 

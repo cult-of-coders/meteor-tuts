@@ -12,7 +12,7 @@ Having things simplified gave us more time, time which we, as humans started to 
 As a result of those efforts MeteorJS was born.
 
 **Important!**
-To further help your understanding we have set a [github repository](http://www.github.com) where you can find a branch for each of the sections
+To further help your understanding we have set a [github repository](https://github.com/cult-of-coders/meteor-tuts-tutorial) where you can find a branch for each of the sections
 you will complete on this tutorial.
 In addition to this tutorial you can watch every section of it online [on our youtube channel](http://www.youtube.com). These videos will contain a more detailed explanation
 given by your trainer in order for you to better understand the concepts you are learning.
@@ -35,7 +35,7 @@ they are looking for in a product is a perfect combination of the newest technol
  
 <h1>What is Meteor-Tuts?</h1>
 
-Being in love with what we do we contributed to a series of open-source projects which you can see [HERE](http://www.github.com/cult-of-coders).</br>0
+Being in love with what we do we contributed to a series of open-source projects which you can see [HERE](http://www.github.com/cult-of-coders).</br>
 Meteor-Tuts is one of the projects closest to our hearts designed as a useful tool for any programmer that wants to step up his/her game.
 Navigating through this complex but rather easy to understand tutorial you will be accompanied by video tutorials for each chapter and sub-chapter.
 Also, to give you an even better overview, we will provide you with a github repository link where you can find the full project 

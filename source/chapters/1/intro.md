@@ -61,7 +61,7 @@ imports
     server
         main.js # this file contains: import /imports/startup/server
 ```
-As a reminder, you could always use the github repository. For that, go [here](www.github.com)
+As a reminder, you could always use the github repository. For that, go [here](https://github.com/cult-of-coders/meteor-tuts-tutorial/tree/1-clean-installation)
 
 Everything in "/client" and "/server" is automatically loaded, as it is explained [here.](https://guide.meteor.com/structure.html#load-order)
 
@@ -146,7 +146,7 @@ You can also use a relative path:
 ```
 import {sum} from './helpers';
 ```
-In order to see how this exactly works in an example, you can go on the github repository, [here](www.github.com)
+In order to see how this exactly works in an example, you can go on the github repository, [here](https://github.com/cult-of-coders/meteor-tuts-tutorial)
 Pretty easy right ?
 
 Would you like to find more about importing and exporting ? You can read more here:
