@@ -45,7 +45,7 @@ Do not forget to  `` import '/imports/api/methods.js' `` in the server's startup
 Methods can be called from the server-side or from the client-side. Let's try it in the browser's console:
 
 ```js
-Meteor.call('find.random_number', 25, 50 (err, result ) => {
+Meteor.call('find.random_number', 25, 50, (err, result ) => {
    console.log(err); // in case an exception is thrown, then this will contain information about the error
    console.log(result); // this will contain a random number between 25 and 50
 })
@@ -56,7 +56,7 @@ To fully understand the reason why we added 2 arguments `err` and `result`, go a
 ## Errors in methods
 
 Let's cause an error and see what happens:
-Type this code in the */imports/api/methods.js* file:
+Type this code in the */imports/api/methods.js* file:3
 ```js
 // file /imports/api/methods.js
 import { Meteor } from 'meteor/meteor';
