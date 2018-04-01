@@ -86,7 +86,7 @@ Meteor.methods({
     },
 
     'secured.post_list' () {
-        return Posts.find().fetch();
+        return Posts.find({userId: this.userId}).fetch();
     },
 
     'secured.post_edit' (_id, postData) {
@@ -103,7 +103,7 @@ Meteor.methods({
     },
 
     'secured.post_get' (_id) {
-        return Posts.findOne(_id);
+        return Posts.findOne({_id: _id, userId: this.userId});
     }
 });
 ```
