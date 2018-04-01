@@ -122,7 +122,7 @@ Meteor.call('post.get_by_views', {title: 'test', views: 300}, callback)
 #### 3. Removing posts
 Make a method that removes all the posts with title: 'test' or description: 'test'
 ```js
-Meteor.call('post.remove_by_test'm callback)
+Meteor.call('post.remove_by_test', callback)
 ```
 
 #### 4. Updating posts
