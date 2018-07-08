@@ -40,7 +40,7 @@ getPost.expose({
 In the client you will use it something like this:
 
 ```js
-import getPostQuery from /imports/db/posts/queries/getPost.js;
+import getPostQuery from '/imports/db/posts/queries/getPost';
 
 export default createContainer(({postId}) => {
     const query = getPostQuery.clone({postId});
