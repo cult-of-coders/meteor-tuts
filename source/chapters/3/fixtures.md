@@ -28,7 +28,7 @@ const runFixtures = function () {
     }
 }
 
-if (!Meteor.isDevelopment) {
+if (Meteor.isDevelopment) {
     runFixtures();
 }
 ```
