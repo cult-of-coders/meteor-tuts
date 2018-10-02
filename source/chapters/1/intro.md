@@ -58,8 +58,8 @@ imports
         server
             index.js # loads everything that is needed for the server to function
     api # contains the rest
-    server
-        main.js # this file contains: import /imports/startup/server
+server
+    main.js # this file contains: import /imports/startup/server
 ```
 As a reminder, you could always use the github repository. For that, go [here](https://github.com/cult-of-coders/meteor-tuts-tutorial/tree/1-clean-installation)
 
