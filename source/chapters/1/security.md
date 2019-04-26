@@ -27,7 +27,7 @@ In every method & publication we can access `this.userId`, this will return eith
 
 Based on the userId you have the ability to check if the user is logged in, maybe you have multiple roles in the system,
 
-We recommend installing the infamous package, [alanning:roles](https://atmospherejs.com/alanning/roles):
+We recommend installing the popular package [alanning:roles](https://atmospherejs.com/alanning/roles):
 
 ```
 meteor add alanning:roles
