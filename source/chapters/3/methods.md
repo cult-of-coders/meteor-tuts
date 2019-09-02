@@ -178,7 +178,7 @@ const methods = mix([checkLoggedIn], {
     'posts.create'() {
         // do something;
     }
-);
+});
 
 Meteor.methods(methods);
 ```
