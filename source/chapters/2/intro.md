@@ -65,7 +65,7 @@ However, at this stage, (Q4 2016) Vue.JS is looking very promising and gaining a
 Who wins? It's a race. It's the survival of the fittest. Time will decide. For now, pick a technology
 and master it. 
 
-Keep in mind, many companies out there still use software written 50 years ago in COBOL. Why ? Because they work and to the job.
+Keep in mind, many companies out there still use software written 50 years ago in COBOL. Why ? Because they work and do the job.
 
 ### CSS
 
