@@ -237,7 +237,7 @@ The almost official way to do this is by using this awesome package: https://atm
  
 Give it a read, you'll love it.
 
-My recommendation here is to dispatch an event on a given hook, and store the hooks inside `/imports/db/{collection}/hooks.js`,
+My recommendation here is to dispatch an event on a given hook ([event handling will be described a bit later]("/chapters/3/events.html")), and store the hooks inside `/imports/db/{collection}/hooks.js`,
 and the logic for handling the hooks should be inside `/imports/api`
 
 ## Behaviours
@@ -246,10 +246,10 @@ Most likely, your collections will store the user who created something, or stor
 
 So instead of creating hooks for every collection, it's easier to define a behaviour and re-use it.
 
-Please read about it on these links:
+Please read about it:
 https://github.com/zimme/meteor-collection-behaviours/
 
-For storage, I think it's fine to just attachBehaviours where you store the collection:
+I think it's fine to just attachBehaviours where you store the collection:
 
 ```js
 // file: /imports/db/posts/collection.js
@@ -292,7 +292,7 @@ _.extend(Users, UsersExtension);
 
 ## Helpers
 
-With the use of this package: https://github.com/dburles/meteor-collection-helpers you can make your documents smarter if they are fetched through your collections.
+With the use of this package: https://github.com/dburles/meteor-collection-helpers you can make your documents smarter if they are fetched through your collections directly.
 ```js
 // file: /imports/db/users/helpers.js
 
@@ -316,6 +316,23 @@ This will allow you to easily do:
 
 ```js
 Users.findOne(userId).getEmail()
+```
+
+If you return them from a method call, you won't benefit from helpers. But what you can do is map it to the transform function on the client.
+```js
+// server
+Meteor.methods({
+    "users.findAll"() { 
+        // returns an array of objects and strips out all the additional functionality
+        return Users.find().fetch(); 
+    }
+})
+
+// client
+Meteor.call('users.findAll', function (err, res) {
+    const users = res.map(Users._transform);
+    // users[0].getEmail() will now work
+})
 ```
 
 ## Shortcuts
@@ -371,7 +388,7 @@ Posts.addLinks({
 ```
 
 We need those links loaded, so aggregate all links importing into a single file. 
-Import this file in the client-side and server-side init modules.
+Import this file (`/imports/db/links`) in the `client` and `server` init scripts so they are loaded.
 
 ```js
 // file: /imports/db/links.js
@@ -480,7 +497,7 @@ Because [Grapher](http://grapher.cultofcoders.com) forces you to specify only th
 
 You may feel that having your query in `/imports/db` and your exposure inside `/imports/api` to be a little odd. 
 This is why you can put your query inside `/imports/api` as well. But the reason for not putting exposure inside `/imports/db` is
-because it contains app logic, and that layer it should be independent from it.
+because it contains `App Logic`, and that layer it should be independent from the `Persistance Layer`
 
 
 

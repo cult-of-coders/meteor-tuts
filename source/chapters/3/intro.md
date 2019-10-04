@@ -91,8 +91,8 @@ This looks like a simple way of doing things, the code is relatively clean, and 
 
 But, then the *Bigshot Code Reviewer* comes to you and says the following:
 
-1. You need to validate the user when creating a post
-2. What prevents the user from setting `isApproved: true` in the post object ? Never trust the client!
+1. You need to make sure the user is logged in when creating a post
+2. What prevents the user of setting `isApproved: true` in the post object? Never trust the client!
 3. What if I want to change `notifications@app.com` from one place.
 4. Post approval is not secured, you need an Admin role to do that
 5. What if the `/posts/:_id` route changes I want to be able to change it from one place

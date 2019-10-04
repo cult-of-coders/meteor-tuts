@@ -31,7 +31,7 @@ meteor npm i --save-dev chai sinon
 ```
 
 Now you can easily do in your terminal: `npm run test`. Then open your browser on http://localhost:3050 to see the results,
-they will be updated live as you write your test.
+they will be updated live as you write your tests or update your files.
 
 Test files should end in `*.test.js` and they should have a parent (not necessarily direct) with name `client` or `server`
 depending where we want to run them.

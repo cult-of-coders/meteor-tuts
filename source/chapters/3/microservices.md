@@ -39,7 +39,7 @@ Now look at this example:
 ```js
 // file: ./admin/imports/api/posts/server/methods.js
 import {Meteor} from 'meteor/meteor';
-import {Posts} from '/imports/web/imports/db';
+import {Posts} from '/imports/app/db';
 
 Meteor.methods({
     'posts.approve'({postId}) {
@@ -55,7 +55,7 @@ cd admin/imports
 ln -s ../../web/imports/db db
 ```
 
-and use it naturally:
+and use it naturally in your admin microservice:
 
 ```js
 // file: ./admin/imports/api/posts/methods.js
@@ -120,15 +120,15 @@ import PaymentService from '/imports/api/payments/services/PaymentService.js';
 // ...
 ```
 
-This will fail if you want to use the PostService inside `admin` microservice! Because doesn't have that file in that path. 
+This will fail if you want to use the PostService inside `admin` microservice! Because it doesn't have that file in that absolute path. 
 
 The initial solution would be to use `imports PaymentService from '../../payments/services/PaymentService'`
 
 Another great solution is to begin thinking about it as a [reusable module](/chapters/3/reusable-modules.html). Which you can store in `/modules` folder directly.
 And create the following symlinks:
 ```bash
-/web/imports/modules -- /modules
-/admin/imports/modules -- /modules
+/web/imports/modules -> /modules
+/admin/imports/modules -> /modules
 ```
 
 If your module depends on things outside it, simply create a config inside it, and inject what you need inside it, keep it simple or make it as complex as you wish.
@@ -170,7 +170,7 @@ I personally don't recommend you using absolute imports any longer inside `/core
 
 ## Conclusion
 
-This "better" strategy would require you to do some refactoring to ensure it works properly provided you have an existing app already. However, if you don't and you know 
+This "better" strategy would require you to do some refactoring to ensure it works properly provided you have an existing app already. However, if you don't have an existing app and you know 
 you will have microservices, start with this approach right from the beginning.
 
  
