@@ -45,7 +45,6 @@ sidebar_categories:
     - chapters/3/fixtures
     - chapters/3/reusable-modules
     - chapters/3/linting
-    - chapters/3/static-type-checking
     - chapters/3/emails
     - chapters/3/microservices
     - chapters/3/structure
