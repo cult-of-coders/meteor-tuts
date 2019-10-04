@@ -403,7 +403,7 @@ const post = Posts.createQuery({
         _id: postId,
     },
     title: 1,
-    user: {
+    author: {
         profile: 1,
     }
 }).fetchOne((err, post) => {
