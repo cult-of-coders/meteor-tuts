@@ -19,7 +19,7 @@ apis:
 sidebar_categories:
   null:
     - index
-  'Chapter 1':
+  "Chapter 1":
     - chapters/1/intro
     - chapters/1/methods
     - chapters/1/collections
@@ -29,12 +29,12 @@ sidebar_categories:
     - chapters/1/security
     - chapters/1/meteorSnacks
     - chapters/1/conclusion
-  'Chapter 2':
+  "Chapter 2":
     - chapters/2/intro
     - chapters/2/react
     - chapters/2/css
     - chapters/2/conclusion
-  'Chapter 3':
+  "Chapter 3":
     - chapters/3/intro
     - chapters/3/persistence-layer
     - chapters/3/testing
@@ -45,22 +45,23 @@ sidebar_categories:
     - chapters/3/fixtures
     - chapters/3/reusable-modules
     - chapters/3/linting
+    - chapters/3/static-type-checking
     - chapters/3/emails
     - chapters/3/microservices
     - chapters/3/structure
     - chapters/3/conclusion
 
-github_repo: 'cult-of-coders/meteor-tuts'
-content_root: 'source'
+github_repo: "cult-of-coders/meteor-tuts"
+content_root: "source"
 
 # themeing
-favicon: '/images/favicon.png'
+favicon: "/images/favicon.png"
 
 logo:
-  nav_mobile: '/images/logo.png'
-  url: 'http://www.cultofcoders.com'
-  title: 'Meteor Tuts'
-  subtitle: ''
+  nav_mobile: "/images/logo.png"
+  url: "http://www.cultofcoders.com"
+  title: "Meteor Tuts"
+  subtitle: ""
 
 nav_links:
   Meteor jobs:
@@ -80,8 +81,8 @@ nav_links:
     target: _new
 
 social_links:
-  github: 'https://github.com/cult-of-coders/meteor-tuts.com'
-  twitter: '@culotfcoders'
+  github: "https://github.com/cult-of-coders/meteor-tuts.com"
+  twitter: "@culotfcoders"
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'

@@ -1,7 +1,7 @@
 ---
-title: "Static Type Checking"
+title: 'Static Type Checking'
 description: Maintaining large projects
-disqusPage: "Chapter 3: Static Type Checking"
+disqusPage: 'Chapter 3: Static Type Checking'
 ---
 
 ## Why?
