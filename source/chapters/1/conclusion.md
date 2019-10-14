@@ -1,24 +1,22 @@
 ---
-title: Chapter 1 - Conclusion
-description: Here we are, at the end of this chapter.
+title: Conclusions
+description: Here we are, at the end of the first chapter.
 disqusPage: 'Chapter 1: Conclusion'
 ---
 
-So, even if we barely scratched the surface of the many good things Meteor has to offer, the journey has begun.
+Even if this is the beginning of the 1st chapter, we just scratched the surface. Meteor has so many good things to offer! 
+We are certain you have fallen in love with this framework, and we look forward to help you on this new journey!
 
-You have how acquired new knowledge on how to use Meteor's powers for your application:
+You now have the knowledge how to use Meteor's powers in your applications! You've learned how to:
+- store data in a database via Collections
+- use methods to perform server-side actions and return responses to the client
+- use Meteor's reactive system to develop live updates systems in your applications
+- secure your methods/publications in order to develop robust applications
 
-- How to store your data in the database via Collections
-- How to use Methods to perform server side actions and return responses to the client
-- Use Meteor's reactive system to see live updates
-- How to secure your methods/publications for a robust application
-
-
-Further reading:
-
+If you're like us, you will want to know more and more! Here's what we recommend:
 - https://guide.meteor.com/ 
 - https://themeteorchef.com/
 
-
-Feedback is not just welcomed, it's expected. Please share your experience with this tutorial to help us improve 
-it for the next readers!
+Also, we do this tutorial out of passion, and we'd like your support!
+Feedback is a critical component of any development system. Because of this, we encourage you to interact with us and help us make meteor-tuts better!
+ Share your experience us regarding the content in this tutorial and help us improve it for other developers!

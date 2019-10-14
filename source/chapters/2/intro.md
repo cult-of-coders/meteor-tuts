@@ -6,68 +6,44 @@ disqusPage: 'Chapter 2: Intro'
 
 ## Introduction
 
-In the previous chapter we learned how to harness Meteor's powers. But we didn't see anything actually happening in the UI (The View Layer).
+Previously, we learned how to harness Meteor's powers for building web applications. But we did not see anything actually happen in the View Layer (the UI).
 
-Meteor is a data-system more than anything else, ofcourse it gives you some snacks to help you
-code faster: The User System, Emails, much more. But the View Layer it's up to you.
+Since Meteor is a system that focuses on data more than anything else, of course it gives you some snacks to help you
+code faster: The User System, Emails and so much more. But when it comes to the View Layer, it's up to you!
 
-Don't get this the wrong way, Meteor can be integrated with any View Layer/Template Engine/UI Framework you want to use. 
+Don't panic! Meteor can be integrated with any View Layer/Template Engine/UI Framework you want to use! 
 
 ## Brief history
 
-When Meteor started there was no stable solution for building reactive views. They had to invent a way.
-This is how Blaze was born. [http://blazejs.org/](http://blazejs.org/). In Q4 2015, they decided to drop
+When Meteor started there weren't any stable solutions for building reactive views with it. Because of that the developers had to invent a way.
+This is how [Blaze](http://blazejs.org/) was born. In Q4 of 2015, the developers decided to drop the 
 support for Blaze, not because it wasn't good, but because there were other teams that focused only on the
 view layer. You cannot expect one company to do everything. So they began decoupling Blaze from Meteor.
 
-Even if Blaze is one of the most friendliest View Layers you'll ever meet, they gave it to the community
-to take care of it, decoupling it from Meteor. This does not mean you should not use Blaze. Blaze is rock-solid and battle-tested.
+The Meteor developers gave Blaze to the community to take care of it, decoupling it from Meteor. 
 
-## What can we use?
-
-From a personal opinionated experience, we noticed that for mobile builds, Blaze is inferior to React, in terms
+Even if it was a component of Meteor for a while, we do not recommend using Blaze in your applications.
+From personal experiences, we noticed that, for mobile builds, Blaze is inferior to React in terms
 of speed and stability. Especially for older mobile phones.
 
-Times changed, new View Layers appeared that support reactivity such as:
-- React
-- Vue.JS
-- Angular2
-- etc
+However, as times change, new View Layers appeared that support reactivity:
+- [React](https://reactjs.org/)
+- [Vue.JS](https://vuejs.org/)
+- [Angular2](https://angularjs.org/)
 
+Each of these has advantages and disadvantages. The question is: what should you choose?
 
-In terms of styling the UI, we are going to use CSS and to make our life easier, we can opt for a pre-processor:
-- SASS
-- LESS
-- Stylus
-- etc
+Our recommendation is [React](https://facebook.github.io/react/)
 
-We could also use a front-end framework like: 
-- Bootstrap
-- Foundation, 
-- Materialize
-- Vuetify
-- etc
+The reasons for which we made this choice are:
 
-Each has advantages and disadvantages. So question now is what to choose?
+- React is modular
+- Even if it is a bit hard to use at first, using React gets much easier once you get the hang of it, and the development process becomes easy and intuitive
+- React is lightning Fast 
+- React is maintained by Facebook, and they actively use it in their projects, including in the source code of Facebook itself!
 
-### UI library/framework
+However, at this stage(Q1 2018), Vue.JS is looking very promising and it is gaining a lot of momentum. 
+Who will win? It's the survival of the fittest. Time will decide. For now, pick a technology and master it. 
 
-Our current recommendation is: [React](https://facebook.github.io/react/)
-
-Reasons for this choice:
-
-- Modular
-- A bit hard to use at first, but much easier once you get the hang of it, it becomes easy and intuitive
-- Lightning Fast 
-- Maintained by Facebook
-
-However, at this stage, (Q4 2016) Vue.JS is looking very promising and gaining a lot of momentum. 
-Who wins? It's a race. It's the survival of the fittest. Time will decide. For now, pick a technology
-and master it. 
-
-Keep in mind, many companies out there still use software written 50 years ago in COBOL. Why ? Because they work and do the job.
-
-### CSS
-
-Our current recommendation is to use SASS (SCSS) and no framework. Probably you are asking why we are not opting for a framework. The reason is that a framework like boostrap (one of the most used frameworks) comes with jquery dependecies which are not recommended to use with React. To read more why it is not recommended to use jquery, [click here](https://goo.gl/3mExNr) 
-  
+Also, keep in mind the fact that many companies out there still use software that was written 50 years ago in COBOL. 
+Why ? Because it gets the job done!

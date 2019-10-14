@@ -1,46 +1,53 @@
 ---
 title: Security
-description: Let's talk Security
+description: Let's talk about Security
 disqusPage: 'Chapter 1: Security'
 ---
 
-Security is a very important aspect of any application. When your code-base grows,
-you need to more and more careful on how you handle this. We'll first show how we can
-secure our methods and publications, then we will get into some tips and tricks meant to teach you how to handle 
-the security for an evergrowing code base.
+Security is a very important aspect of any application. When your codebase grows, security must be one of the core aspects 
+that you address. Users need to feel that the data they give you via the application is secure and that it respects the three 
+most important requirements of data security - CIA:
+- **C**onfidentiality
+- **I**ntegrity
+- **A**vailability. 
+ 
+Let's start by securing our methods and publications, then we will talk about implementing security best practices for an evergrowing code base.
 
-## Securing Methods & Publicaions
+## Securing methods and publications in Meteor
 
-So, remember the Methods ?
-
+Remember our talk about users ?
 ```js
 Meteor.methods({
-    'post.create'(post) {
-        Posts.insert(post);
-    },
+    'do_something': function () {
+        console.log(this.userId);
+    }
+})
+```
+Here you get access to the userId, which represents the logged in user. If your user is not logged in, its value will be null.
+
+
+The same goes for publications:
+```js
+Meteor.publish('something', function () {
+    console.log(this.userId);
+    return this.ready(); 
 })
 ```
 
-In every method & publication we can access `this.userId`, this will return either `null`, meaning the user is not authenticated, or a string with the actual userId, something like `8qLGFKSn6szJkzsyG`
+## Managing roles, or "who's who"
 
-## Managing Roles
+Based on the userId you can check if he/she is logged in, the roles it has in the system, the privileges granted to 
+that user and, basically, you can do anything you want.
 
-Based on the userId you have the ability to check if the user is logged in, maybe you have multiple roles in the system,
-
-We recommend installing the popular package [alanning:roles](https://atmospherejs.com/alanning/roles):
-
+We recommend installing the [alanning:roles](https://atmospherejs.com/alanning/roles) package:
 ```
 meteor add alanning:roles
 ```
 
+## Order!
 
-## Security Module
-
-Centralize security in a module:
-
+Now let's centralize all of our security in */imports/api/security.js*, so we can see how the "big picture" looks like:
 ```js
-// file: /imports/api/security.js
-// example of a module for security
 import { Roles } from 'meteor/alanning:roles';
 
 export default class Security {
@@ -59,65 +66,58 @@ export default class Security {
             throw new Meteor.Error('not-authorized', 'You are not authorized');
         };
     }
-    
     // add other business logic checks here that you use throughout the app
     // something like: isUserAllowedToSeeDocument()
-    // always keep decoupling your code if this class gets huge.
 }
 ```
+Word of advice: always keep decoupling your code if classes get huge. And by decoupling we mean that you should separate 
+code into classes, depending on its functionality. Big classes, with multiple functionalities will make it much harder 
+to debug your application in case errors appear. Because of this, we strongly recommend that you abide to KISS : Keep It Smart and Simple. 
 
-Pretty straight forward right ? The reason we do it like this, by centralizing security in one place,
-is to remove boilerplate code inside our methods and keep separation of concerns. You can do it however you want it, there is no right or wrong way to do it,
-depends on your use-case, but we believe that it is easier to maintain, and newly onboarded developers were writing secure
-code right from the start!
+Pretty KISS, right ? The reason for which we centralize security in one place is to remove the boilerplate code from 
+inside our methods and separate the purposes of each code file. 
+You can however structure your application however you want. There is no right or wrong.
+However, from our experience, the applications that are structured like this are easier to maintain, and this kind of structure
+ helps beginners write secure code right from the start!
 
-Simple usage in methods:
-
+Let's now cover some simple use cases:
 ```js
 import {Meteor} from 'meteor/meteor'
 import {Posts} from '/db';
 import Security from '/imports/api/security';
 
 Meteor.methods({
-    'secured.post_create'(post) {
+    'do_something': function () {
+        // throw exception if the user is not logged it:
         Security.checkLoggedIn(this.userId);
-        post.userId = this.userId;
-        Posts.insert(post);
-    },
-
-    'secured.post_list' () {
-        return Posts.find({userId: this.userId}).fetch();
-    },
-
-    'secured.post_edit' (_id, postData) {
-        Posts.update({_id: _id, userId: this.userId}, {
-            $set: {
-                title: postData.title,
-                description: postData.description
-            }
-        });
-    },
-
-    'secured.post_remove' (_id){
-        Posts.remove({_id: _id, userId: this.userId});
-    },
-
-    'secured.post_get' (_id) {
-        return Posts.findOne({_id: _id, userId: this.userId});
+        
+        // throw exception if the user does not have a role:
+        Security.checkRole(this.userId, 'ADMIN');
+        
+        if (Security.hasRole('ADMIN')) {
+            return sensitiveData;
+        } else {
+            return publicData;
+        }
     }
 });
 ```
 
-Simple usage in publications:
-
+Publications usage shouldn't be too hard:
 ```js
 
 import Security from '/imports/api/security.js';
 import {Meteor} from "meteor/meteor";
 
 Meteor.publish('posts', function () {
-    return Posts.find({userId: this.userId});
+    let filters = {};
+    if (!Security.hasRole(this.userId, 'ADMIN')) {
+        // if the user is not an admin, we only show posts where "isPublic" is true
+        filters.isPublic = true;
+    }
+    
+    return Posts.find(filters);
 })
 ```
 
-That's it. With this knowledge you can build more secured apps!
+You can now build secure apps with Meteor!

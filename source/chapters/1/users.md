@@ -1,23 +1,25 @@
 ---
 title: Accounts
-description: How Meteor handles users
+description: Handling users with Meteor
 disqusPage: 'Chapter 1: Accounts'
 ---
 
-In this part of the tutorial we will discuss about the friendly and simple APIs for:
+Congratulations for making in this far with this Meteor tutorial! Now we're going to talk about a very important element in you application: users!
+Meteor already has implemented some of the core functionality for dealing with users, and it offers simple yet very powerful APIs for helping you to implement user interaction in you application:
 
-- Creating an user
-- Login (with Password, Facebook, Google and others)
-- Forgot Password
-- Change Password
-- Reset Password
+- User creation
+- Login (via a password, or with Facebook, Google)
+- Password recovery
+- Change the user password
+- Reset a user's password
 
-In this part we'll focus more on registering and logging in the regular way, but we will also guide you on how you can integrate it with other authentication mechanism.
-
+In this section of the tutorial we focus more on teaching you how to handle passwords, but we'll also show you how easy it is to integrate the framework with other systems.
+Run this in your command line interface, and then we can get started:
 ```
 meteor add accounts-base accounts-password
 ```
-Create a server side method where we register an user
+
+In your server-side shell type this snippet of code:
 
 ```js
 // file: /imports/api/users/methods.js
@@ -36,31 +38,32 @@ Meteor.call('user.register', email, password, (err, result) => {
 
 ```
 
-Users are stored in a collection. You can access this collection via `Meteor.users`. 
-It's the same kind of collection that we learned about in the past chapters.
+Users get stored in a collection, which you can access via `Meteor.users`. 
+It's the exactly like the collection that we have learned about until now.
 
-Now go to your browser's console:
+Now use this snippet in your browser console:
 
 ```js
 Meteor.loginWithPassword('test@test.test', '12345', function (err) {
     if (!err) {
-        console.log('I was called because authentication was a success')
+        console.log('You see this because the authentication process was a success')
     } else {
         console.log(err);
     }
 })
 ```
-You should be logged in now!
 
+And, just like that, you're logged in!
+Now go back to your browser console and let's see the user that is currently logged in and its ID:
 ```js
-// in browser console:
-Meteor.user() // will return the current logged in user
-Meteor.userId() // will return the _id of the current logged in user
+Meteor.user()
+Meteor.userId()
 ```
 
-`Meteor.user()` is a reactive data source, so if you use it in a Tracker, then you will benefit from it's reactivity.
+Since `Meteor.user()` is a reactive data source, if you use it in a Tracker, you can benefit from its reactivity,
+meaning you can access information about the users, logged in, or anonymous.
 
-Another thing you may notice is how `emails` key is structured:
+Another thing you may notice is how the `emails` key is followed by the *"verified"* check:
 ```js
 [
     {
@@ -70,55 +73,57 @@ Another thing you may notice is how `emails` key is structured:
 ]
 ```
 
-This may seem a bit complicated, but they decided to stick with this, maybe because they wanted to easily satisfy  the people
-who want multiple email addresses on their account. To get the email of your user, you would have to do:
+This may seem to be redundant and complicated, but the Meteor developers decided to stick with this, maybe because they wanted to cater to the people
+that want multiple email addresses linked to their account. To get the email of your user, you would have to use the following snippet:
 ```js
 Meteor.user().emails[0].address
 ```
 
-But don't worry about this now, when we'll learn how to make this easy, so you won't have to type this everywhere you need an user's email.
-
-You think '12345' is not a very secure password, and you are correct, let's change it:
+But you should not worry about this right now, because, by the end of this tutorial we'll learn how to easily implement this in any application, 
+and simplify the steps you'll need to take in order to use it, so you won't have to repeat yourself whenever you will need a user's email.
+You might think that '12345' is not a very secure password! Since you are correct, let's go ahead and change it:
 
 ```js
-// browser's console
-Accounts.changePassword('12345', 'My1337L333Tpasswurt%', function (err) {
+Accounts.changePassword('12345', 'My1337L333Tpassword%', function (err) {
     if (!err) {
-        console.log('Change password was a success!')
+        console.log('Changing the password was a success!')
     } else {
         console.log(err);
     }
 })
 ```
 
-Very nice, now let's try a logout:
+Very nice! Now, since the password wasn't abiding to the basic guidelines that the user should respect when choosing his/her password, we made them change it.
+ Now let's get the user to try out his/her new shiny password by logging them out, in order to get them to log back in with the new password:
 
 ```js
 //browser's console
 Meteor.logout(function (err) {
     if (!err) {
-        console.log('Logout was a success!')
+        console.log('The user was logged out successfully !')
     } else {
         console.log(err);
     }
 });
-// now Meteor.user() and Meteor.userId() will be null
 ```
+Now, if you check their values, *Meteor.user()* and *Meteor.userId()* will be null, because there is no user that's currently logged in.
 
-Next time you login, you'll login with your new password.
+The [callbacks](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function) we used previously in `loginWithPassword`, 
+`changePassword` and `logout` are optional. So, depending on the situation, you can make the application work without them.
 
-But wait, your new password is so complex, you already forgot it.
-
+But wait! Your user's new password is so complex, he/she already forgot it.
+In order to reset their password, you simply need to:
 ```js
 Accounts.forgotPassword({ email: 'donut@lover.com' })
 ```
 
-Now check your terminal, where you started Meteor, you should see the email you got, you should have a link like:
+Now if we check the output in the terminal, where we started Meteor, we should see a link that looks like this:
 ```
 http://localhost:3000/#/reset-password/eNqDzCvx0F3OA6B0dzmx4i6kLs4-veJ36j3X2Rhxui7
 ```
 
-The last part is your token.
+The last part, the one after the last '/', is your token.
+Now let's use that token:
 
 ```js
 Accounts.resetPassword('eNqDzCvx0F3OA6B0dzmx4i6kLs4-veJ36j3X2Rhxui7', 'NewPassword123', function (err) {
@@ -129,8 +134,29 @@ Accounts.resetPassword('eNqDzCvx0F3OA6B0dzmx4i6kLs4-veJ36j3X2Rhxui7', 'NewPasswo
     }
 })
 ```
+Now we can get back to the user and send our regards, together with the new password.
 
-If you want to read more about this package, you can find documentation for it [here](https://docs.meteor.com/api/accounts.html)
+But what if you want the user to confirm the registration by e-mail ?
 
-# Important
-In order to see this in real action, you can access on [github](www.github.com) and clone the project.
+In your meteor shell type this:
+```js
+Accounts.createUser({
+    email: 'user@withoutPassword.com'
+})
+
+//this will return the newly created _id
+
+Accounts.sendEnrollmentEmail(_id);
+```
+
+Now go to where you started meteor and check out the email.
+Get the token like we just did and set a new password with `Accounts.resetPassword()`.
+
+**If you'd be interested to find out more:**
+
+Meteor allows you to [customize](http://docs.meteor.com/api/passwords.html#Accounts-emailTemplates) the messages that you send to your users.
+
+Did you like playing around with passwords ? Read more about them [here](http://docs.meteor.com/api/passwords.html).
+
+Wouldn't you like to know how you can allow your users to log in with Facebook, Google, Twitter, etc ? 
+Find out how to do it [here](https://guide.meteor.com/accounts.html#supported-login-services).
