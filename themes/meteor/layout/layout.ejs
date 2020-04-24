@@ -59,6 +59,13 @@
       type="text/javascript"
       src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"
     ></script>
+    <script type="text/javascript">
+      window.jQuery = $;
+    </script>
+    <script
+      type="text/javascript"
+      src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
+    ></script>
 
     <script>
       <% if (config.apis && config.apis.ga) { %>
@@ -171,8 +178,17 @@
 
     <script type="text/javascript">
       $(document).ready(function () {
+        var COOKIE_NAME = "banner-hidden";
+        var value = $.cookie(COOKIE_NAME);
+        var isHidden = value === "hidden";
+
+        if (!isHidden) {
+          $(".top-information").show();
+        }
+
         $(".js-close-top-information").click(function (e) {
           e.preventDefault();
+          $.cookie(COOKIE_NAME, "hidden", { expires: 1 });
           $(".top-information").hide();
         });
       });
