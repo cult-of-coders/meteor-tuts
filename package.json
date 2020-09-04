@@ -20,7 +20,7 @@
     "hexo-renderer-stylus": "^0.3.0",
     "hexo-server": "^0.2.0",
     "jsdoc": "git+https://github.com/meteor/jsdoc.git#espree-3.1",
-    "showdown": "^1.9.0",
+    "showdown": "^1.9.1",
     "underscore": "^1.9.1"
   },
   "scripts": {
