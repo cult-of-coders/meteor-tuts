@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "canonical-json": "0.0.4",
-    "handlebars": "^4.4.3",
+    "handlebars": "^4.5.3",
     "hexo": "^3.9.0",
     "hexo-generator-archive": "^0.1.5",
     "hexo-generator-category": "^0.1.2",
