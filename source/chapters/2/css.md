@@ -89,7 +89,7 @@ You can find a pre-installed meteor project with this folder structure, [here](h
 
 
 ## Use of Flexbox
-To structure our layout model, we are using CSS3 Flexbile Box because it solves some problems that the layout float model have:
+To structure our layout model, we are using CSS3 Flexible Box because it solves some problems that the layout float model have:
 - vertical and horizontal centering
 - same height columns
 
