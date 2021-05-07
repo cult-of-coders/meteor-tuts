@@ -21,7 +21,7 @@
     "hexo-server": "^0.2.0",
     "jsdoc": "git+https://github.com/meteor/jsdoc.git#espree-3.1",
     "showdown": "^1.9.0",
-    "underscore": "^1.9.1"
+    "underscore": "^1.12.1"
   },
   "scripts": {
     "build": "hexo generate",
