@@ -17,15 +17,15 @@ This article assumes you thoroughly read: https://guide.meteor.com/testing.html
 If you decoupled your code nicely, it's so easy to write tests:
 
 ```
-meteor add practicalmeteor:mocha
-meteor npm i --save-dev chai sinon
+meteor add meteortesting:mocha
+meteor npm i --save-dev expect
 ```
 
 ```
 // package.json
 {
   "scripts": {
-     "test": "meteor test --driver-package practicalmeteor:mocha --port 3050"
+     "test": "meteor test --driver-package meteortesting:mocha --port 3050"
   }
 }
 ```
@@ -39,14 +39,14 @@ depending where we want to run them.
 ```js
 // file: /imports/api/posts/testing/server/PostService.test.js
 
-import {assert} from 'chai';
+import expect from 'expect';
 import PostService from '/imports/api/posts/services/PostService';
 
 describe('Post Service', function () {
     it('Should be able to create a post', function () {
         const postId = PostService.createPost({title: 'Hello'})
         
-        assert.isString(postId);
+        expect(typeof postId).toBe("string")
     })
 })
 ```
